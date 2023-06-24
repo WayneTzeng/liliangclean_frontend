@@ -1,0 +1,42 @@
+trigger:
+  - master
+  - release-uat
+
+pool:
+  name: Default
+  demands:
+    - Agent.OS -equals Linux # equals check for Agent.OS Linux
+
+variables:
+  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+    env:
+  ${{ elseif eq(variables['Build.SourceBranchName'], 'release-uat') }}:
+    env: --mode uat
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '15.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      yarn
+      yarn build $(env)
+    displayName: 'npm install and build'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: './dist'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: './$(Build.Repository.Name)_$(Build.SourceVersion).zip'
+      replaceExistingArchive: true
+
+  - task: S3Upload@1
+    inputs:
+      awsCredentials: 'cosmos-aws-access'
+      regionName: 'ap-northeast-1'
+      bucketName: 'cosmos-deploy-version'
+      sourceFolder: './'
+      globExpressions: '$(Build.Repository.Name)_$(Build.SourceVersion).zip'
+      targetFolder: '$(Build.Repository.Name)/$(Build.SourceBranchName)'
