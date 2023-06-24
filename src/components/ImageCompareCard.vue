@@ -1,5 +1,5 @@
 <template>
-  <div class="image-compare-card">
+  <div class="image-compare-card" :class="{ 'is-first': isFirst }">
     <img :src="imgData.image" />
     <Button class="button" full :text="imgData.btnText" />
   </div>
@@ -17,6 +17,10 @@ export default {
     imgData: {
       type: Object,
       default: () => {},
+    },
+    isFirst: {
+      type: Boolean,
+      default: false,
     },
   },
   setup() {
@@ -44,10 +48,20 @@ export default {
 }
 
 .image-compare-card ~ .image-compare-card {
-  margin-left: 5vw;
+  margin: 5vw 0 0 5vw;
 }
 
-@media (max-width: 400px) {
+.image-compare-card:nth-child(3n + 1) {
+  margin-left: 0;
+}
+
+.image-compare-card:nth-child(1),
+.image-compare-card:nth-child(2),
+.image-compare-card:nth-child(3) {
+  margin-top: 0;
+}
+
+@media (max-width: 460px) {
   .image-compare-card {
     width: 100%;
   }

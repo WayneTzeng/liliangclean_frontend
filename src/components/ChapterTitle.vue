@@ -34,7 +34,6 @@ export default {
 
   .title {
     font-size: 22px;
-    font-family: Hiragino Mincho Pro;
     font-weight: 600;
     color: var(--brown);
 
@@ -72,7 +71,7 @@ export default {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .chapter-title {
     .title {
       font-size: 18px;
