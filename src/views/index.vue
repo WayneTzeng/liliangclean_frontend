@@ -124,6 +124,18 @@ export default {
         image: require('../assets/image/image/image-performance-3.png'),
         btnText: '廚房清潔',
       },
+      {
+        image: require('../assets/image/image/image-performance-1.png'),
+        btnText: '客廳清潔',
+      },
+      {
+        image: require('../assets/image/image/image-performance-2.png'),
+        btnText: '浴室清潔',
+      },
+      {
+        image: require('../assets/image/image/image-performance-3.png'),
+        btnText: '廚房清潔',
+      },
     ]);
 
     const goToTop = () => {
@@ -160,7 +172,6 @@ export default {
     align-items: center;
     color: var(--brown);
     font-size: 18px;
-    font-family: Hiragino Mincho Pro;
     font-weight: 600;
 
     img {
@@ -187,9 +198,17 @@ export default {
     display: flex;
     flex-wrap: wrap;
     padding: 0 10vw;
-    .performance__items {
-      flex: 0 0 33%;
+    /* .performance__item {
+      flex: 0 0 calc((100% - 10vw) / 3);
+    }*/
+
+    /* .performance__item ~ .performance__item {
+      margin-left: 5vw;
     }
+
+    & .performance__item:nth-child(3n + 1) {
+      margin-left: 0;
+    } */
   }
 }
 
@@ -212,7 +231,6 @@ export default {
       color: var(--white);
       font-size: 18px;
       line-height: 160%;
-      font-family: Hiragino Mincho Pro;
     }
 
     .info__icons {
@@ -245,7 +263,7 @@ export default {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .reservation {
     padding: 34px 0;
     .reservation__description {

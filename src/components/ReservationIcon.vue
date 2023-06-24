@@ -60,13 +60,12 @@ export default {
   .title {
     color: var(--brown);
     font-size: 16px;
-    font-family: Hiragino Mincho Pro;
     font-weight: 600;
     margin-top: 25px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .reservation-icon {
     margin: 18px 0 25px 0;
     display: flex;

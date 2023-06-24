@@ -55,7 +55,6 @@ export default {
   border: none;
   padding: 25px 0;
   border-radius: 10px;
-  font-family: Hiragino Mincho Pro;
 
   &:active,
   &:focus {
@@ -73,6 +72,7 @@ export default {
     justify-content: center;
     align-items: center;
     color: var(--brown);
+    font-family: Hiragino Mincho Pro;
   }
 
   &.gray {

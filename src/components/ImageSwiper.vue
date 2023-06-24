@@ -3,27 +3,33 @@
     id="swiper-box"
     :loop="true"
     :auto-height="true"
-    :navigation="true"
     :autoplay="{
       delay: 2000,
       disableOnInteraction: false,
     }"
+    @swiper="onSwiper"
   >
     <SwiperSlide v-for="banner in list" :key="banner.link" class="swiper-slide">
       <img :src="banner.url" />
     </SwiperSlide>
-    <div class="swiper-pagination"></div>
+    <div class="swiper-prev" @click="swiperPrev">
+      <img :src="IconPrev" />
+    </div>
+    <div class="swiper-next" @click="swiperNext">
+      <img :src="IconNext" />
+    </div>
   </Swiper>
 </template>
 
 <script>
-import { defineComponent, onMounted } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/swiper.scss';
+import IconNext from '../assets/image/icon/icon-swiper-next.png';
+import IconPrev from '../assets/image/icon/icon-swiper-prev.png';
 
-import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
-SwiperCore.use([Navigation, Autoplay]);
+import SwiperCore, { Autoplay } from 'swiper/core';
+SwiperCore.use([Autoplay]);
 
 export default defineComponent({
   name: 'VideoSwiper',
@@ -38,6 +44,19 @@ export default defineComponent({
     },
   },
   setup() {
+    const swiper = ref(null);
+    const onSwiper = (_swiper) => {
+      swiper.value = _swiper;
+    };
+
+    const swiperPrev = () => {
+      swiper.value.slidePrev();
+    };
+
+    const swiperNext = () => {
+      swiper.value.slideNext();
+    };
+
     const resetButtonHeight = () => {
       const domHeight = document.getElementById('swiper-content').clientHeight;
       let count = 0;
@@ -47,9 +66,9 @@ export default defineComponent({
         if (count > 10 || _domHeight > domHeight) {
           clearInterval(timer);
         }
-        const _domNext = document.querySelector('.swiper-button-next');
+        const _domNext = document.querySelector('.swiper-next');
         _domNext.style.top = `${_domHeight / 2 - 20}px`;
-        const _domPrev = document.querySelector('.swiper-button-prev');
+        const _domPrev = document.querySelector('.swiper-prev');
         _domPrev.style.top = `${_domHeight / 2 - 20}px`;
         count++;
       }, 50);
@@ -63,7 +82,13 @@ export default defineComponent({
       resetButtonHeight();
     };
 
-    return {};
+    return {
+      onSwiper,
+      swiperPrev,
+      swiperNext,
+      IconNext,
+      IconPrev,
+    };
   },
   computed: {},
 });
@@ -79,27 +104,30 @@ export default defineComponent({
   }
 }
 
-:deep(.swiper-button-next),
-:deep(.swiper-button-prev) {
+.swiper-prev,
+.swiper-next {
   width: 40px;
   height: 40px;
-  color: #00000000 !important;
-  position: absolute !important;
-  z-index: 990 !important;
+  position: absolute;
+  z-index: 990;
+
+  img {
+    width: 100%;
+  }
 }
-:deep(.swiper-button-next) {
-  background-image: url('../assets/image/icon/icon-swiper-next.png') !important;
-  right: 60px;
-}
-:deep(.swiper-button-prev) {
-  background-image: url('../assets/image/icon/icon-swiper-prev.png') !important;
+
+.swiper-prev {
   left: 60px;
 }
 
-@media (max-width: 400px) {
-  :deep(.swiper-button-next),
-  :deep(.swiper-button-prev) {
-    background-image: none !important;
+.swiper-next {
+  right: 60px;
+}
+
+@media (max-width: 460px) {
+  .swiper-prev,
+  .swiper-next {
+    display: none;
   }
 }
 </style>

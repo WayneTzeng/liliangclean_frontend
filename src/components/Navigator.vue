@@ -40,7 +40,6 @@ export default {
   .menu__item {
     color: var(--black);
     font-size: 18px;
-    font-family: Hiragino Mincho Pro;
     font-weight: 600;
     cursor: pointer;
   }
@@ -49,7 +48,7 @@ export default {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .navigator {
     padding: 15px 25px 0 25px;
 
