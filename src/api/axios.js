@@ -59,8 +59,8 @@ export class Axios {
       callAxios = isGet
         ? this._axios.get(url, { params })
         : isPost
-        ? this._axios.post(url, params)
-        : null;
+          ? this._axios.post(url, params)
+          : null;
 
       setLoading(true);
 

@@ -4,9 +4,10 @@
     :loop="true"
     :auto-height="true"
     :autoplay="{
-      delay: 2000,
+      delay: 4500,
       disableOnInteraction: false,
     }"
+    :follow-finger="false"
     @swiper="onSwiper"
   >
     <SwiperSlide v-for="banner in list" :key="banner.link" class="swiper-slide">

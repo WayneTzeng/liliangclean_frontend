@@ -4,7 +4,7 @@
     <ChapterTitle :title="'預約流程'" />
     <div class="reservation__description">
       歡迎加入官方@Line
-      <img :src="IconLine" />
+      <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
       立即預約，將由專人為您服務
     </div>
     <div class="reservation__icons">
@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="performance">
-    <ChapterTitle :title="'預約流程'" white />
+    <ChapterTitle :title="'清潔實績'" white />
     <div class="performance__items">
       <ImageCompareCard
         v-for="(imgData, idx) in performanceList"
@@ -35,13 +35,16 @@
     </div>
     <div class="info">
       <div class="info__content">
+        連絡電話：(04)23217936<br />
         公司地址：台中市西區台灣大道二段406號12樓之2<br />
-        公司信箱：xxxxxx@xxxxxxxx<br />
+        公司信箱：liliangclean@gmail.com<br />
         客服時間：週一至週五 09:00-12:00,13:00-18:00 (不含例假日)<br />
       </div>
       <div class="info__icons">
         <div class="info__icon"><img :src="IconFB" /></div>
-        <div class="info__icon"><img :src="IconLine" /></div>
+        <div class="info__icon">
+          <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
+        </div>
         <div class="info__icon"><img :src="IconIG" /></div>
       </div>
     </div>
@@ -114,7 +117,7 @@ export default {
     const performanceList = ref([
       {
         image: require('../assets/image/image/image-performance-1.png'),
-        btnText: '客廳清潔',
+        btnText: '窗溝清潔',
       },
       {
         image: require('../assets/image/image/image-performance-2.png'),
@@ -122,19 +125,15 @@ export default {
       },
       {
         image: require('../assets/image/image/image-performance-3.png'),
-        btnText: '廚房清潔',
+        btnText: '水龍頭清潔',
       },
       {
-        image: require('../assets/image/image/image-performance-1.png'),
-        btnText: '客廳清潔',
+        image: require('../assets/image/image/image-performance-4.png'),
+        btnText: '乾濕分離玻璃清潔',
       },
       {
-        image: require('../assets/image/image/image-performance-2.png'),
-        btnText: '浴室清潔',
-      },
-      {
-        image: require('../assets/image/image/image-performance-3.png'),
-        btnText: '廚房清潔',
+        image: require('../assets/image/image/image-performance-5.png'),
+        btnText: '窗戶清潔',
       },
     ]);
 

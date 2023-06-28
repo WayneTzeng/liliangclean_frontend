@@ -67,22 +67,24 @@ export default {
 
 @media (max-width: 460px) {
   .reservation-icon {
-    margin: 18px 0 25px 0;
+    margin: 25px 0 25px 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
+    position: relative;
     .index {
-      font-size: 20px;
-      left: 0;
-      top: 0;
+      font-size: 16px;
+      left: 2vw;
+      top: -5px;
       font-weight: 400;
       margin-left: 15vw;
+      position: absolute;
     }
     img {
       width: 40px;
       height: 40px;
-      margin-left: 12px;
+      margin-left: 20vw;
     }
     .title {
       font-size: 14px;

@@ -27,7 +27,7 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.plugin('html').tap((args) => {
-      args[0].title = '任務活動';
+      args[0].title = '立亮居家家飾清潔';
       return args;
     });
   },
