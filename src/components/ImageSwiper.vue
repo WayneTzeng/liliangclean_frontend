@@ -99,7 +99,7 @@ export default defineComponent({
 .swiper-wrapper {
   overflow: hidden !important;
 }
-.swiper-slide.swiper-slide-active {
+.swiper-slide {
   img {
     width: 100vw !important;
   }

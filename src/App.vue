@@ -1,6 +1,8 @@
 <template>
   <Navigator />
-  <RouterView id="routerview" />
+  <div class="router-view">
+    <RouterView id="routerview" />
+  </div>
   <Loading v-if="showLoading" />
   <Dialog v-model:show="showDialog" :action="dialogAction">
     {{ dialogMessage }}
@@ -56,5 +58,9 @@ export default {
   -ms-user-select: none; /*IE10*/
   user-select: none;
   touch-action: pan-x pan-y;
+}
+.router-view {
+  margin-top: 47px;
+  background: #efe8e1;
 }
 </style>

@@ -38,8 +38,9 @@
         連絡電話：(04)23217936<br />
         公司地址：台中市西區台灣大道二段406號12樓之2<br />
         公司信箱：liliangclean@gmail.com<br />
-        客服時間：週一至週五 09:00-12:00,13:00-18:00 (不含例假日)<br />
+        客服時間：週一至週五09:00-12:00,13:30-18:00(不含週六、週日、國定假日)<br />
       </div>
+
       <div class="info__icons">
         <div class="info__icon"><img :src="IconFB" /></div>
         <div class="info__icon">
@@ -49,6 +50,8 @@
       </div>
     </div>
   </div>
+  <div>© 2022 立亮居家家飾清潔 All Rights Reserved.</div>
+
   <div id="go-to-top" href="#swiper" class="go-to-top" @click="goToTop">
     <img :src="IconGoToTop" />
   </div>
@@ -84,6 +87,9 @@ export default {
       },
       {
         url: require('../assets/image/image/image-banner-3.png'),
+      },
+      {
+        url: require('../assets/image/image/image-banner-4.png'),
       },
     ]);
 
@@ -227,7 +233,7 @@ export default {
     align-items: flex-end;
     margin-top: 34px;
     .info__content {
-      color: var(--white);
+      color: var(--black);
       font-size: 18px;
       line-height: 160%;
     }
@@ -301,7 +307,7 @@ export default {
       justify-content: flex-start;
       align-items: center;
       .info__content {
-        font-size: 14px;
+        font-size: 16px;
       }
       .info__icons {
         margin-top: 20px;
