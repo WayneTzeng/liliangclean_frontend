@@ -26,12 +26,13 @@ export default {
 <style lang="scss" scoped>
 .navigator {
   width: calc(100vw - 120px);
-  padding: 35px 60px 0 60px;
+  padding: 20px 60px 20px 60px;
   position: fixed;
   z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--white);
 
   .menu__block {
     display: flex;
@@ -50,7 +51,8 @@ export default {
 
 @media (max-width: 460px) {
   .navigator {
-    padding: 15px 25px 0 25px;
+    width: calc(100vw - 40px);
+    padding: 10px 20px 10px 20px;
 
     .logo__block {
       width: 100px;

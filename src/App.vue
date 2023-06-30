@@ -60,7 +60,13 @@ export default {
   touch-action: pan-x pan-y;
 }
 .router-view {
-  margin-top: 47px;
+  margin-top: 105px;
   background: #efe8e1;
+}
+
+@media (max-width: 460px) {
+  .router-view {
+    margin-top: 47px;
+  }
 }
 </style>
