@@ -64,7 +64,7 @@ export default {
   .text {
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: var(--font-l);
     line-height: 16px;
     height: 100%;
     width: 100%;
@@ -121,6 +121,13 @@ export default {
       .text {
         color: var(--gray);
       }
+    }
+  }
+}
+@media (max-width: 460px) {
+  .button {
+    .text {
+      font-size: var(--mobile-font-l);
     }
   }
 }

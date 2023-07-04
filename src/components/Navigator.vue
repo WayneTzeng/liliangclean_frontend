@@ -33,6 +33,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: var(--white);
+  box-shadow: 0px 0px 8px 0px #888888;
 
   .menu__block {
     display: flex;
@@ -40,7 +41,7 @@ export default {
   }
   .menu__item {
     color: var(--black);
-    font-size: 18px;
+    font-size: var(--font-l);
     font-weight: 600;
     cursor: pointer;
   }
@@ -59,6 +60,9 @@ export default {
       img {
         width: 100%;
       }
+    }
+    .menu__item {
+      font-size: var(--mobile-font-l);
     }
   }
 }

@@ -59,7 +59,7 @@ export default {
   }
   .title {
     color: var(--brown);
-    font-size: 16px;
+    font-size: var(--font-m);
     font-weight: 600;
     margin-top: 25px;
   }
@@ -87,7 +87,7 @@ export default {
       margin-left: 20vw;
     }
     .title {
-      font-size: 14px;
+      font-size: var(--mobile-font-m);
       margin: 0;
       margin-left: 15px;
     }

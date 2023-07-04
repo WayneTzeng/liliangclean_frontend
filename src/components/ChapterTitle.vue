@@ -33,7 +33,7 @@ export default {
   position: relative;
 
   .title {
-    font-size: 22px;
+    font-size: var(--font-xl);
     font-weight: 600;
     color: var(--brown);
 
@@ -74,7 +74,7 @@ export default {
 @media (max-width: 460px) {
   .chapter-title {
     .title {
-      font-size: 18px;
+      font-size: var(--mobile-font-xl);
       &::before {
         height: 1px;
         top: 9px;

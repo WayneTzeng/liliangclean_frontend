@@ -29,32 +29,6 @@
       />
     </div>
   </div>
-  <div class="footer">
-    <div class="logo">
-      <img :src="ImageLogo" />
-    </div>
-    <div class="info">
-      <div class="info__content">
-        連絡電話：(04)23217936<br />
-        公司地址：台中市西區台灣大道二段406號12樓之2<br />
-        公司信箱：liliangclean@gmail.com<br />
-        客服時間：週一至週五09:00-12:00,13:30-18:00(不含週六、週日、國定假日)<br />
-      </div>
-
-      <div class="info__icons">
-        <div class="info__icon"><img :src="IconFB" /></div>
-        <div class="info__icon">
-          <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
-        </div>
-        <div class="info__icon"><img :src="IconIG" /></div>
-      </div>
-    </div>
-  </div>
-  <div>© 2022 立亮居家家飾清潔 All Rights Reserved.</div>
-
-  <div id="go-to-top" href="#swiper" class="go-to-top" @click="goToTop">
-    <img :src="IconGoToTop" />
-  </div>
 </template>
 
 <script>
@@ -64,10 +38,6 @@ import ChapterTitle from '../components/ChapterTitle.vue';
 import ReservationIcon from '../components/ReservationIcon.vue';
 import ImageCompareCard from '../components/ImageCompareCard.vue';
 import ImageLogo from '../assets/image/image/image-logo.png';
-import IconLine from '../assets/image/icon/icon-line.png';
-import IconFB from '../assets/image/icon/icon-fb.png';
-import IconIG from '../assets/image/icon/icon-ig.png';
-import IconGoToTop from '../assets/image/icon/icon-go-to-top.png';
 
 export default {
   name: 'IndexPage',
@@ -143,23 +113,11 @@ export default {
       },
     ]);
 
-    const goToTop = () => {
-      const element = document.getElementById('swiper-content');
-      element.scrollIntoView({
-        behavior: 'smooth',
-      });
-    };
-
     return {
       bannerList,
       reservationIconList,
       performanceList,
-      goToTop,
       ImageLogo,
-      IconLine,
-      IconFB,
-      IconIG,
-      IconGoToTop,
     };
   },
 };
@@ -176,7 +134,7 @@ export default {
     justify-content: center;
     align-items: center;
     color: var(--brown);
-    font-size: 18px;
+    font-size: var(--font-l);
     font-weight: 600;
 
     img {
@@ -203,68 +161,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     padding: 0 10vw;
-    /* .performance__item {
-      flex: 0 0 calc((100% - 10vw) / 3);
-    }*/
-
-    /* .performance__item ~ .performance__item {
-      margin-left: 5vw;
-    }
-
-    & .performance__item:nth-child(3n + 1) {
-      margin-left: 0;
-    } */
-  }
-}
-
-.footer {
-  padding: 70px 10vw;
-  background-color: var(--second);
-
-  .logo {
-    width: 200px;
-    img {
-      width: 100%;
-    }
-  }
-  .info {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 34px;
-    .info__content {
-      color: var(--black);
-      font-size: 18px;
-      line-height: 160%;
-    }
-
-    .info__icons {
-      display: flex;
-      justify-content: flex-start;
-      .info__icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        overflow: hidden;
-        img {
-          width: 100%;
-        }
-      }
-      .info__icon ~ .info__icon {
-        margin-left: 30px;
-      }
-    }
-  }
-}
-
-.go-to-top {
-  width: 50px;
-  height: 50px;
-  position: fixed;
-  right: 50px;
-  bottom: 50px;
-  img {
-    width: 100%;
   }
 }
 
@@ -273,7 +169,7 @@ export default {
     padding: 34px 0;
     .reservation__description {
       margin-top: 18px;
-      font-size: 14px;
+      font-size: var(--mobile-font-l);
     }
     .reservation__icons {
       display: flex;
@@ -293,41 +189,6 @@ export default {
         flex: 0 0 100%;
       }
     }
-  }
-
-  .footer {
-    padding: 34px 10vw 74px 10vw;
-    .logo {
-      width: 100px;
-    }
-
-    .info {
-      margin-top: 20px;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      .info__content {
-        font-size: 16px;
-      }
-      .info__icons {
-        margin-top: 20px;
-        align-items: center;
-        .info__icon {
-          width: 40px;
-          height: 40px;
-        }
-        .info__icon ~ .info__icon {
-          margin-left: 40px;
-        }
-      }
-    }
-  }
-
-  .go-to-top {
-    width: 45px;
-    height: 45px;
-    right: 25px;
-    bottom: 25px;
   }
 }
 </style>
