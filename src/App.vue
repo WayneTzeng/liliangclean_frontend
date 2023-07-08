@@ -3,6 +3,8 @@
   <div class="router-view">
     <RouterView id="routerview" />
   </div>
+  <Footer />
+  <GoToTop @click="goToTop" />
   <Loading v-if="showLoading" />
   <Dialog v-model:show="showDialog" :action="dialogAction">
     {{ dialogMessage }}
@@ -14,6 +16,8 @@ import emitter from './helpers/emitter';
 import { ref } from 'vue';
 import { RouterView } from 'vue-router';
 import Navigator from './components/Navigator.vue';
+import Footer from './components/Footer.vue';
+import GoToTop from './components/GoToTop.vue';
 import Loading from './components/Loading.vue';
 import Dialog from './components/Dialog.vue';
 import { showLoading } from './helpers/loading.js';
@@ -22,6 +26,8 @@ export default {
   name: 'App',
   components: {
     Navigator,
+    Footer,
+    GoToTop,
     RouterView,
     Loading,
     Dialog,
@@ -39,11 +45,19 @@ export default {
       dialogAction.value = data.action;
     };
 
+    const goToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    };
+
     return {
       showDialog,
       showLoading,
       dialogMessage,
       dialogAction,
+      goToTop,
     };
   },
 };
@@ -60,7 +74,7 @@ export default {
   touch-action: pan-x pan-y;
 }
 .router-view {
-  margin-top: 105px;
+  margin-top: 75px;
   background: #efe8e1;
 }
 

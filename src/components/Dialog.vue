@@ -76,7 +76,7 @@ export default {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   z-index: -1;
   transition: 300ms;
@@ -125,14 +125,14 @@ export default {
     }
     .title {
       font-weight: 500;
-      font-size: 20px;
+      font-size: var(--font-l);
       color: var(--primary);
       line-height: 32px;
     }
     .text {
       font-style: normal;
       font-weight: normal;
-      font-size: 16px;
+      font-size: var(--font-m);
       line-height: 28px;
       text-align: center;
       color: var(--light);
@@ -144,6 +144,19 @@ export default {
       margin-top: var(--space-3);
       display: flex;
       width: 62%;
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .overlay {
+    .dialog {
+      .title {
+        font-size: var(--mobile-font-l);
+      }
+      .text {
+        font-size: var(--mobile-font-m);
+      }
     }
   }
 }

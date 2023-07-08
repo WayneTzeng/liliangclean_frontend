@@ -5,12 +5,6 @@ import {
   CODE_TIMEOUT,
   UNKNOWN_ERROR,
 } from './const';
-import { APP_FUNCTION_TYPE } from '../helpers/enum';
-import { appFunction } from '../helpers/appFunction';
-
-const close = () => {
-  appFunction(APP_FUNCTION_TYPE.Back);
-};
 
 /**
  * Handle error from api

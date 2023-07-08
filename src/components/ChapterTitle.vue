@@ -1,6 +1,6 @@
 <template>
   <div class="chapter-title">
-    <div class="title" :class="{ white }">
+    <div class="title" :class="{ white, beige }">
       {{ title }}
     </div>
   </div>
@@ -15,6 +15,10 @@ export default {
       default: '',
     },
     white: {
+      type: Boolean,
+      default: false,
+    },
+    beige: {
       type: Boolean,
       default: false,
     },
@@ -33,7 +37,7 @@ export default {
   position: relative;
 
   .title {
-    font-size: 22px;
+    font-size: var(--font-xl);
     font-weight: 600;
     color: var(--brown);
 
@@ -60,12 +64,22 @@ export default {
     }
 
     &.white {
-      color: #ffffff;
+      color: var(--white);
       &::before {
-        background: #ffffff;
+        background: var(--white);
       }
       &::after {
-        background: #ffffff;
+        background: var(--white);
+      }
+    }
+
+    &.beige {
+      color: var(--beige);
+      &::before {
+        background: var(--beige);
+      }
+      &::after {
+        background: var(--beige);
       }
     }
   }
@@ -74,7 +88,7 @@ export default {
 @media (max-width: 460px) {
   .chapter-title {
     .title {
-      font-size: 18px;
+      font-size: var(--mobile-font-xl);
       &::before {
         height: 1px;
         top: 9px;
