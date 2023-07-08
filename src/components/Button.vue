@@ -72,7 +72,9 @@ export default {
     justify-content: center;
     align-items: center;
     color: var(--brown);
-    font-family: Hiragino Mincho Pro;
+    /* font-family: Hiragino Mincho Pro; */
+    font-family: 'Noto Sans TC', '微軟正黑體', 'Microsoft JhengHei',
+      'PingFang TC';
   }
 
   &.gray {

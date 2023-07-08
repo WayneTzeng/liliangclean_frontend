@@ -1,5 +1,5 @@
 <template>
-  <Navigator id="navigator" />
+  <Navigator />
   <div class="router-view">
     <RouterView id="routerview" />
   </div>
@@ -74,7 +74,7 @@ export default {
   touch-action: pan-x pan-y;
 }
 .router-view {
-  margin-top: 105px;
+  margin-top: 75px;
   background: #efe8e1;
 }
 

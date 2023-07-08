@@ -1,6 +1,6 @@
 <template>
   <div class="chapter-title">
-    <div class="title" :class="{ white }">
+    <div class="title" :class="{ white, beige }">
       {{ title }}
     </div>
   </div>
@@ -15,6 +15,10 @@ export default {
       default: '',
     },
     white: {
+      type: Boolean,
+      default: false,
+    },
+    beige: {
       type: Boolean,
       default: false,
     },
@@ -60,12 +64,22 @@ export default {
     }
 
     &.white {
-      color: #ffffff;
+      color: var(--white);
       &::before {
-        background: #ffffff;
+        background: var(--white);
       }
       &::after {
-        background: #ffffff;
+        background: var(--white);
+      }
+    }
+
+    &.beige {
+      color: var(--beige);
+      &::before {
+        background: var(--beige);
+      }
+      &::after {
+        background: var(--beige);
       }
     }
   }
