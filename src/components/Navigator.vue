@@ -3,10 +3,10 @@
     <div class="logo__block" @click="goto('index')">
       <img :src="ImageLogo" />
     </div>
-    <div class="menu__block">
+    <!-- <div class="menu__block">
       <div class="menu__item" @click="goto('Service')">服務內容</div>
       <div class="menu__item" @click="goto('Notice')">客戶須知</div>
-    </div>
+    </div> -->
   </div>
 </template>
 

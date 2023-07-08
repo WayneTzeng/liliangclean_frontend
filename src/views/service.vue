@@ -1,20 +1,37 @@
 <template>
-  <div class="service">
+  <div class="service" @click="closeSelect">
     <div class="charge">
       <ChapterTitle title="收費標準" />
-      "兩人一組服務，效率雙倍 鐘點計費，可客制專屬於您的清潔服務
-      （若有一人服務的需求，請加入官方ＬＩＮＥ諮詢）<br />
-      「單次服務」<br />
-      平日$3390 週末$3990<br />
-      「定期服務」（希望用下拉式選單呈現 2人19小時 $19,999 <br />
-      <select>
-        <option>2人24小時 $26,180</option>
-        <option>2人48小時 $51,528</option>
-      </select>
+      <div class="charge-desc">
+        <div class="desc">
+          兩人一組服務，效率雙倍 鐘點計費，可客制專屬於您的清潔服務<br />
+          （若有一人服務的需求，請加入官方 LINE 諮詢）
+        </div>
+        <div class="option">
+          <div class="select-1">
+            「單次服務」
+            <Selector
+              :specification="['平日$3390', '週末$3990']"
+              :outer-close="outerCloseSelect"
+            />
+          </div>
+          <div class="select-2">
+            「定期服務」
+            <Selector
+              :specification="[
+                '2人19小時 $19,999',
+                '2人24小時 $26,180',
+                '2人48小時 $51,528',
+              ]"
+              :outer-close="outerCloseSelect"
+            />
+          </div>
+        </div>
+      </div>
     </div>
     <div class="content">
       <ChapterTitle title="基本服務內容" />
-      <Tabs v-model:index="index" :list="tabList" />
+      <Tabs v-model:index="tabIndex" :list="tabList" />
       <div class="service-cards">
         <ServiceCard
           v-for="(service, idx) in contentList"
@@ -54,6 +71,7 @@ import { ref, computed } from 'vue';
 import emitter from '../helpers/emitter';
 import { serviceData } from '../data/index';
 import ChapterTitle from '../components/ChapterTitle.vue';
+import Selector from '../components/Selector.vue';
 import Tabs from '../components/Tabs.vue';
 import ServiceCard from '../components/ServiceCard.vue';
 import MapTaichung from '../components/MapTaichung.vue';
@@ -62,13 +80,14 @@ export default {
   name: 'Service',
   components: {
     ChapterTitle,
+    Selector,
     Tabs,
     ServiceCard,
     MapTaichung,
   },
   setup() {
-    const index = ref(0);
-    const contentList = computed(() => serviceData.contentList[index.value]);
+    const tabIndex = ref(0);
+    const contentList = computed(() => serviceData.contentList[tabIndex.value]);
 
     const tabList = ref(serviceData.tabList);
     const serviceAreaList = ref(serviceData.serviceAreaList);
@@ -79,12 +98,23 @@ export default {
       emitter.emit('changeZipColor', zip);
     };
 
+    const outerCloseSelect = ref(false);
+    const closeSelect = () => {
+      outerCloseSelect.value = true;
+      setTimeout(() => {
+        outerCloseSelect.value = false;
+      }, 50);
+      console.log('111');
+    };
+
     return {
-      index,
+      outerCloseSelect,
+      tabIndex,
       contentList,
       tabList,
       serviceAreaList,
       selectZipIndex,
+      closeSelect,
       selectZip,
     };
   },
@@ -94,14 +124,37 @@ export default {
 <style lang="scss" scoped>
 .service {
   .charge {
-    height: 200px;
     background-color: var(--beige);
     padding: 72px 0;
+    .charge-desc {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--brown);
+      .desc {
+        font-size: var(--font-m);
+        color: var(--brown);
+        line-height: 28px;
+      }
+      .option {
+        margin-top: 30px;
+        .select-1 {
+          position: relative;
+          z-index: 10;
+        }
+        .select-2 {
+          position: relative;
+          z-index: 5;
+          margin-top: 16px;
+        }
+      }
+    }
   }
   .content {
     background-color: var(--white);
     padding: 72px 0;
-
     .service-cards {
       display: flex;
       justify-content: flex-start;
@@ -115,7 +168,6 @@ export default {
   .area {
     background-color: var(--beige);
     padding: 72px 0;
-
     .map-block {
       margin-top: 30px;
       display: flex;
@@ -139,7 +191,6 @@ export default {
         .zip:hover {
           color: var(--primary);
         }
-        /* flex-direction: column; */
       }
       .map {
         margin: 30px;
@@ -168,6 +219,11 @@ export default {
 
 @media (max-width: 460px) {
   .service {
+    .charge {
+      .charge-desc {
+        padding: 0 5vw;
+      }
+    }
     .content {
       .service-cards {
         .service-card {
