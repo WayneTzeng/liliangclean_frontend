@@ -14,7 +14,7 @@
       <div class="info__icons">
         <div class="info__icon">
           <a
-            href="https://www.facebook.com/profile.php?id=100093968687360&mibextid=LQQJ4d"
+            href="https://www.facebook.com/profile.php?id=100094382118078&mibextid=LQQJ4d"
           >
             <img :src="IconFB" />
           </a>
