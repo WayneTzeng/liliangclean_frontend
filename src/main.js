@@ -1,31 +1,35 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store'
+import './assets/style/index.scss'
 
-export { store };
+// Vuetify
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+const vuetify = createVuetify({
+  components,
+  directives,
+})
 
-import './assets/style/index.scss';
+export { store }
 
-document.addEventListener('contextmenu', (event) => event.preventDefault());
+document.addEventListener('contextmenu', (event) => event.preventDefault())
 
-const app = createApp(App);
+const app = createApp(App)
+app.use(store).use(router).use(vuetify).mount('#app')
 
-app.use(store).use(router).mount('#app');
-
-const IS_DEBUG_ENABLED = process.env.VUE_APP_ENABLE_DEBUG === 'true';
-const IS_USE_MOCK = process.env.VUE_APP_USE_MOCK === 'true';
-
-IS_USE_MOCK && console.info('VITE_USE_MOCK');
-
+const IS_DEBUG_ENABLED = true
 if (!IS_DEBUG_ENABLED) {
   const emptyFunciton = () => {
     /* do nothing */
-  };
-  console.debug = emptyFunciton;
-  console.info = emptyFunciton;
-  console.log = emptyFunciton;
-  console.warn = emptyFunciton;
-  console.error = emptyFunciton;
-  window.alert = emptyFunciton;
+  }
+  console.debug = emptyFunciton
+  console.info = emptyFunciton
+  console.log = emptyFunciton
+  console.warn = emptyFunciton
+  console.error = emptyFunciton
+  window.alert = emptyFunciton
 }

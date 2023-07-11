@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
@@ -16,12 +16,12 @@ const routes = [
   //   name: 'Notice',
   //   component: () => import('../views/notice.vue'),
   // },
-];
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+})
 
-export default router;
-export { routes };
+export default router
+export { routes }

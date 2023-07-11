@@ -1,45 +1,33 @@
 {
-  "name": "cosmos-stamp-vue-cli",
-  "version": "0.1.0",
+  "name": "vue3_new",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "vue-cli-service serve",
-    "start-mock": "vue-cli-service serve --mode mock",
-    "start-sit": "vue-cli-service serve --mode sit",
-    "start-uat": "vue-cli-service serve --mode uat",
-    "start-prd": "vue-cli-service serve --mode production",
-    "build": "vue-cli-service build",
-    "serve": "serve -d dist",
-    "lint": "vue-cli-service lint",
-    "restart": "rm -rf ./dist; yarn build; yarn start;"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "core-js": "^3.8.1",
-    "js-base64": "^3.7.2",
-    "mitt": "^2.1.0",
+    "axios": "^1.4.0",
+    "core-js": "^3.31.1",
+    "mitt": "^3.0.1",
     "swiper": "^6.8.0",
-    "vue": "^3.0.4",
-    "vue-router": "^4.0.1",
-    "vuex": "^4.0.0-rc.2"
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.2",
+    "vuetify": "^3.3.7",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.9",
-    "@vue/cli-plugin-eslint": "^4.5.9",
-    "@vue/cli-plugin-router": "^4.5.9",
-    "@vue/cli-plugin-vuex": "^4.5.9",
-    "@vue/cli-service": "^4.5.9",
-    "@vue/compiler-sfc": "^3.0.4",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "babel-eslint": "^11.0.0-beta.2",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-vue": "^7.3.0",
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "eslint": "^8.39.0",
+    "eslint-plugin-vue": "^9.11.0",
     "prettier": "^2.8.8",
-    "sass": "^1.30.0",
-    "sass-loader": "^10.1.0"
-  },
-  "license": "UNLICENSED"
+    "sass": "^1.56.2",
+    "sass-loader": "10",
+    "vite": "^4.3.9"
+  }
 }

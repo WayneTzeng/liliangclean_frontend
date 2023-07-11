@@ -11,29 +11,29 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
-import ImageLogo from '../assets/image/image/image-logo.png';
+import { useRouter } from 'vue-router'
+import ImageLogo from '../assets/image/image/image-logo.png'
 
 export default {
-  name: 'Navigator',
+  name: 'NavigatorTop',
   setup() {
-    const router = useRouter();
+    const router = useRouter()
 
     const goto = (page) => {
-      router.push({ name: page });
-    };
+      router.push({ name: page })
+    }
 
     return {
       goto,
       ImageLogo,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .navigator {
-  width: calc(100vw - 60px);
+  width: calc(100vw); //calc(100vw - 60px)
   padding: 5px 30px;
   position: fixed;
   z-index: 99;
@@ -63,7 +63,7 @@ export default {
 
 @media (max-width: 460px) {
   .navigator {
-    width: calc(100vw - 40px);
+    width: calc(100vw); // calc(100vw - 40px)
     padding: 10px 20px 10px 20px;
 
     .logo__block {
