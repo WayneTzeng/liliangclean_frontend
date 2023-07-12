@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'ChapterTitle',
+  name: 'ChapterTitleComponent',
   props: {
     title: {
       type: String,
@@ -24,9 +24,9 @@ export default {
     },
   },
   setup() {
-    return {};
+    return {}
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

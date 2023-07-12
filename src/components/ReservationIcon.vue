@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 export default {
-  name: 'ReservationIcon',
+  name: 'ReservationIconComponent',
   props: {
     title: {
       type: String,
@@ -28,12 +28,12 @@ export default {
   setup(props) {
     const innerIndex = computed(() =>
       props.index < 10 ? `0${props.index}` : props.index
-    );
+    )
     return {
       innerIndex,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

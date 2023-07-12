@@ -11,20 +11,20 @@
           <slot></slot>
         </span>
       </div>
-      <Button class="button" :text="confirmText" @click="doAction" />
+      <CustomButton class="button" :text="confirmText" @click="doAction" />
     </div>
   </div>
 </template>
 
 <script>
-import iconCross from '../assets/image/icon/icon-cross.svg';
-import Button from './Button.vue';
-import { computed } from 'vue';
+import iconCross from '../assets/image/icon/icon-cross.svg'
+import CustomButton from './Button.vue'
+import { computed } from 'vue'
 
 export default {
-  name: 'Dialog',
+  name: 'PopupComponent',
   components: {
-    Button,
+    CustomButton,
   },
   props: {
     show: {
@@ -50,24 +50,24 @@ export default {
   },
   emits: ['update:show'],
   setup(props, { emit }) {
-    const innerShow = computed(() => props.show);
+    const innerShow = computed(() => props.show)
     const closeDialog = () => {
-      emit('update:show', false);
-    };
+      emit('update:show', false)
+    }
 
     const doAction = () => {
-      closeDialog();
-      props.action();
-    };
+      closeDialog()
+      props.action()
+    }
 
     return {
       innerShow,
       doAction,
       closeDialog,
       iconCross,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
