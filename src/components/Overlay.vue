@@ -4,14 +4,14 @@
 
 <script>
 export default {
-  name: 'Overlay',
+  name: 'OverlayComponent',
   props: {
     light: {
       type: Boolean,
       default: false,
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

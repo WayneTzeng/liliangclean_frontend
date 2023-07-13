@@ -330,42 +330,41 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
-import emitter from '../helpers/emitter';
-import { serviceData } from '../data/index';
+import { onMounted } from 'vue'
+import emitter from '../helpers/emitter'
+import { serviceData } from '../data/index'
 
 export default {
-  name: 'MapTaichung',
+  name: 'MapTaichungComponent',
   components: {},
   props: {},
   setup() {
-    // ffa952
-    const serviceAreaList = serviceData.serviceAreaList;
+    const serviceAreaList = serviceData.serviceAreaList
     onMounted(() => {
       serviceAreaList.forEach((area) => {
-        const areaDom = document.getElementById(area);
-        areaDom.style.fill = '#ffa95211';
-      });
-    });
+        const areaDom = document.getElementById(area)
+        areaDom.style.fill = '#ffa95211'
+      })
+    })
 
-    let selectedZip = '';
-    emitter.on('changeZipColor', (zip) => callMessager(zip));
+    let selectedZip = ''
+    emitter.on('changeZipColor', (zip) => callMessager(zip))
     const callMessager = (zip) => {
       if (selectedZip) {
-        const dom = document.getElementById(selectedZip);
+        const dom = document.getElementById(selectedZip)
         if (serviceAreaList.includes(selectedZip)) {
-          dom.style.fill = '#ffa95211';
+          dom.style.fill = '#ffa95211'
         } else {
-          dom.style.fill = '#f9f9f9';
+          dom.style.fill = '#f9f9f9'
         }
       }
-      const dom = document.getElementById(zip);
-      dom.style.fill = '#ffa952';
-      selectedZip = zip;
-    };
-    return {};
+      const dom = document.getElementById(zip)
+      dom.style.fill = '#ffa952'
+      selectedZip = zip
+    }
+    return {}
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -377,9 +376,31 @@ export default {
     transform: scale(0.8);
   }
 }
+@media (max-width: 620px) {
+  svg {
+    transform: scale(0.65);
+  }
+}
 
 @media (max-width: 460px) {
   .map-taichung {
+  }
+  svg {
+    transform: scale(0.5);
+  }
+}
+@media (max-width: 400px) {
+  .map-taichung {
+  }
+  svg {
+    transform: scale(0.45);
+  }
+}
+@media (max-width: 360px) {
+  .map-taichung {
+  }
+  svg {
+    transform: scale(0.4);
   }
 }
 </style>

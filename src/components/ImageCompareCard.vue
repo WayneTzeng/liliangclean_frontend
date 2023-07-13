@@ -1,17 +1,17 @@
 <template>
   <div class="image-compare-card" :class="{ 'is-first': isFirst }">
     <img :src="imgData.image" />
-    <Button class="button" full :text="imgData.btnText" />
+    <CustomButton class="button" full :text="imgData.btnText" />
   </div>
 </template>
 
 <script>
-import Button from './Button.vue';
+import CustomButton from './Button.vue'
 
 export default {
-  name: 'ImageCompareCard',
+  name: 'ImageCompareCardComponent',
   components: {
-    Button,
+    CustomButton,
   },
   props: {
     imgData: {
@@ -24,9 +24,9 @@ export default {
     },
   },
   setup() {
-    return {};
+    return {}
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'Selector',
+  name: 'SelectorComponent',
   components: {},
   props: {
     specification: {
@@ -39,12 +39,12 @@ export default {
     return {
       option: this.specification[0],
       isOpen: false,
-    };
+    }
   },
   watch: {
     outerClose() {
       if (this.outerClose) {
-        this.isOpen = false;
+        this.isOpen = false
       }
     },
   },
@@ -52,14 +52,14 @@ export default {
   mounted() {},
   methods: {
     onSelect(index) {
-      this.option = this.specification[index];
-      this.$emit('seleted', index);
+      this.option = this.specification[index]
+      this.$emit('seleted', index)
     },
     openOption() {
-      this.isOpen = !this.isOpen;
+      this.isOpen = !this.isOpen
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

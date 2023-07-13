@@ -34,22 +34,22 @@
 </template>
 
 <script>
-import ImageLogo from '../assets/image/image/image-logo.png';
-import IconLine from '../assets/image/icon/icon-line.png';
-import IconFB from '../assets/image/icon/icon-fb.png';
-import IconIG from '../assets/image/icon/icon-ig.png';
+import ImageLogo from '../assets/image/image/image-logo.png'
+import IconLine from '../assets/image/icon/icon-line.png'
+import IconFB from '../assets/image/icon/icon-fb.png'
+import IconIG from '../assets/image/icon/icon-ig.png'
 
 export default {
-  name: 'Footer',
+  name: 'BottomInfoComponent',
   setup() {
     return {
       ImageLogo,
       IconLine,
       IconFB,
       IconIG,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -32,13 +32,54 @@
     <div class="content">
       <ChapterTitle title="基本服務內容" />
       <Tabs v-model:index="tabIndex" :list="tabList" />
-      <div class="service-cards">
+      <div v-if="tabIndex === 0" class="service-cards">
         <ServiceCard
           v-for="(service, idx) in contentList"
           :key="idx"
           :service="service"
           class="service-card"
         />
+      </div>
+      <div v-if="tabIndex !== 0" class="service-desc">
+        <div v-if="tabIndex === 1">
+          「裝潢後細清」與「一般清潔的差異」<br /><br />
+          細清是指，施工過程留下來的大量粉塵，針對室內的每個細節擦拭乾淨，可在清潔後讓客戶安心入住
+          居家清潔是指，日常使用或長久使用下留下的污垢、較難去除的髒污，亦或是針對較常使用的區域做定期的維持"
+          裝潢後需完成『粗清』外，需間隔3天以上再進行細清，效果更佳<br /><br />
+          收費方式採『鐘點費』計算
+          基本預約2人一組，服務6小時以上，週(一)至(五)平日計費為6780元起
+        </div>
+        <div v-if="tabIndex === 2">
+          採用<br />
+          ● 茶樹精油<br />
+          ● 中性的酵素清潔劑<br />
+          ● 真空抽洗<br />
+          三合一的搭配，可有效沖洗深層的髒污<br />
+          讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
+        </div>
+        <div v-if="tabIndex === 3">
+          <ol>
+            <li>● 平面清潔</li>
+            <li>● 地板清潔</li>
+            <li>● 廁所清潔</li>
+            <li>● 茶水間清潔</li>
+            <li>● 垃圾整理</li>
+            <li>● 玻璃清潔</li>
+          </ol>
+        </div>
+        <div class="customer-connect">
+          <template v-if="tabIndex === 3">
+            <div>由於辦公室規格多樣化，</div>
+            <div>目前尚未提供官網評估、預約</div>
+          </template>
+          <div>請留下您的基本資訊，</div>
+          <div>客服收到後會儘快和您聯繫，</div>
+          <div>
+            或加入官方 @LINE
+            <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
+            立即諮詢
+          </div>
+        </div>
       </div>
     </div>
     <div class="area">
@@ -67,17 +108,18 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
-import emitter from '../helpers/emitter';
-import { serviceData } from '../data/index';
-import ChapterTitle from '../components/ChapterTitle.vue';
-import Selector from '../components/Selector.vue';
-import Tabs from '../components/Tabs.vue';
-import ServiceCard from '../components/ServiceCard.vue';
-import MapTaichung from '../components/MapTaichung.vue';
+import { ref, computed } from 'vue'
+import emitter from '../helpers/emitter'
+import { serviceData } from '../data/index'
+import ChapterTitle from '../components/ChapterTitle.vue'
+import Selector from '../components/Selector.vue'
+import Tabs from '../components/Tabs.vue'
+import ServiceCard from '../components/ServiceCard.vue'
+import MapTaichung from '../components/MapTaichung.vue'
+import IconLine from '../assets/image/icon/icon-line.png'
 
 export default {
-  name: 'Service',
+  name: 'ServicePage',
   components: {
     ChapterTitle,
     Selector,
@@ -86,26 +128,25 @@ export default {
     MapTaichung,
   },
   setup() {
-    const tabIndex = ref(0);
-    const contentList = computed(() => serviceData.contentList[tabIndex.value]);
+    const tabIndex = ref(0)
+    const contentList = computed(() => serviceData.contentList[tabIndex.value])
 
-    const tabList = ref(serviceData.tabList);
-    const serviceAreaList = ref(serviceData.serviceAreaList);
+    const tabList = ref(serviceData.tabList)
+    const serviceAreaList = ref(serviceData.serviceAreaList)
 
-    const selectZipIndex = ref(-1);
+    const selectZipIndex = ref(-1)
     const selectZip = (zip, idx) => {
-      selectZipIndex.value = idx;
-      emitter.emit('changeZipColor', zip);
-    };
+      selectZipIndex.value = idx
+      emitter.emit('changeZipColor', zip)
+    }
 
-    const outerCloseSelect = ref(false);
+    const outerCloseSelect = ref(false)
     const closeSelect = () => {
-      outerCloseSelect.value = true;
+      outerCloseSelect.value = true
       setTimeout(() => {
-        outerCloseSelect.value = false;
-      }, 50);
-      console.log('111');
-    };
+        outerCloseSelect.value = false
+      }, 50)
+    }
 
     return {
       outerCloseSelect,
@@ -116,9 +157,10 @@ export default {
       selectZipIndex,
       closeSelect,
       selectZip,
-    };
+      IconLine,
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -162,6 +204,29 @@ export default {
       flex-wrap: wrap;
       .service-card {
         flex: 0 0 calc((100% - 60px) / 3);
+      }
+    }
+    .service-desc {
+      width: 100%;
+      padding: 40px 25vw 0 25vw;
+      line-height: 24px;
+      font-size: var(--font-l);
+      .customer-connect {
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: var(--brown);
+        font-size: var(--font-l);
+        font-weight: 600;
+        line-height: 30px;
+
+        img {
+          width: 20px;
+          margin: 0 4px;
+        }
       }
     }
   }
@@ -213,6 +278,9 @@ export default {
           flex: 0 0 calc((100% - 30px) / 2);
         }
       }
+      .service-desc {
+        padding: 40px 15vw 0 15vw;
+      }
     }
   }
 }
@@ -230,6 +298,12 @@ export default {
           flex: 0 0 100%;
         }
       }
+      .service-desc {
+        padding: 40px 10vw 0 10vw;
+      }
+    }
+    .area {
+      padding: 72px 10vw;
     }
   }
 }

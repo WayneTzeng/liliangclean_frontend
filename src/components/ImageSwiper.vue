@@ -23,17 +23,17 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/swiper.scss';
-import IconNext from '../assets/image/icon/icon-swiper-next.png';
-import IconPrev from '../assets/image/icon/icon-swiper-prev.png';
+import { defineComponent, onMounted, ref } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/swiper.scss'
+import IconNext from '../assets/image/icon/icon-swiper-next.png'
+import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
 
-import SwiperCore, { Autoplay } from 'swiper/core';
-SwiperCore.use([Autoplay]);
+import SwiperCore, { Autoplay } from 'swiper/core'
+SwiperCore.use([Autoplay])
 
 export default defineComponent({
-  name: 'VideoSwiper',
+  name: 'ImageSwiperComponent',
   components: {
     Swiper,
     SwiperSlide,
@@ -45,43 +45,43 @@ export default defineComponent({
     },
   },
   setup() {
-    const swiper = ref(null);
+    const swiper = ref(null)
     const onSwiper = (_swiper) => {
-      swiper.value = _swiper;
-    };
+      swiper.value = _swiper
+    }
 
     const swiperPrev = () => {
-      swiper.value.slidePrev();
-    };
+      swiper.value.slidePrev()
+    }
 
     const swiperNext = () => {
-      swiper.value.slideNext();
-    };
+      swiper.value.slideNext()
+    }
 
     const resetButtonHeight = () => {
-      const domHeight = document.getElementById('swiper-content').clientHeight;
-      let count = 0;
+      const domHeight = document.getElementById('swiper-content').clientHeight
+      let count = 0
       const timer = setInterval(() => {
         const _domHeight =
-          document.getElementById('swiper-content').clientHeight;
+          document.getElementById('swiper-content').clientHeight
         if (count > 10 || _domHeight > domHeight) {
-          clearInterval(timer);
+          clearInterval(timer)
         }
-        const _domNext = document.querySelector('.swiper-next');
-        _domNext.style.top = `${_domHeight / 2 - 20}px`;
-        const _domPrev = document.querySelector('.swiper-prev');
-        _domPrev.style.top = `${_domHeight / 2 - 20}px`;
-        count++;
-      }, 50);
-    };
+        const _domNext = document.querySelector('.swiper-next')
+        _domNext.style.top = `${_domHeight / 2 - 20}px`
+        const _domPrev = document.querySelector('.swiper-prev')
+        _domPrev.style.top = `${_domHeight / 2 - 20}px`
+        count++
+      }, 50)
+    }
 
     onMounted(() => {
-      resetButtonHeight();
-    });
+      resetButtonHeight()
+    })
 
     window.onresize = () => {
-      resetButtonHeight();
-    };
+      resetButtonHeight()
+    }
 
     return {
       onSwiper,
@@ -89,10 +89,10 @@ export default defineComponent({
       swiperNext,
       IconNext,
       IconPrev,
-    };
+    }
   },
   computed: {},
-});
+})
 </script>
 
 <style lang="scss" scoped>

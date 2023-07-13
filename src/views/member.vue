@@ -1,10 +1,10 @@
 <template>
-  <div class="notice">notice</div>
+  <div class="member">notice</div>
 </template>
 
 <script>
 export default {
-  name: 'NoticePage',
+  name: 'MemberPage',
   components: {},
   setup() {
     return {}
@@ -13,11 +13,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.notice {
+.member {
 }
 
 @media (max-width: 460px) {
-  .notice {
+  .member {
   }
 }
 </style>

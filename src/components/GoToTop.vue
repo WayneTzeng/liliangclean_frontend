@@ -5,16 +5,16 @@
 </template>
 
 <script>
-import IconGoToTop from '../assets/image/icon/icon-go-to-top.png';
+import IconGoToTop from '../assets/image/icon/icon-go-to-top.png'
 
 export default {
-  name: 'Footer',
+  name: 'GoToTopComponent',
   setup() {
     return {
       IconGoToTop,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
