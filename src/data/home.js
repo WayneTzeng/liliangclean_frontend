@@ -1,64 +1,82 @@
+import ImageBanner1 from '../assets/image/image/image-banner-1.png'
+import ImageBanner2 from '../assets/image/image/image-banner-2.png'
+import ImageBanner3 from '../assets/image/image/image-banner-3.png'
+import ImageBanner4 from '../assets/image/image/image-banner-4.png'
+
+import Icon1 from '../assets/image/icon/icon-1.svg'
+import Icon2 from '../assets/image/icon/icon-2.svg'
+import Icon3 from '../assets/image/icon/icon-3.svg'
+import Icon4 from '../assets/image/icon/icon-4.svg'
+import Icon5 from '../assets/image/icon/icon-5.svg'
+import Icon6 from '../assets/image/icon/icon-6.svg'
+
+import ImagePerformance1 from '../assets/image/image/image-performance-1.png'
+import ImagePerformance2 from '../assets/image/image/image-performance-2.png'
+import ImagePerformance3 from '../assets/image/image/image-performance-3.png'
+import ImagePerformance4 from '../assets/image/image/image-performance-4.png'
+import ImagePerformance5 from '../assets/image/image/image-performance-5.png'
+
 export default {
   bannerList: [
     {
-      url: require('../assets/image/image/image-banner-1.png'),
+      url: ImageBanner1,
     },
     {
-      url: require('../assets/image/image/image-banner-2.png'),
+      url: ImageBanner2,
     },
     {
-      url: require('../assets/image/image/image-banner-3.png'),
+      url: ImageBanner3,
     },
     {
-      url: require('../assets/image/image/image-banner-4.png'),
+      url: ImageBanner4,
     },
   ],
   reservationIconList: [
     {
       title: '加入官方 LINE',
-      icon: require('../assets/image/icon/icon-1.svg'),
+      icon: Icon1,
     },
     {
       title: '提供現場照片',
-      icon: require('../assets/image/icon/icon-2.svg'),
+      icon: Icon2,
     },
     {
       title: '選擇日期',
-      icon: require('../assets/image/icon/icon-3.svg'),
+      icon: Icon3,
     },
     {
       title: '確認付款',
-      icon: require('../assets/image/icon/icon-4.svg'),
+      icon: Icon4,
     },
     {
       title: '到府清潔',
-      icon: require('../assets/image/icon/icon-5.svg'),
+      icon: Icon5,
     },
     {
       title: '成果驗收',
-      icon: require('../assets/image/icon/icon-6.svg'),
+      icon: Icon6,
     },
   ],
   performanceList: [
     {
-      image: require('../assets/image/image/image-performance-1.png'),
+      image: ImagePerformance1,
       btnText: '窗溝清潔',
     },
     {
-      image: require('../assets/image/image/image-performance-2.png'),
+      image: ImagePerformance2,
       btnText: '浴室清潔',
     },
     {
-      image: require('../assets/image/image/image-performance-3.png'),
+      image: ImagePerformance3,
       btnText: '水龍頭清潔',
     },
     {
-      image: require('../assets/image/image/image-performance-4.png'),
+      image: ImagePerformance4,
       btnText: '乾濕分離玻璃清潔',
     },
     {
-      image: require('../assets/image/image/image-performance-5.png'),
+      image: ImagePerformance5,
       btnText: '窗戶清潔',
     },
   ],
-};
+}

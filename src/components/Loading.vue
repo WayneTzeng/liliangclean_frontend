@@ -15,19 +15,19 @@
 </template>
 
 <script>
-import loadingCircle from '../assets/image/icon/icon-loading-circle.svg';
-import Overlay from './Overlay.vue';
+import loadingCircle from '../assets/image/icon/icon-loading-circle.svg'
+import Overlay from './Overlay.vue'
 export default {
-  name: 'Loading',
+  name: 'LoadingComponent',
   components: {
     Overlay,
   },
   setup() {
     return {
       loadingCircle,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

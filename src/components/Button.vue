@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Button',
+  name: 'ButtonComponent',
   props: {
     text: {
       type: String,
@@ -42,7 +42,7 @@ export default {
     },
   },
   setup() {},
-};
+}
 </script>
 
 <style lang="scss" scoped>

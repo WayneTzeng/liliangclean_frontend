@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'Tabs',
+  name: 'TabsComponent',
   props: {
     list: {
       type: Array,
@@ -28,14 +28,14 @@ export default {
   emits: ['update:index'],
   setup(props, { emit }) {
     const selectTab = (index) => {
-      emit('update:index', index);
-    };
+      emit('update:index', index)
+    }
 
     return {
       selectTab,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -69,6 +69,19 @@ export default {
 
 @media (max-width: 460px) {
   .tabs {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0 5vw;
+
+    .tab {
+      margin-top: 16px;
+      width: 45%;
+      display: flex;
+      justify-content: center;
+    }
+    .tab ~ .tab {
+      margin-left: 0;
+    }
   }
 }
 </style>

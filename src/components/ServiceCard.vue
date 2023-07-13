@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import IconClock from '../assets/image/icon/icons-clock.svg';
+import IconClock from '../assets/image/icon/icons-clock.svg'
 
 export default {
-  name: 'ServiceCard',
+  name: 'ServiceCardComponent',
   components: {},
   props: {
     service: {
@@ -51,9 +51,9 @@ export default {
   setup() {
     return {
       IconClock,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -213,11 +213,15 @@ export default {
 }
 
 @media (max-width: 460px) {
-  .ervice-card {
+  .service-card {
   }
 
   .service-card:nth-child(n) {
     margin-left: 0;
+  }
+
+  .service-card:nth-child(2n) {
+    margin-top: 30px;
   }
 }
 </style>
