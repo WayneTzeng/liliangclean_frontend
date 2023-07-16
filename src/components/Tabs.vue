@@ -43,7 +43,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
 
   .tab {
     padding: 10px 20px;

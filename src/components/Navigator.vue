@@ -1,6 +1,6 @@
 <template>
   <div class="navigator">
-    <div class="logo__block" @click="goto('index')">
+    <div class="logo__block" @click="goto(page.index)">
       <img :src="ImageLogo" />
     </div>
     <div class="menu__block use-in-pc">
@@ -87,7 +87,11 @@ export default {
     })
 
     const goto = (page) => {
-      isMenuOpen.value = !isMenuOpen.value
+      isMenuOpen.value = false
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
       router.push({ name: page })
     }
 
@@ -132,6 +136,17 @@ export default {
   }
   .menu__item ~ .menu__item {
     margin-left: 20px;
+  }
+}
+
+@media (max-width: 530px) {
+  .navigator {
+    .logo__block {
+      width: 180px;
+      img {
+        width: 100%;
+      }
+    }
   }
 }
 

@@ -202,6 +202,9 @@ export default {
   .service-card {
     margin-top: 30px;
   }
+  .service-card ~ .service-card {
+    margin-left: 30px;
+  }
 
   .service-card:nth-child(2n + 1) {
     margin-left: 0;

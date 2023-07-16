@@ -30,15 +30,29 @@
       </div>
     </div>
     <div class="content">
-      <ChapterTitle title="基本服務內容" />
-      <Tabs v-model:index="tabIndex" :list="tabList" />
-      <div v-if="tabIndex === 0" class="service-cards">
+      <ChapterTitle title="服務類型" />
+      <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" />
+      <ChapterTitle title="服務內容" />
+      <div v-if="tabIndex === 0" class="service-cards use-in-pc">
         <ServiceCard
           v-for="(service, idx) in contentList"
           :key="idx"
           :service="service"
           class="service-card"
         />
+      </div>
+      <div v-if="tabIndex === 0" class="service-cards use-in-mobile">
+        <ServiceCard
+          :service="contentList[serviceCardIndex]"
+          class="service-card"
+          :class="{ 'fade-out': isFadeOut }"
+        />
+        <div class="service-card-prev" @click="handlePrev">
+          <img :src="IconPrev" />
+        </div>
+        <div class="service-card-next" @click="handleNext">
+          <img :src="IconNext" />
+        </div>
       </div>
       <div v-if="tabIndex !== 0" class="service-desc">
         <div v-if="tabIndex === 1">
@@ -117,6 +131,8 @@ import Tabs from '../components/Tabs.vue'
 import ServiceCard from '../components/ServiceCard.vue'
 import MapTaichung from '../components/MapTaichung.vue'
 import IconLine from '../assets/image/icon/icon-line.png'
+import IconNext from '../assets/image/icon/icon-swiper-next.png'
+import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
 
 export default {
   name: 'ServicePage',
@@ -148,6 +164,30 @@ export default {
       }, 50)
     }
 
+    const serviceCardIndex = ref(0)
+    const isFadeOut = ref(false)
+    const handlePrev = () => {
+      isFadeOut.value = true
+
+      setTimeout(() => {
+        isFadeOut.value = false
+        serviceCardIndex.value =
+          serviceCardIndex.value - 1 < 0
+            ? contentList.value.length - 1
+            : serviceCardIndex.value - 1
+      }, 500)
+    }
+    const handleNext = () => {
+      isFadeOut.value = true
+      setTimeout(() => {
+        isFadeOut.value = false
+        serviceCardIndex.value =
+          serviceCardIndex.value + 1 > contentList.value.length - 1
+            ? 0
+            : serviceCardIndex.value + 1
+      }, 500)
+    }
+
     return {
       outerCloseSelect,
       tabIndex,
@@ -155,9 +195,15 @@ export default {
       tabList,
       serviceAreaList,
       selectZipIndex,
+      serviceCardIndex,
+      isFadeOut,
       closeSelect,
       selectZip,
+      handlePrev,
+      handleNext,
       IconLine,
+      IconNext,
+      IconPrev,
     }
   },
 }
@@ -197,13 +243,39 @@ export default {
   .content {
     background-color: var(--white);
     padding: 72px 0;
-    .service-cards {
+    .tabs {
+      margin: 35px 0;
+    }
+    .service-cards.use-in-pc {
       display: flex;
       justify-content: flex-start;
       padding: 30px 5vw;
       flex-wrap: wrap;
       .service-card {
         flex: 0 0 calc((100% - 60px) / 3);
+      }
+    }
+    .service-cards.use-in-mobile {
+      position: relative;
+      padding: 30px 5vw;
+
+      .service-card-prev,
+      .service-card-next {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        overflow: hidden;
+        background-color: #ffffff;
+        top: 23%;
+        border-radius: 50%;
+        box-shadow: 0px 2px 4px 0px #666666;
+      }
+
+      .service-card-prev {
+        left: 5px;
+      }
+      .service-card-next {
+        right: 5px;
       }
     }
     .service-desc {
@@ -272,7 +344,7 @@ export default {
 @media (max-width: 1000px) {
   .service {
     .content {
-      .service-cards {
+      .service-cards.use-in-pc {
         flex-wrap: wrap;
         .service-card {
           flex: 0 0 calc((100% - 30px) / 2);
@@ -293,9 +365,14 @@ export default {
       }
     }
     .content {
-      .service-cards {
+      .service-cards.use-in-mobile {
         .service-card {
           flex: 0 0 100%;
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out;
+          &.fade-out {
+            opacity: 0.2;
+          }
         }
       }
       .service-desc {

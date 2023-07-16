@@ -53,7 +53,6 @@ export default {
   methods: {
     onSelect(index) {
       this.option = this.specification[index]
-      this.$emit('seleted', index)
     },
     openOption() {
       this.isOpen = !this.isOpen
