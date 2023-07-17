@@ -1,4 +1,5 @@
 <template>
+  <Login v-if="showLogin" />
   <Navigator />
   <div class="router-view">
     <RouterView id="routerview" />
@@ -16,6 +17,7 @@ import emitter from './helpers/emitter'
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigator from './components/Navigator.vue'
+import Login from './components/login.vue'
 import BottomInfo from './components/BottomInfo.vue'
 import GoToTop from './components/GoToTop.vue'
 import Loading from './components/Loading.vue'
@@ -26,6 +28,7 @@ export default {
   name: 'App',
   components: {
     Navigator,
+    Login,
     BottomInfo,
     GoToTop,
     RouterView,
@@ -45,6 +48,13 @@ export default {
       dialogAction.value = data.action
     }
 
+    emitter.on('callLogin', (data) => showLoginBlock(data))
+
+    const showLogin = ref(false)
+    const showLoginBlock = (status) => {
+      showLogin.value = status
+    }
+
     const goToTop = () => {
       window.scrollTo({
         top: 0,
@@ -54,6 +64,7 @@ export default {
 
     return {
       showDialog,
+      showLogin,
       showLoading,
       dialogMessage,
       dialogAction,

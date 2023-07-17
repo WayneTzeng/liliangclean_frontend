@@ -6,22 +6,22 @@
     <div class="menu__block use-in-pc">
       <div
         class="menu__item"
-        :class="{ active: currenPage === page.service }"
-        @click="goto(page.service)"
+        :class="{ active: currenPage === PAGE.service }"
+        @click="goto(PAGE.service)"
       >
         服務內容
       </div>
       <div
         class="menu__item"
-        :class="{ active: currenPage === page.notice }"
-        @click="goto(page.notice)"
+        :class="{ active: currenPage === PAGE.notice }"
+        @click="goto(PAGE.notice)"
       >
         客戶須知
       </div>
       <div
         class="menu__item"
-        :class="{ active: currenPage === page.member }"
-        @click="goto(page.member)"
+        :class="{ active: currenPage === PAGE.member }"
+        @click="goto(PAGE.member)"
       >
         會員
       </div>
@@ -34,22 +34,22 @@
   <div v-if="isMenuOpen" class="menu__extend use-in-mobile">
     <div
       class="menu__item"
-      :class="{ active: currenPage === page.member }"
-      @click="goto(page.member)"
+      :class="{ active: currenPage === PAGE.member }"
+      @click="goto(PAGE.member)"
     >
       會員
     </div>
     <div
       class="menu__item"
-      :class="{ active: currenPage === page.service }"
-      @click="goto(page.service)"
+      :class="{ active: currenPage === PAGE.service }"
+      @click="goto(PAGE.service)"
     >
       服務內容
     </div>
     <div
       class="menu__item"
-      :class="{ active: currenPage === page.notice }"
-      @click="goto(page.notice)"
+      :class="{ active: currenPage === PAGE.notice }"
+      @click="goto(PAGE.notice)"
     >
       客戶須知
     </div>
@@ -62,10 +62,12 @@ const PAGE = {
   service: 'Service',
   notice: 'Notice',
   member: 'Member',
+  login: 'Login',
 }
 
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import emitter from '../helpers/emitter'
 import ImageLogo from '../assets/image/image/image-logo.png'
 import IconMenu from '../assets/image/icon/icon-menu.svg'
 import IconMenuCross from '../assets/image/icon/icon-menu-cross.svg'
@@ -81,13 +83,21 @@ export default {
       isMenuOpen.value = !isMenuOpen.value
     }
 
-    const page = ref(PAGE)
     const currenPage = computed(() => {
       return route.name
     })
 
     const goto = (page) => {
       isMenuOpen.value = false
+
+      if (page === PAGE.member) {
+        const token = JSON.parse(localStorage.getItem('memberToken'))
+        if (!token) {
+          emitter.emit('callLogin', true)
+          return
+        }
+      }
+
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
@@ -96,8 +106,8 @@ export default {
     }
 
     return {
+      PAGE,
       isMenuOpen,
-      page,
       currenPage,
       handleClick,
       goto,
