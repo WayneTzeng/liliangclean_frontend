@@ -385,4 +385,13 @@ export default {
     transform: scale(0.8);
   }
 }
+
+@media (min-width: 1000px) {
+  .map-taichung {
+    height: 600px;
+  }
+  svg {
+    transform: translate(0, 120px) scale(1.4);
+  }
+}
 </style>

@@ -15,6 +15,7 @@ import ImagePerformance2 from '../assets/image/image/image-performance-2.png'
 import ImagePerformance3 from '../assets/image/image/image-performance-3.png'
 import ImagePerformance4 from '../assets/image/image/image-performance-4.png'
 import ImagePerformance5 from '../assets/image/image/image-performance-5.png'
+import ImagePerformance6 from '../assets/image/image/image-performance-6.png'
 
 export default {
   bannerList: [
@@ -77,6 +78,10 @@ export default {
     {
       image: ImagePerformance5,
       btnText: '窗戶清潔',
+    },
+    {
+      image: ImagePerformance6,
+      btnText: '廚房清潔',
     },
   ],
 }
