@@ -10,38 +10,54 @@
                   <img :src="ImageLogo" alt="Logo" height="50" />
                 </v-card-title>
                 <v-card-text>
-                  <v-form @submit="login">
+                  <v-form>
                     <v-text-field
                       v-model="email"
                       :rules="emailRules"
-                      label="Email"
-                      outlined
+                      label="手機號碼或電子信箱"
+                      color="primary"
+                      variant="outlined"
                     ></v-text-field>
                     <v-text-field
                       v-model="password"
                       :rules="passwordRules"
-                      label="Password"
-                      outlined
+                      label="密碼"
+                      color="primary"
+                      variant="outlined"
                       type="password"
+                      class="mt-6 red--text"
                     ></v-text-field>
                     <v-alert v-if="showError" type="error" dense outlined>{{
                       errorMessage
                     }}</v-alert>
-                    <v-btn type="submit" color="primary" block>登入</v-btn>
+                    <v-btn
+                      color="primary"
+                      class="text-surface"
+                      size="large"
+                      block
+                      @click="login"
+                      >登入</v-btn
+                    >
                   </v-form>
                 </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary">忘記密碼</v-btn>
+                </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
         </v-container>
       </v-main>
     </v-app>
-    <Overlay @click="handleClick" />
+    <Overlay @click="closeLogin" />
   </div>
 </template>
 
 <script>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import api from '../api/index'
 import emitter from '../helpers/emitter'
 import Overlay from './Overlay.vue'
 import ImageLogo from '../assets/image/image/image-logo.png'
@@ -53,30 +69,51 @@ export default {
     Overlay,
   },
   setup() {
+    const router = useRouter()
+
     const email = ref('')
     const password = ref('')
     const showError = ref(false)
     const errorMessage = ref('')
 
     const emailRules = [
-      (value) => !!value || 'Email is required',
-      (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || 'Email must be valid',
+      (value) => !!value || '此欄位不可空白',
+      (value) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        const phoneRegex = /^\d{10}$/
+        return (
+          emailRegex.test(value) ||
+          phoneRegex.test(value) ||
+          '請輸入正確手機號碼或電子信箱'
+        )
+      },
     ]
 
     const passwordRules = [
-      (value) => !!value || 'Password is required',
-      (value) => value.length >= 6 || 'Password must be at least 6 characters',
+      (value) => !!value || '此欄位不可空白',
+      (value) =>
+        (value.length >= 6 && value.length <= 12) || '請輸入正確的密碼',
     ]
 
     const login = () => {
       if (validateFields()) {
-        // 在这里执行登录逻辑
-        console.log('登录成功')
+        // console.log(api)
+        // localStorage.setItem('memberToken', 'fake-token')
+        // todo
+        closeLogin()
+        api
+          .login()
+          .then((res) => {
+            localStorage.setItem('memberToken', JSON.stringify(res.token))
+            router.push({ name: 'Member' })
+          })
+          .catch((error) => {
+            console.error(error)
+          })
       }
     }
 
-    const handleClick = () => {
+    const closeLogin = () => {
       emitter.emit('callLogin', false)
     }
 
@@ -85,19 +122,19 @@ export default {
 
       if (!email.value || !password.value) {
         showError.value = true
-        errorMessage.value = 'Please fill in all fields.'
+        errorMessage.value = '所有欄位不可空白'
         return false
       }
 
       if (!emailRules.every((rule) => rule(email.value) === true)) {
         showError.value = true
-        errorMessage.value = 'Invalid email format.'
+        errorMessage.value = '手機號碼或電子信箱錯誤'
         return false
       }
 
       if (!passwordRules.every((rule) => rule(password.value) === true)) {
         showError.value = true
-        errorMessage.value = 'Password must be at least 6 characters.'
+        errorMessage.value = '密碼錯誤'
         return false
       }
 
@@ -112,7 +149,7 @@ export default {
       emailRules,
       passwordRules,
       login,
-      handleClick,
+      closeLogin,
       ImageLogo,
       IconMenuCross,
     }

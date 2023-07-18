@@ -1,6 +1,6 @@
 <template>
   <div class="navigator">
-    <div class="logo__block" @click="goto(page.index)">
+    <div class="logo__block" @click="goto(PAGE.index)">
       <img :src="ImageLogo" />
     </div>
     <div class="menu__block use-in-pc">

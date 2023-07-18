@@ -2,7 +2,7 @@
   <Login v-if="showLogin" />
   <Navigator />
   <div class="router-view">
-    <RouterView id="routerview" />
+    <RouterView />
   </div>
   <BottomInfo />
   <GoToTop @click="goToTop" />

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "vite",
+    "start-mock": "vite --mode mock",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
