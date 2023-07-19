@@ -1,5 +1,6 @@
 <template>
   <Login v-if="showLogin" />
+  <Register v-if="showRegister" />
   <Navigator />
   <div class="router-view">
     <RouterView />
@@ -18,6 +19,7 @@ import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigator from './components/Navigator.vue'
 import Login from './components/login.vue'
+import Register from './components/Register.vue'
 import BottomInfo from './components/BottomInfo.vue'
 import GoToTop from './components/GoToTop.vue'
 import Loading from './components/Loading.vue'
@@ -29,6 +31,7 @@ export default {
   components: {
     Navigator,
     Login,
+    Register,
     BottomInfo,
     GoToTop,
     RouterView,
@@ -49,10 +52,25 @@ export default {
     }
 
     emitter.on('callLogin', (data) => showLoginBlock(data))
-
     const showLogin = ref(false)
     const showLoginBlock = (status) => {
+      showRegister.value = !status
       showLogin.value = status
+    }
+
+    emitter.on('callRegister', (data) => showRegisterBlock(data))
+    const showRegister = ref(false)
+    const showRegisterBlock = (status) => {
+      showLogin.value = !status
+      showRegister.value = status
+    }
+
+    emitter.on('closeLoginOrRegister', (data) =>
+      closeLoginOrRegisterBlock(data)
+    )
+    const closeLoginOrRegisterBlock = () => {
+      showLogin.value = false
+      showRegister.value = false
     }
 
     const goToTop = () => {
@@ -65,6 +83,7 @@ export default {
     return {
       showDialog,
       showLogin,
+      showRegister,
       showLoading,
       dialogMessage,
       dialogAction,

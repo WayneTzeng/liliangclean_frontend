@@ -17,7 +17,7 @@
                       label="手機號碼或電子信箱"
                       color="primary"
                       variant="outlined"
-                    ></v-text-field>
+                    />
                     <v-text-field
                       v-model="password"
                       :rules="passwordRules"
@@ -25,8 +25,8 @@
                       color="primary"
                       variant="outlined"
                       type="password"
-                      class="mt-6 red--text"
-                    ></v-text-field>
+                      class="mt-6"
+                    />
                     <v-alert v-if="showError" type="error" dense outlined>{{
                       errorMessage
                     }}</v-alert>
@@ -41,7 +41,10 @@
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
-                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="goToRegister"
+                    >前往註冊</v-btn
+                  >
+                  <v-spacer />
                   <v-btn text color="primary">忘記密碼</v-btn>
                 </v-card-actions>
               </v-card>
@@ -114,7 +117,11 @@ export default {
     }
 
     const closeLogin = () => {
-      emitter.emit('callLogin', false)
+      emitter.emit('closeLoginOrRegister', false)
+    }
+
+    const goToRegister = () => {
+      emitter.emit('callRegister', true)
     }
 
     const validateFields = () => {
@@ -150,6 +157,7 @@ export default {
       passwordRules,
       login,
       closeLogin,
+      goToRegister,
       ImageLogo,
       IconMenuCross,
     }
