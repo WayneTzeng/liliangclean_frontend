@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import vuetify from './plugin/vuetify'
 import './assets/style/index.scss'
+import 'vuetify/styles' // 引入 Vuetify 的 CSS 样式
 
 export { store }
 
