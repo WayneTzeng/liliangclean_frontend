@@ -19,23 +19,12 @@
             variant="outlined"
           />
         </v-col>
-        <!-- <v-col cols="12" sm="6">
-          <v-date-picker
-            v-model="formData.birthDate"
-            label="出生日期"
-            :rules="commonRules"
-            variant="outlined"
-          />
-        </v-col> -->
-
         <v-col cols="12" sm="6">
-          <DatePicker
-            v-model="formData.birthDate"
-            label="出生日期"
-            required
-          ></DatePicker>
+          <div class="date-picker">
+            <div class="title">出生日期</div>
+            <DatePicker v-model="formData.birthDate" label="出生日期" />
+          </div>
         </v-col>
-
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="formData.phone"
@@ -159,9 +148,34 @@ export default {
 <style lang="scss" scoped>
 .join {
 }
-v-form,
-v-container {
-  width: 500px;
+.v-form,
+.v-container {
+  max-width: 600px;
+}
+.date-picker {
+  width: 100%;
+  height: 56px;
+  padding: 15px 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.38);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  .title {
+    padding: 0 4px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.58);
+    position: absolute;
+    left: 16px;
+    top: -6px;
+    background: #efe8e1;
+  }
+
+  :deep(input) {
+    outline: none;
+    color: rgba(0, 0, 0, 0.58);
+  }
 }
 
 @media (max-width: 460px) {
