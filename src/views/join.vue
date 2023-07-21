@@ -1,10 +1,20 @@
 <template>
   <div class="advantage">
     <ChapterTitle title="團隊優勢" />
+    <div class="advantage-cards">
+      <div
+        class="advantage-card"
+        v-for="(item, idx) in advantageList"
+        :key="idx"
+      >
+        <img :src="item.image" />
+        <div>{{ item.title }}</div>
+      </div>
+    </div>
   </div>
   <div class="join-us">
     <ChapterTitle title="加入團隊" />
-    <v-container>
+    <v-container class="mt-9">
       <v-form ref="formRef">
         <v-row>
           <v-col cols="12" sm="6">
@@ -86,6 +96,7 @@
 
 <script>
 import { ref, reactive } from 'vue'
+import { joinData } from '../data'
 import DatePicker from 'vue3-datepicker'
 import ChapterTitle from '../components/ChapterTitle.vue'
 
@@ -96,6 +107,8 @@ export default {
     ChapterTitle,
   },
   setup() {
+    const advantageList = joinData.advantageList
+
     const formRef = ref(null)
     const selectedDate = ref(null)
     const formData = ref({
@@ -139,6 +152,7 @@ export default {
       }
     }
     return {
+      advantageList,
       formData,
       selectedDate,
       genderOptions,
@@ -157,7 +171,40 @@ export default {
 .advantage {
   padding: 72px 0;
   background-color: var(--white);
+  .advantage-cards {
+    width: 480px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 72px auto 0 auto;
+    .advantage-card {
+      padding: 24px 48px;
+      width: 220px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 8px 0px #888888;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 100%;
+        max-width: 100px;
+      }
+      div {
+        margin-top: 16px;
+        font-size: var(--font-l);
+        color: var(--brown);
+      }
+    }
+    .advantage-card:nth-child(2n) {
+      margin-left: 40px;
+    }
+    .advantage-card:nth-child(3),
+    .advantage-card:nth-child(4) {
+      margin-top: 40px;
+    }
+  }
 }
+
 .join-us {
   padding: 72px 0;
 }
@@ -193,7 +240,22 @@ export default {
 }
 
 @media (max-width: 460px) {
-  .join-us {
+  .advantage {
+    .advantage-cards {
+      width: 100vw !important;
+      padding: 0 10vw;
+      .advantage-card {
+        width: 80vw;
+      }
+
+      .advantage-card:nth-child(2) {
+        margin-top: 40px;
+      }
+
+      .advantage-card:nth-child(2n) {
+        margin-left: 0;
+      }
+    }
   }
 }
 </style>
