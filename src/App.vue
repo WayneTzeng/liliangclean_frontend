@@ -2,10 +2,13 @@
   <Login v-if="showLogin" />
   <Register v-if="showRegister" />
   <Navigator />
-  <div class="router-view">
+  <div
+    class="router-view"
+    :class="{ 'lock-scroll': showLogin || showRegister }"
+  >
     <RouterView />
   </div>
-  <BottomInfo />
+  <BottomInfo v-if="!showLogin && !showRegister" />
   <GoToTop @click="goToTop" />
   <Loading v-if="showLoading" />
   <Popup v-model:show="showDialog" :action="dialogAction">
@@ -106,6 +109,11 @@ export default {
 .router-view {
   margin-top: 75px;
   background: #efe8e1;
+
+  &.lock-scroll {
+    height: calc(100vh - 76px);
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 460px) {

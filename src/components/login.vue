@@ -14,14 +14,15 @@
                     <v-text-field
                       v-model="email"
                       :rules="emailRules"
-                      label="手機號碼或電子信箱"
+                      label="手機號碼或E-mail"
                       color="primary"
                       variant="outlined"
                     />
                     <v-text-field
+                      v-if="!isForgetPW"
                       v-model="password"
                       :rules="passwordRules"
-                      label="密碼"
+                      label="請輸入密碼"
                       color="primary"
                       variant="outlined"
                       type="password"
@@ -45,7 +46,9 @@
                     >前往註冊</v-btn
                   >
                   <v-spacer />
-                  <v-btn text color="primary">忘記密碼</v-btn>
+                  <v-btn text color="primary" @click="forgetPassword">{{
+                    isForgetPW ? '返回登入' : '忘記密碼'
+                  }}</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -99,6 +102,14 @@ export default {
     ]
 
     const login = () => {
+      if (isForgetPW.value) {
+        // api
+        //   .gorgetPW() // request: email.value
+        //   .then(()=> {
+        //     // 彈窗通知寄出密碼
+        //   })
+        console.log('send forget pw')
+      }
       if (validateFields()) {
         // console.log(api)
         // localStorage.setItem('memberToken', 'fake-token')
@@ -114,6 +125,11 @@ export default {
             console.error(error)
           })
       }
+    }
+
+    const isForgetPW = ref(false)
+    const forgetPassword = () => {
+      isForgetPW.value = !isForgetPW.value
     }
 
     const closeLogin = () => {
@@ -155,7 +171,9 @@ export default {
       errorMessage,
       emailRules,
       passwordRules,
+      isForgetPW,
       login,
+      forgetPassword,
       closeLogin,
       goToRegister,
       ImageLogo,

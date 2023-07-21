@@ -25,14 +25,14 @@
                     <v-text-field
                       v-model="phone"
                       :rules="phoneRules"
-                      label="Phone"
+                      label="手機號碼"
                       color="primary"
                       variant="outlined"
                     />
                     <v-text-field
                       v-model="email"
                       :rules="emailRules"
-                      label="Email"
+                      label="E-mail"
                       color="primary"
                       variant="outlined"
                       class="mt-3"
@@ -40,16 +40,17 @@
                     <v-text-field
                       v-model="password"
                       :rules="passwordRules"
-                      label="Password"
+                      label="請輸入密碼"
                       color="primary"
                       variant="outlined"
                       type="password"
                       class="mt-3"
                     />
                     <v-text-field
+                      v-if="password"
                       v-model="confirmPassword"
                       :rules="confirmPasswordRules"
-                      label="Confirm Password"
+                      label="再次確認密碼"
                       color="primary"
                       variant="outlined"
                       type="password"
