@@ -91,6 +91,7 @@ export default {
       isMenuOpen.value = false
 
       if (page === PAGE.member) {
+        // 加入登出頁
         const token = JSON.parse(localStorage.getItem('memberToken'))
         if (!token) {
           emitter.emit('callLogin', true)
