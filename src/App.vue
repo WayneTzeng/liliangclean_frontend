@@ -108,6 +108,7 @@ export default {
 }
 .router-view {
   margin-top: 75px;
+  min-height: calc(100vh - 340px);
   background: #efe8e1;
 
   &.lock-scroll {

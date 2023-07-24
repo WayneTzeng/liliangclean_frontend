@@ -1,7 +1,7 @@
 <template>
-  <div class="member">member</div>
-  <v-app>
-    <v-main>
+  <div class="member">
+    <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" />
+    <div v-if="tabIndex === 0">
       <v-container>
         <v-row justify="center">
           <v-col cols="12" md="8" lg="6">
@@ -84,21 +84,29 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-main>
-  </v-app>
+    </div>
+    <div v-if="tabIndex === 1"></div>
+  </div>
 </template>
 
 <script>
 import { ref } from 'vue'
+import { memberData } from '../data/index'
+import Tabs from '../components/Tabs.vue'
 
 export default {
   name: 'MemberPage',
-  components: {},
+  components: {
+    Tabs,
+  },
   setup() {
-    const name = ref('') // 串 api 取會員資料
-    const gender = ref('') // 串 api 取會員資料
-    const phone = ref('') // 串 api 取會員資料
-    const email = ref('') // 串 api 取會員資料
+    const tabIndex = ref(0)
+    const tabList = ref(memberData.tabList)
+
+    const name = ref('測試測試') // 串 api 取會員資料
+    const gender = ref('male') // 串 api 取會員資料 male or female
+    const phone = ref('0912345678') // 串 api 取會員資料
+    const email = ref('aa@bb.cc') // 串 api 取會員資料
     const editing = ref(false)
     const showError = ref(false)
     const errorMessage = ref('')
@@ -159,6 +167,8 @@ export default {
     }
 
     return {
+      tabIndex,
+      tabList,
       name,
       gender,
       phone,
@@ -179,6 +189,13 @@ export default {
 </script>
 
 <style>
+.member {
+  padding: 24px 0 72px 0;
+
+  .tabs {
+    margin: 35px 0;
+  }
+}
 .v-main {
   background-color: #f7f7f7;
   height: 100vh;
@@ -206,37 +223,6 @@ export default {
 
 .v-card-actions {
   padding: 8px 16px;
-}
-
-.v-btn {
-  margin-top: 16px;
-}
-</style>
-
-<style>
-.v-main {
-  background-color: #f7f7f7;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.v-card {
-  border-radius: 4px;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-.v-card-title {
-  padding: 8px 16px;
-}
-
-.v-card-title v-icon {
-  cursor: pointer;
-}
-
-.v-card-text {
-  padding: 24px;
 }
 
 .v-btn {
