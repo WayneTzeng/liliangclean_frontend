@@ -188,20 +188,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .member {
   padding: 24px 0 72px 0;
 
   .tabs {
     margin: 35px 0;
   }
-}
-.v-main {
-  background-color: #f7f7f7;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .v-card {

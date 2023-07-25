@@ -1,19 +1,16 @@
 <template>
-  <Login v-if="showLogin" />
-  <Register v-if="showRegister" />
-  <Navigator />
-  <div
-    class="router-view"
-    :class="{ 'lock-scroll': showLogin || showRegister }"
-  >
-    <RouterView />
+  <div :class="{ 'lock-scroll': showLogin || showRegister }">
+    <Login v-if="showLogin" />
+    <Register v-if="showRegister" />
+    <Navigator />
+    <RouterView class="router-view" />
+    <BottomInfo />
+    <GoToTop v-if="!showLogin && !showRegister" @click="goToTop" />
+    <Loading v-if="showLoading" />
+    <Popup v-model:show="showDialog" :action="dialogAction">
+      {{ dialogMessage }}
+    </Popup>
   </div>
-  <BottomInfo v-if="!showLogin && !showRegister" />
-  <GoToTop @click="goToTop" />
-  <Loading v-if="showLoading" />
-  <Popup v-model:show="showDialog" :action="dialogAction">
-    {{ dialogMessage }}
-  </Popup>
 </template>
 
 <script>
@@ -110,11 +107,10 @@ export default {
   margin-top: 75px;
   min-height: calc(100vh - 340px);
   background: #efe8e1;
-
-  &.lock-scroll {
-    height: calc(100vh - 76px);
-    overflow: hidden;
-  }
+}
+.lock-scroll {
+  height: 100vh;
+  overflow: hidden;
 }
 
 @media (max-width: 460px) {

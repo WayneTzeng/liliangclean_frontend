@@ -122,7 +122,7 @@ export default {
 
 <style lang="scss" scoped>
 .navigator {
-  width: calc(100vw); //calc(100vw - 60px)
+  width: 100vw;
   padding: 5px 30px;
   position: fixed;
   z-index: 99;
@@ -131,6 +131,7 @@ export default {
   align-items: center;
   background-color: var(--beige);
   box-shadow: 0px 0px 8px 0px #888888;
+  top: 0;
 
   .logo__block {
     cursor: pointer;
