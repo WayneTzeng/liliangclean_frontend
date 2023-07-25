@@ -1,6 +1,6 @@
 <template>
   <div class="member">
-    <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" />
+    <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" commonType />
     <div v-if="tabIndex === 0">
       <v-container>
         <v-row justify="center">
@@ -85,7 +85,7 @@
         </v-row>
       </v-container>
     </div>
-    <div v-if="tabIndex === 1"></div>
+    <div v-if="tabIndex === 2"></div>
   </div>
 </template>
 

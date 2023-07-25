@@ -1,11 +1,17 @@
 <template>
-  <div class="tabs">
+  <div class="tabs" :class="{ 'common-type': commonType }">
     <div
       v-for="(tab, idx) in list"
       :key="idx"
       class="tab"
       :class="{ active: index === idx }"
-      @click="selectTab(idx)"
+      @click="
+        ;(commonType && (idx === 0 || idx === 2)) || !commonType
+          ? selectTab(idx)
+          : commonType && idx === 4
+          ? logout()
+          : () => {}
+      "
     >
       {{ tab }}
     </div>
@@ -13,6 +19,8 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'TabsComponent',
   props: {
@@ -24,15 +32,28 @@ export default {
       type: Number,
       default: 0,
     },
+    commonType: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['update:index'],
   setup(props, { emit }) {
+    const router = useRouter()
+
     const selectTab = (index) => {
       emit('update:index', index)
     }
 
+    const logout = () => {
+      console.log('logout')
+      localStorage.removeItem('memberToken')
+      router.push({ name: 'Index' })
+    }
+
     return {
       selectTab,
+      logout,
     }
   },
 }
@@ -63,6 +84,15 @@ export default {
   }
   .tab ~ .tab {
     margin-left: 20px;
+  }
+
+  &.common-type {
+    .tab {
+      color: var(--brown);
+      background-color: var(--beige);
+      border: none;
+      padding: 0px 5px;
+    }
   }
 }
 

@@ -71,11 +71,13 @@
           三合一的搭配，可有效沖洗深層的髒污<br />
           讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
         </div>
-        <div v-if="tabIndex === 3">
+        <div v-if="tabIndex === 3" class="office-service">
           <ol>
             <li>● 平面清潔</li>
             <li>● 地板清潔</li>
             <li>● 廁所清潔</li>
+          </ol>
+          <ol>
             <li>● 茶水間清潔</li>
             <li>● 垃圾整理</li>
             <li>● 玻璃清潔</li>
@@ -300,6 +302,10 @@ export default {
           margin: 0 4px;
         }
       }
+      .office-service {
+        display: flex;
+        justify-content: space-around;
+      }
     }
   }
   .area {
@@ -377,6 +383,10 @@ export default {
       }
       .service-desc {
         padding: 40px 10vw 0 10vw;
+        .office-service {
+          justify-content: flex-start;
+          flex-direction: column;
+        }
       }
     }
     .area {
