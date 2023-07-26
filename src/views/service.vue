@@ -88,7 +88,7 @@
             <div>由於辦公室規格多樣化，</div>
             <div>目前尚未提供官網評估、預約</div>
           </template>
-          <div>請留下您的基本資訊，</div>
+          <div><a href="https://lin.ee/8qurIGn">請留下您的基本資訊</a>，</div>
           <div>客服收到後會儘快和您聯繫，</div>
           <div>
             或加入官方 @LINE
@@ -296,6 +296,10 @@ export default {
         font-size: var(--font-l);
         font-weight: 600;
         line-height: 30px;
+
+        a {
+          color: #3c2cef;
+        }
 
         img {
           width: 20px;

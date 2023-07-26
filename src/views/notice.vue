@@ -55,7 +55,7 @@
         <span>(5)家電零件拆洗。</span><br />
         <span>(6)禽鳥或動物的排泄物。</span><br />
       </div>
-      <div>
+      <div class="use-in-pc">
         <img :src="ImageBannerS2" />
       </div>
     </div>
@@ -89,7 +89,7 @@
       <span>* 不提供提供採購、烹飪、保姆、看護、照護寵物等工作。</span><br />
       <span>* 不提供挑高超過3.2米之區域。</span><br />
       <span>* 不提供抽油煙機機身、瓦斯爐芯拆卸清洗。</span><br />
-      <span>* 不提供冷氣機、洗衣機內部拆洗。</span><br />
+      <span>* 不提供冷氣機、洗衣機內部拆洗（需另預約家電服務）。</span><br />
       <span>* 不提供植物修剪或庭院除草、景觀水池清理。</span><br />
       <span>* 不提供大量噴漆、水泥塊、殘膠清理。</span><br />
       <span>* 不提供具危險性之化學物質處理。</span><br />
@@ -160,9 +160,9 @@ export default {
     .title {
       position: absolute;
       top: calc(50% - 16px);
-      left: calc(50% - 86px);
+      left: calc(50% - 144px);
       z-index: 20;
-      font-size: 32px;
+      font-size: 48px;
     }
     img {
       width: 100%;
@@ -257,7 +257,16 @@ export default {
     }
   }
 }
-
+@media (max-width: 800px) {
+  .notice {
+    .banner {
+      .title {
+        font-size: 32px;
+        left: calc(50% - 96px);
+      }
+    }
+  }
+}
 @media (max-width: 460px) {
   .notice {
     .banner {
@@ -268,7 +277,7 @@ export default {
       }
     }
     .why-us {
-      flex-direction: column;
+      flex-direction: column-reverse;
       div:nth-child(1),
       div:nth-child(2) {
         width: 100vw;
