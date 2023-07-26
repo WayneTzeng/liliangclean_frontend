@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import 'swiper/swiper.scss'
-
 export default {
   name: 'TabsComponent',
   components: {},

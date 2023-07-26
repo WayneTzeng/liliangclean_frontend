@@ -1,35 +1,38 @@
 <template>
-  <Swiper
-    id="swiper-box"
+  <swiper
     class="tabs"
-    :loop="false"
-    :auto-height="true"
-    :autoplay="{
-      delay: 4500,
-      disableOnInteraction: false,
+    :slidesPerView="4"
+    :modules="modules"
+    :scrollbar="{
+      hide: true,
+      draggable: true,
     }"
-    :follow-finger="true"
-    :slidesPerView="3"
-    style="width: 80vw"
+    :spaceBetween="8"
   >
-    <SwiperSlide
+    <swiper-slide
       v-for="(tab, idx) in list"
       :key="idx"
       class="tab"
       :class="{ active: index === idx }"
+      style="text-wrap: nowrap"
       @click="selectTab(idx)"
     >
-      {{ tab }}<span v-if="commonType && idx !== list.length - 1">|</span>
-    </SwiperSlide>
-  </Swiper>
+      {{ tab }}
+    </swiper-slide>
+  </swiper>
 </template>
 
 <script>
+// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/swiper.scss'
+import { Scrollbar } from 'swiper/modules'
+
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/scrollbar'
 
 export default {
-  name: 'TabsComponent',
+  name: 'SwiperBrandIcon',
   components: {
     Swiper,
     SwiperSlide,
@@ -56,6 +59,7 @@ export default {
 
     return {
       selectTab,
+      modules: [Scrollbar],
     }
   },
 }
@@ -63,50 +67,33 @@ export default {
 
 <style lang="scss" scoped>
 .tabs {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  .tab {
-    max-width: 120px;
-    padding: 10px 20px;
-    border-radius: 16px;
-    border: 1px solid var(--second);
-    /* color: var(--second); */
-    color: var(--beige);
-    background-color: var(--second);
-    opacity: 0.6;
-    font-size: var(--font-l);
-    text-align: center;
-    text-wrap: nowrap;
-    cursor: pointer;
-
-    &.active {
-      opacity: 1;
-      color: var(--white);
-      background-color: var(--second);
-    }
-  }
-  .tab ~ .tab {
-    margin-left: 20px;
-  }
+  width: 80vw;
 }
 
-@media (max-width: 460px) {
-  .tabs {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 0 5vw;
-
-    .tab {
-      margin-top: 16px;
-      width: 45%;
-      display: flex;
-      justify-content: center;
-    }
-    .tab ~ .tab {
-      margin-left: 0;
-    }
+// tab
+:deep(.swiper-slide) {
+  /* height: 85px !important; */
+  width: calc((80vw - 32px) / 4) !important;
+  padding: 10px 0;
+  border-radius: 16px;
+  border: 1px solid var(--second);
+  /* color: var(--second); */
+  color: var(--beige);
+  background-color: var(--second);
+  opacity: 0.6;
+  font-size: var(--font-l);
+  text-wrap: nowrap;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.active {
+    opacity: 1;
+    color: var(--white);
+    background-color: var(--second);
   }
+}
+:deep(.swiper-scrollbar) {
+  /* display: none; */
 }
 </style>

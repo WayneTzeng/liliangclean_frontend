@@ -1,6 +1,6 @@
 <template>
   <div class="service" @click="closeSelect">
-    <div class="charge">
+    <!-- <div class="charge">
       <ChapterTitle title="收費標準" />
       <div class="charge-desc">
         <div class="desc">
@@ -28,32 +28,38 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="content">
       <ChapterTitle title="服務類型" />
       <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" />
       <ChapterTitle title="服務內容" />
-      <div v-if="tabIndex === 0" class="service-cards use-in-pc">
-        <ServiceCard
-          v-for="(service, idx) in contentList"
-          :key="idx"
-          :service="service"
-          class="service-card"
-        />
-      </div>
-      <div v-if="tabIndex === 0" class="service-cards use-in-mobile">
-        <ServiceCard
-          :service="contentList[serviceCardIndex]"
-          class="service-card"
-          :class="{ 'fade-out': isFadeOut }"
-        />
-        <div class="service-card-prev" @click="handlePrev">
-          <img :src="IconPrev" />
+      <template v-if="tabIndex === 0">
+        <div class="service-cards-content">
+          「單次預約」<br />1人服務 $1,800起<br />2人服務 $3,390起<br />（以上皆為平日一～五收費標準）
         </div>
-        <div class="service-card-next" @click="handleNext">
-          <img :src="IconNext" />
+        <div class="service-cards use-in-pc">
+          <ServiceCard
+            v-for="(service, idx) in contentList"
+            :key="idx"
+            :service="service"
+            class="service-card"
+          />
         </div>
-      </div>
+        <div class="service-cards use-in-mobile">
+          <ServiceCard
+            :service="contentList[serviceCardIndex]"
+            class="service-card"
+            :class="{ 'fade-out': isFadeOut }"
+          />
+          <div class="service-card-prev" @click="handlePrev">
+            <img :src="IconPrev" />
+          </div>
+          <div class="service-card-next" @click="handleNext">
+            <img :src="IconNext" />
+          </div>
+        </div>
+      </template>
+
       <div v-if="tabIndex !== 0" class="service-desc">
         <div v-if="tabIndex === 1">
           「裝潢後細清」與「一般清潔的差異」<br /><br />
@@ -82,6 +88,23 @@
             <li>● 垃圾整理</li>
             <li>● 玻璃清潔</li>
           </ol>
+        </div>
+        <div v-if="tabIndex === 4" class="charge-desc">
+          <div class="option">
+            <div class="select-2">
+              「定期服務」<br /><br />
+              <Selector
+                v-model:index="selectorIndex"
+                :specification="['2人18小時', '2人24小時', '2人48小時']"
+                :outer-close="outerCloseSelect"
+              />
+              <br />
+              <br />
+              <div v-if="selectorIndex === 0">$19,999</div>
+              <div v-if="selectorIndex === 1">$26,180</div>
+              <div v-if="selectorIndex === 2">$51,528</div>
+            </div>
+          </div>
         </div>
         <div class="customer-connect">
           <template v-if="tabIndex === 3">
@@ -147,6 +170,7 @@ export default {
   },
   setup() {
     const tabIndex = ref(0)
+    const selectorIndex = ref(0)
     const contentList = computed(() => serviceData.contentList[tabIndex.value])
 
     const tabList = ref(serviceData.tabList)
@@ -193,6 +217,7 @@ export default {
     return {
       outerCloseSelect,
       tabIndex,
+      selectorIndex,
       contentList,
       tabList,
       serviceAreaList,
@@ -213,40 +238,20 @@ export default {
 
 <style lang="scss" scoped>
 .service {
-  .charge {
+  /* .charge {
     background-color: var(--beige);
     padding: 72px 0;
-    .charge-desc {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: var(--brown);
-      .desc {
-        font-size: var(--font-m);
-        color: var(--brown);
-        line-height: 28px;
-      }
-      .option {
-        margin-top: 30px;
-        .select-1 {
-          position: relative;
-          z-index: 10;
-        }
-        .select-2 {
-          position: relative;
-          z-index: 5;
-          margin-top: 16px;
-        }
-      }
-    }
-  }
+  } */
   .content {
     background-color: var(--white);
     padding: 72px 0;
     .tabs {
       margin: 35px auto;
+    }
+    .service-cards-content {
+      margin: 36px 0 24px 0;
+      text-align: center;
+      line-height: 20px;
     }
     .service-cards.use-in-pc {
       display: flex;
@@ -310,6 +315,20 @@ export default {
         display: flex;
         justify-content: space-around;
       }
+      .charge-desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--brown);
+        .option {
+          .select-2 {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+          }
+        }
+      }
     }
   }
   .area {
@@ -369,11 +388,11 @@ export default {
 
 @media (max-width: 460px) {
   .service {
-    .charge {
+    /* .charge {
       .charge-desc {
         padding: 0 5vw;
       }
-    }
+    } */
     .content {
       .service-cards.use-in-mobile {
         .service-card {
