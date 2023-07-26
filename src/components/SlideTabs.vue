@@ -1,6 +1,18 @@
 <template>
-  <div class="tabs" :class="{ 'common-type': commonType }">
-    <div
+  <Swiper
+    id="swiper-box"
+    class="tabs"
+    :loop="false"
+    :auto-height="true"
+    :autoplay="{
+      delay: 4500,
+      disableOnInteraction: false,
+    }"
+    :follow-finger="true"
+    :slidesPerView="3"
+    style="width: 80vw"
+  >
+    <SwiperSlide
       v-for="(tab, idx) in list"
       :key="idx"
       class="tab"
@@ -8,16 +20,20 @@
       @click="selectTab(idx)"
     >
       {{ tab }}<span v-if="commonType && idx !== list.length - 1">|</span>
-    </div>
-  </div>
+    </SwiperSlide>
+  </Swiper>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.scss'
 
 export default {
   name: 'TabsComponent',
-  components: {},
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   props: {
     list: {
       type: Array,
@@ -52,6 +68,7 @@ export default {
   justify-content: center;
 
   .tab {
+    max-width: 120px;
     padding: 10px 20px;
     border-radius: 16px;
     border: 1px solid var(--second);
@@ -60,6 +77,7 @@ export default {
     background-color: var(--second);
     opacity: 0.6;
     font-size: var(--font-l);
+    text-align: center;
     text-wrap: nowrap;
     cursor: pointer;
 
@@ -71,30 +89,6 @@ export default {
   }
   .tab ~ .tab {
     margin-left: 20px;
-  }
-
-  &.common-type {
-    .tab {
-      color: var(--brown);
-      background-color: var(--beige);
-      border: none;
-      padding: 0;
-      margin: 0;
-      opacity: 0.6;
-      span {
-        color: var(--brown);
-        margin: 0 15px;
-      }
-      &.active {
-        opacity: 1;
-        color: var(--brown);
-        span {
-          opacity: 0.6;
-          color: var(--brown);
-          margin: 0 15px;
-        }
-      }
-    }
   }
 }
 

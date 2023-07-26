@@ -129,7 +129,7 @@ import emitter from '../helpers/emitter'
 import { serviceData } from '../data/index'
 import ChapterTitle from '../components/ChapterTitle.vue'
 import Selector from '../components/Selector.vue'
-import Tabs from '../components/Tabs.vue'
+import Tabs from '../components/SlideTabs.vue'
 import ServiceCard from '../components/ServiceCard.vue'
 import MapTaichung from '../components/MapTaichung.vue'
 import IconLine from '../assets/image/icon/icon-line.png'
@@ -246,7 +246,7 @@ export default {
     background-color: var(--white);
     padding: 72px 0;
     .tabs {
-      margin: 35px 0;
+      margin: 35px auto;
     }
     .service-cards.use-in-pc {
       display: flex;
