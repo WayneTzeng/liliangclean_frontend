@@ -5,22 +5,14 @@
       :key="idx"
       class="tab"
       :class="{ active: index === idx }"
-      @click="
-        ;(commonType && (idx === 0 || idx === 2)) || !commonType
-          ? selectTab(idx)
-          : commonType && idx === 4
-          ? logout()
-          : () => {}
-      "
+      @click="selectTab(idx)"
     >
-      {{ tab }}
+      {{ tab }}<span v-if="commonType && idx !== list.length - 1">|</span>
     </div>
   </div>
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
-
 export default {
   name: 'TabsComponent',
   props: {
@@ -39,21 +31,12 @@ export default {
   },
   emits: ['update:index'],
   setup(props, { emit }) {
-    const router = useRouter()
-
     const selectTab = (index) => {
       emit('update:index', index)
     }
 
-    const logout = () => {
-      console.log('logout')
-      localStorage.removeItem('memberToken')
-      router.push({ name: 'Index' })
-    }
-
     return {
       selectTab,
-      logout,
     }
   },
 }
@@ -91,7 +74,22 @@ export default {
       color: var(--brown);
       background-color: var(--beige);
       border: none;
-      padding: 0px 5px;
+      padding: 0;
+      margin: 0;
+      opacity: 0.6;
+      span {
+        color: var(--brown);
+        margin: 0 15px;
+      }
+      &.active {
+        opacity: 1;
+        color: var(--brown);
+        span {
+          opacity: 0.6;
+          color: var(--brown);
+          margin: 0 15px;
+        }
+      }
     }
   }
 }

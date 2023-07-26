@@ -193,7 +193,7 @@ export default {
       justify-content: center;
       align-items: center;
       color: var(--height-light);
-      font-size: var(--font-l);
+      font-size: var(--font-mobile-m);
       background-color: var(--second);
 
       &.active {

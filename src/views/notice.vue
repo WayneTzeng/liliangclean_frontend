@@ -56,7 +56,7 @@
         <span>(6)禽鳥或動物的排泄物。</span><br />
       </div>
       <div>
-        <img :src="ImageBannerS1" />
+        <img :src="ImageBannerS2" />
       </div>
     </div>
     <div class="our-right">

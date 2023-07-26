@@ -90,7 +90,8 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
 import { memberData } from '../data/index'
 import Tabs from '../components/Tabs.vue'
 
@@ -100,6 +101,8 @@ export default {
     Tabs,
   },
   setup() {
+    const router = useRouter()
+
     const tabIndex = ref(0)
     const tabList = ref(memberData.tabList)
 
@@ -165,6 +168,14 @@ export default {
 
       return true
     }
+
+    watchEffect(() => {
+      if (tabIndex.value === 2) {
+        console.log('logout')
+        localStorage.removeItem('memberToken')
+        router.push({ name: 'Index' })
+      }
+    })
 
     return {
       tabIndex,
