@@ -1,35 +1,45 @@
 <template>
-  <swiper
-    class="tabs"
-    :slidesPerView="4"
-    :modules="modules"
-    :scrollbar="{
-      hide: true,
-      draggable: true,
-    }"
-    :spaceBetween="8"
-  >
-    <swiper-slide
-      v-for="(tab, idx) in list"
-      :key="idx"
-      class="tab"
-      :class="{ active: index === idx }"
-      style="text-wrap: nowrap"
-      @click="selectTab(idx)"
+  <div class="outer-block">
+    <div class="swiper-prev" @click="swiperPrev">
+      <img :src="IconPrev" />
+    </div>
+    <div class="swiper-next" @click="swiperNext">
+      <img :src="IconNext" />
+    </div>
+    <swiper
+      class="tabs"
+      :slidesPerView="4"
+      :scrollbar="{
+        hide: false,
+        draggable: true,
+      }"
+      :spaceBetween="8"
+      @swiper="onSwiper"
     >
-      {{ tab }}
-    </swiper-slide>
-  </swiper>
+      <swiper-slide
+        v-for="(tab, idx) in list"
+        :key="idx"
+        class="tab"
+        :class="{ active: index === idx }"
+        style="text-wrap: nowrap"
+        @click="selectTab(idx)"
+      >
+        {{ tab }}
+      </swiper-slide>
+    </swiper>
+  </div>
 </template>
 
 <script>
+import { ref } from 'vue'
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Scrollbar } from 'swiper/modules'
+import IconNext from '../assets/image/icon/icon-swiper-next.png'
+import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
 
 // Import Swiper styles
 import 'swiper/css'
-import 'swiper/css/scrollbar'
 
 export default {
   name: 'SwiperBrandIcon',
@@ -53,19 +63,57 @@ export default {
   },
   emits: ['update:index'],
   setup(props, { emit }) {
+    const swiper = ref(null)
+    const onSwiper = (_swiper) => {
+      swiper.value = _swiper
+    }
+
+    const swiperNext = () => {
+      swiper.value.slideNext()
+    }
+    const swiperPrev = () => {
+      swiper.value.slidePrev()
+    }
+
     const selectTab = (index) => {
       emit('update:index', index)
     }
 
     return {
+      onSwiper,
+      swiperNext,
+      swiperPrev,
       selectTab,
       modules: [Scrollbar],
+      IconNext,
+      IconPrev,
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.outer-block {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.swiper-next,
+.swiper-prev {
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  img {
+    width: 100%;
+  }
+}
+.swiper-next {
+  right: -40px;
+}
+.swiper-prev {
+  left: -40px;
+}
+
 .tabs {
   width: 80vw;
 }
@@ -74,7 +122,8 @@ export default {
 :deep(.swiper-slide) {
   /* height: 85px !important; */
   width: calc((80vw - 32px) / 4) !important;
-  padding: 10px 0;
+  height: 40px !important;
+  /* padding: 10px 0; */
   border-radius: 16px;
   border: 1px solid var(--second);
   /* color: var(--second); */
