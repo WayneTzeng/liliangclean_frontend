@@ -8,7 +8,7 @@
     </div>
     <swiper
       class="tabs"
-      :slidesPerView="4"
+      :slidesPerView="slidesPerView"
       :scrollbar="{
         hide: false,
         draggable: true,
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Scrollbar } from 'swiper/modules'
@@ -75,11 +75,31 @@ export default {
       swiper.value.slidePrev()
     }
 
+    const slidesPerView = ref(1)
+    const calcSlidesPerView = () => {
+      const dom = document.querySelector('.tabs')
+      if (dom.clientWidth * 0.8 < 720) {
+        slidesPerView.value = 3
+      }
+      if (dom.clientWidth * 0.8 < 500) {
+        slidesPerView.value = 2
+      } else {
+        slidesPerView.value = 4
+      }
+    }
+    onMounted(() => {
+      calcSlidesPerView()
+    })
+    window.onresize = () => {
+      calcSlidesPerView()
+    }
+
     const selectTab = (index) => {
       emit('update:index', index)
     }
 
     return {
+      slidesPerView,
       onSwiper,
       swiperNext,
       swiperPrev,
@@ -120,7 +140,7 @@ export default {
 
 // tab
 :deep(.swiper-slide) {
-  /* height: 85px !important; */
+  /* width: 180px !important; */
   width: calc((80vw - 32px) / 4) !important;
   height: 40px !important;
   /* padding: 10px 0; */
@@ -144,5 +164,16 @@ export default {
 }
 :deep(.swiper-scrollbar) {
   /* display: none; */
+}
+
+@media (max-width: 720px) {
+  :deep(.swiper-slide) {
+    width: calc((80vw - 24px) / 3) !important;
+  }
+}
+@media (max-width: 500px) {
+  :deep(.swiper-slide) {
+    width: calc((80vw - 16px) / 2) !important;
+  }
 }
 </style>
