@@ -1,4 +1,5 @@
 <template>
+  <div class="blank"></div>
   <ImageSwiper id="swiper-content" :list="bannerList" />
   <div class="reservation">
     <ChapterTitle title="預約流程" />
@@ -67,6 +68,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.blank {
+  width: 100%;
+  height: 74px;
+}
 .reservation {
   padding: 72px 0;
   background-color: var(--beige);
@@ -108,6 +113,10 @@ export default {
 }
 
 @media (max-width: 460px) {
+  .blank {
+    width: 100%;
+    height: 46px;
+  }
   .reservation {
     padding: 34px 0;
     .reservation__description {

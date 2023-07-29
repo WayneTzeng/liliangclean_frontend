@@ -1,4 +1,48 @@
+import Icon1 from '../assets/image/icon/i-notice-icon1.svg'
+import Icon2 from '../assets/image/icon/i-notice-icon2.svg'
+import Icon3 from '../assets/image/icon/i-notice-icon3.svg'
+import Icon4 from '../assets/image/icon/i-notice-icon4.svg'
+import Icon5 from '../assets/image/icon/i-notice-icon5.svg'
+import Icon6 from '../assets/image/icon/i-notice-icon6.svg'
+import Icon7 from '../assets/image/icon/i-notice-icon7.svg'
+
 export default {
+  promiseList: [
+    {
+      img: Icon1,
+      title: '臺灣籍具有良民證',
+      subTitle: '人員皆為本國人，無不良紀錄',
+    },
+    {
+      img: Icon2,
+      title: '人員經過專業訓練',
+      subTitle: '本公司的專員皆受過專業清潔訓練，並且定期回訓',
+    },
+    { img: Icon3, title: '人員守時不早退', subTitle: '保障您的服務權益' },
+  ],
+  reassureList: [
+    {
+      img: Icon4,
+      title: '嚴選清潔劑',
+      subTitle: '選用中性清潔劑，保護您的家具不傷材質',
+    },
+    {
+      img: Icon5,
+      title: '無需自備清潔用品',
+      subTitle: '我們將備妥所需用品，不需為繁雜的清潔用品煩惱',
+    },
+    {
+      img: Icon6,
+      title: '合法登記公司',
+      subTitle:
+        '貼心客服、專業服務、誠信為本、提供發票，人員皆有團保，讓您不必擔心服務人員狀況',
+    },
+    {
+      img: Icon7,
+      title: '超過90%的滿意度',
+      subTitle: '服務細心、俐落，滿意度高',
+    },
+  ],
   questionList: [
     // question 1
     {
