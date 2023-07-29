@@ -1,14 +1,19 @@
 <template>
   <div class="member">
     <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" commonType />
-    <div v-if="tabIndex === 0">
+    <template v-if="tabIndex === 0">
       <v-container>
         <v-row justify="center">
           <v-col cols="12" md="8" lg="6">
             <v-card class="elevation-12">
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" @click="startEditing" v-if="!editing">
+                <v-btn
+                  color="primary"
+                  variant="outlined"
+                  @click="startEditing"
+                  v-if="!editing"
+                >
                   編輯
                 </v-btn>
               </v-card-actions>
@@ -84,8 +89,72 @@
           </v-col>
         </v-row>
       </v-container>
-    </div>
-    <div v-if="tabIndex === 2"></div>
+    </template>
+    <template v-if="tabIndex === 1">
+      <v-container class="use-in-pc">
+        <v-row>
+          <v-col>
+            <v-card>
+              <v-card-text>
+                <v-row class="table-header">
+                  <v-col
+                    v-for="header in tableHeaders"
+                    :key="header"
+                    class="header-cell"
+                  >
+                    {{ header }}
+                  </v-col>
+                </v-row>
+                <v-row
+                  v-for="(item, index) in tableData"
+                  :key="index"
+                  :class="getRowColorClass(index)"
+                >
+                  <v-col class="data-cell">
+                    {{ item.orderNo }}
+                  </v-col>
+                  <v-col class="data-cell">
+                    {{ item.orderType }}
+                  </v-col>
+                  <v-col class="data-cell">
+                    {{ item.serviceDate }}
+                  </v-col>
+                  <v-col class="data-cell">
+                    {{ item.orderDate }}
+                  </v-col>
+                  <v-col class="data-cell">
+                    {{ item.payment }}
+                  </v-col>
+                  <v-col class="data-cell">
+                    {{ item.orderStatus }}
+                  </v-col>
+                  <v-col class="data-cell">
+                    {{ item.notice }}
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container class="use-in-mobile">
+        <v-row>
+          <v-col cols="12" md="6" lg="4">
+            <v-card
+              v-for="(value, key) in tableData"
+              :key="key"
+              class="order-card"
+            >
+              <v-card-text>
+                <div><strong>訂單編號:</strong> {{ value.orderNo }}</div>
+                <div><strong>預約類型:</strong> {{ value.type }}</div>
+                <div><strong>服務日期:</strong> {{ value.serviceDate }}</div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </template>
   </div>
 </template>
 
@@ -177,6 +246,60 @@ export default {
       }
     })
 
+    const tableHeaders = ref([
+      '訂單編號',
+      '預約類型',
+      '服務日期',
+      '訂購日期',
+      '訂單金額',
+      '訂單狀態',
+      '備註',
+    ])
+
+    // from api
+    const tableData = ref([
+      {
+        orderNo: '0001',
+        orderType: '美容',
+        serviceDate: '2023-07-30',
+        orderDate: '2023-07-28',
+        payment: '1000',
+        orderStatus: '已完成',
+        notice: '備註內容1',
+      },
+      {
+        orderNo: '0002',
+        orderType: '按摩',
+        serviceDate: '2023-08-02',
+        orderDate: '2023-07-29',
+        payment: '1500',
+        orderStatus: '處理中',
+        notice: '備註內容2',
+      },
+      {
+        orderNo: '0002',
+        orderType: '按摩',
+        serviceDate: '2023-08-02',
+        orderDate: '2023-07-29',
+        payment: '1500',
+        orderStatus: '處理中',
+        notice: '備註內容2',
+      },
+      {
+        orderNo: '0002',
+        orderType: '按摩',
+        serviceDate: '2023-08-02',
+        orderDate: '2023-07-29',
+        payment: '1500',
+        orderStatus: '處理中',
+        notice: '備註內容2',
+      },
+    ])
+
+    const getRowColorClass = (index) => {
+      return index % 2 === 0 ? 'even-row' : 'odd-row'
+    }
+
     return {
       tabIndex,
       tabList,
@@ -191,6 +314,9 @@ export default {
       genderRules,
       phoneRules,
       emailRules,
+      tableHeaders,
+      tableData,
+      getRowColorClass,
       startEditing,
       cancel,
       save,
@@ -231,5 +357,27 @@ export default {
 
 .v-btn {
   margin-top: 16px;
+}
+
+.table-header {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.header-cell,
+.data-cell {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.even-row {
+  background-color: #f8f8f8;
+}
+
+.odd-row {
+  background-color: #e0e0e0;
+}
+.order-card ~ .order-card {
+  margin-top: 24px;
 }
 </style>

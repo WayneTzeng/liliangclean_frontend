@@ -111,6 +111,14 @@ export default {
     .tab ~ .tab {
       margin-left: 0;
     }
+
+    &.common-type {
+      justify-content: center;
+      padding: 0;
+      .tab {
+        width: auto;
+      }
+    }
   }
 }
 </style>

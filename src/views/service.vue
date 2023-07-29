@@ -72,15 +72,15 @@
         <template v-if="tabIndex === 2">
           <div class="image-block">
             <div class="image-box">
-              <img src="https://picsum.photos/200/300" />
+              <img :src="ImageOffice1" />
               <span>精油</span>
             </div>
             <div class="image-box">
-              <img src="https://picsum.photos/200/300" />
+              <img :src="ImageOffice2" />
               <span>酵素</span>
             </div>
             <div class="image-box">
-              <img src="https://picsum.photos/200/300" />
+              <img :src="ImageOffice3" />
               <span>真空抽洗</span>
             </div>
           </div>
@@ -182,6 +182,9 @@ import Selector from '../components/Selector.vue'
 import Tabs from '../components/SlideTabs.vue'
 import ServiceCard from '../components/ServiceCard.vue'
 import MapTaichung from '../components/MapTaichung.vue'
+import ImageOffice1 from '../assets/image/image/image-service-office1.jpeg'
+import ImageOffice2 from '../assets/image/image/image-service-office2.jpeg'
+import ImageOffice3 from '../assets/image/image/image-service-office3.jpeg'
 import IconLine from '../assets/image/icon/icon-line.png'
 import IconNext from '../assets/image/icon/icon-swiper-next.png'
 import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
@@ -258,6 +261,9 @@ export default {
       IconLine,
       IconNext,
       IconPrev,
+      ImageOffice1,
+      ImageOffice2,
+      ImageOffice3,
     }
   },
 }
@@ -314,7 +320,7 @@ export default {
     }
     .service-desc {
       width: 100%;
-      padding: 40px 25vw 0 25vw;
+      padding: 40px 20vw 0 20vw;
       line-height: 24px;
       font-size: var(--font-l);
       .image-block {
@@ -322,8 +328,8 @@ export default {
         display: flex;
         justify-content: center;
         .image-box {
-          width: calc((50vw - 48px) / 3);
-          height: calc(((50vw - 48px) / 3) * 1.5 + 30px);
+          width: calc((60vw - 48px) / 3);
+          height: calc(((60vw - 48px) / 3) * 0.67 + 30px);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -431,12 +437,6 @@ export default {
       }
       .service-desc {
         padding: 40px 15vw 0 15vw;
-        .image-block {
-          .image-box {
-            width: calc((70vw - 48px) / 3);
-            height: calc(((70vw - 48px) / 3) * 1.5);
-          }
-        }
       }
     }
   }
@@ -467,13 +467,14 @@ export default {
           align-items: center;
           justify-content: center;
           .image-box {
-            width: 60vw;
-            height: calc(80vw * 1.5);
+            width: 80vw;
+            height: calc(80vw * 0.7);
           }
         }
 
         .image-box ~ .image-box {
           margin-left: 0 !important;
+          margin-top: 32px;
         }
         .office-service {
           justify-content: flex-start;
