@@ -61,22 +61,34 @@
       </template>
 
       <div v-if="tabIndex !== 0" class="service-desc">
-        <div v-if="tabIndex === 1">
+        <template v-if="tabIndex === 1">
           「裝潢後細清」與「一般清潔的差異」<br /><br />
           細清是指，施工過程留下來的大量粉塵，針對室內的每個細節擦拭乾淨，可在清潔後讓客戶安心入住
           居家清潔是指，日常使用或長久使用下留下的污垢、較難去除的髒污，亦或是針對較常使用的區域做定期的維持"
           裝潢後需完成『粗清』外，需間隔3天以上再進行細清，效果更佳<br /><br />
           收費方式採『鐘點費』計算
           基本預約2人一組，服務6小時以上，週(一)至(五)平日計費為6780元起
-        </div>
-        <div v-if="tabIndex === 2">
-          採用<br />
-          ● 茶樹精油<br />
-          ● 中性的酵素清潔劑<br />
-          ● 真空抽洗<br />
-          三合一的搭配，可有效沖洗深層的髒污<br />
-          讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
-        </div>
+        </template>
+        <template v-if="tabIndex === 2">
+          <div class="image-block">
+            <div class="image-box">
+              <img src="https://picsum.photos/200/300" />
+              <span>精油</span>
+            </div>
+            <div class="image-box">
+              <img src="https://picsum.photos/200/300" />
+              <span>酵素</span>
+            </div>
+            <div class="image-box">
+              <img src="https://picsum.photos/200/300" />
+              <span>真空抽洗</span>
+            </div>
+          </div>
+          <div class="image-block-content">
+            三合一的搭配，可有效沖洗深層的髒污<br />
+            讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
+          </div>
+        </template>
         <div v-if="tabIndex === 3" class="office-service">
           <ol>
             <li>● 平面清潔</li>
@@ -305,6 +317,29 @@ export default {
       padding: 40px 25vw 0 25vw;
       line-height: 24px;
       font-size: var(--font-l);
+      .image-block {
+        padding-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        .image-box {
+          width: calc((50vw - 48px) / 3);
+          height: calc(((50vw - 48px) / 3) * 1.5 + 30px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          img {
+            border-radius: 16px;
+            width: 100%;
+            /* height: 100%; */
+          }
+        }
+        .image-box ~ .image-box {
+          margin-left: 24px;
+        }
+      }
+      .image-block-content {
+        text-align: center;
+      }
       .customer-connect {
         margin-top: 40px;
         width: 100%;
@@ -396,6 +431,12 @@ export default {
       }
       .service-desc {
         padding: 40px 15vw 0 15vw;
+        .image-block {
+          .image-box {
+            width: calc((70vw - 48px) / 3);
+            height: calc(((70vw - 48px) / 3) * 1.5);
+          }
+        }
       }
     }
   }
@@ -421,6 +462,19 @@ export default {
       }
       .service-desc {
         padding: 40px 10vw 0 10vw;
+        .image-block {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .image-box {
+            width: 60vw;
+            height: calc(80vw * 1.5);
+          }
+        }
+
+        .image-box ~ .image-box {
+          margin-left: 0 !important;
+        }
         .office-service {
           justify-content: flex-start;
           flex-direction: column;
