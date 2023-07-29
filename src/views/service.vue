@@ -138,10 +138,10 @@
             <div>由於辦公室規格多樣化，</div>
             <div>目前尚未提供官網評估、預約</div>
           </template>
-          <div><a href="https://lin.ee/8qurIGn">請留下您的基本資訊</a>，</div>
-          <div>客服收到後會儘快和您聯繫，</div>
+          <!-- <div><a href="https://lin.ee/8qurIGn">請留下您的基本資訊</a>，</div> -->
+          <!-- <div>客服收到後會儘快和您聯繫，</div> -->
           <div>
-            或加入官方 @LINE
+            請加入官方line洽詢客服，由專人為您服務
             <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
             立即諮詢
           </div>

@@ -25,7 +25,8 @@
         />
       </div>
     </div>
-    <div class="our-right" v-if="false">
+    <ChapterTitle title="為什麼選擇我們" />
+    <div class="our-right" v-if="true">
       <span
         >*
         不提供拆卸窗戶及窗簾（以內部清潔為主，無法爬出非可安全站立位置清潔）。</span
@@ -203,7 +204,7 @@ export default {
     }
     .our-right {
       font-size: var(--mobile-font-m);
-      padding: 0 15vw 72px 15vw;
+      padding: 40px 15vw 72px 15vw;
     }
   }
 }

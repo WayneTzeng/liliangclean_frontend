@@ -4,7 +4,7 @@
   <div class="reservation">
     <ChapterTitle title="預約流程" />
     <div class="reservation__description">
-      歡迎加入官方@Line
+      歡迎加入官方LINE@
       <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
       立即預約，將由專人為您服務
     </div>
