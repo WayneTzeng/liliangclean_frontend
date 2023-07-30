@@ -53,6 +53,7 @@ export default {
   overflow: hidden;
   max-height: 64px;
   transition: max-height 0.5s ease-in-out;
+  cursor: pointer;
   &.active {
     max-height: 800px;
 

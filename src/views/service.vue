@@ -37,7 +37,7 @@
         <div class="service-cards-content">
           「單次預約」<br />1人服務 $1,800起<br />2人服務 $3,390起<br />（以上皆為平日一～五收費標準）
         </div>
-        <div class="service-cards use-in-pc">
+        <div class="service-cards use-in-pc use-in-mobile">
           <ServiceCard
             v-for="(service, idx) in contentList"
             :key="idx"
@@ -45,7 +45,7 @@
             class="service-card"
           />
         </div>
-        <div class="service-cards use-in-mobile">
+        <!-- <div class="service-cards use-in-mobile">
           <ServiceCard
             :service="contentList[serviceCardIndex]"
             class="service-card"
@@ -57,7 +57,7 @@
           <div class="service-card-next" @click="handleNext">
             <img :src="IconNext" />
           </div>
-        </div>
+        </div> -->
       </template>
 
       <div v-if="tabIndex !== 0" class="service-desc">
@@ -141,7 +141,7 @@
           <!-- <div><a href="https://lin.ee/8qurIGn">請留下您的基本資訊</a>，</div> -->
           <!-- <div>客服收到後會儘快和您聯繫，</div> -->
           <div>
-            請加入官方line洽詢客服，由專人為您服務
+            請加入官方 LINE 洽詢客服，由專人為您服務
             <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
             立即諮詢
           </div>
@@ -441,14 +441,8 @@ export default {
     }
   }
 }
-
-@media (max-width: 460px) {
+@media (max-width: 760px) {
   .service {
-    /* .charge {
-      .charge-desc {
-        padding: 0 5vw;
-      }
-    } */
     .content {
       .service-cards.use-in-mobile {
         .service-card {
@@ -460,6 +454,27 @@ export default {
           }
         }
       }
+    }
+  }
+}
+@media (max-width: 460px) {
+  .service {
+    /* .charge {
+      .charge-desc {
+        padding: 0 5vw;
+      }
+    } */
+    .content {
+      /* .service-cards.use-in-mobile {
+        .service-card {
+          flex: 0 0 100%;
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out;
+          &.fade-out {
+            opacity: 0.2;
+          }
+        }
+      } */
       .service-desc {
         padding: 40px 10vw 0 10vw;
         .image-block {
@@ -479,11 +494,17 @@ export default {
         .office-service {
           justify-content: flex-start;
           flex-direction: column;
+          ol {
+            width: 120px;
+            margin: 0 auto;
+          }
         }
       }
     }
     .area {
-      padding: 72px 10vw;
+      .map-block {
+        padding: 0 10vw;
+      }
     }
   }
 }

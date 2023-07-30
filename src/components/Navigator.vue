@@ -3,7 +3,7 @@
     <div class="logo__block" @click="goto(PAGE.index)">
       <img :src="ImageLogo" />
     </div>
-    <div class="menu__block use-in-pc">
+    <div class="menu__block use-in-pc-760">
       <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.service }"
@@ -26,12 +26,12 @@
         會員
       </div>
     </div>
-    <div class="menu__block-mobile use-in-mobile">
+    <div class="menu__block-mobile use-in-mobile-760">
       <img v-if="!isMenuOpen" :src="IconMenu" @click.capture="handleClick" />
       <img v-else :src="IconMenuCross" @click.capture="handleClick" />
     </div>
   </div>
-  <div v-if="isMenuOpen" class="menu__extend use-in-mobile">
+  <div v-if="isMenuOpen" class="menu__extend use-in-mobile-760">
     <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.member }"
@@ -162,9 +162,38 @@ export default {
   }
 }
 
+@media (max-width: 760px) {
+  .menu__extend {
+    width: 100%;
+    position: fixed;
+    top: 74px;
+    left: 0;
+    z-index: 40;
+    box-shadow: 0px 0px 8px 0px #888888;
+
+    .menu__item {
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--height-light);
+      font-size: var(--font-m);
+      background-color: var(--second);
+
+      &.active {
+        color: var(--brown);
+        background-color: var(--height-light);
+      }
+    }
+    .menu__item ~ .menu__item {
+      border-top: 1px solid var(--beige);
+    }
+  }
+}
+
 @media (max-width: 460px) {
   .navigator {
-    width: calc(100vw); // calc(100vw - 40px)
+    width: calc(100vw);
     padding: 10px 20px 10px 20px;
 
     .logo__block {
