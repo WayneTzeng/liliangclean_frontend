@@ -109,6 +109,7 @@
                   v-for="(item, index) in tableData"
                   :key="index"
                   :class="getRowColorClass(index)"
+                  @click="openOrderCard"
                 >
                   <v-col class="data-cell">
                     {{ item.orderNo }}
@@ -155,6 +156,15 @@
         </v-row>
       </v-container>
     </template>
+    <OrderDetailCard
+      v-if="orderCardShow"
+      @closeOrderCard="
+        () => {
+          console.log
+          orderCardShow = false
+        }
+      "
+    />
   </div>
 </template>
 
@@ -163,11 +173,13 @@ import { ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { memberData } from '../data/index'
 import Tabs from '../components/Tabs.vue'
+import OrderDetailCard from '../components/OrderDetailCard.vue'
 
 export default {
   name: 'MemberPage',
   components: {
     Tabs,
+    OrderDetailCard,
   },
   setup() {
     const router = useRouter()
@@ -300,6 +312,11 @@ export default {
       return index % 2 === 0 ? 'even-row' : 'odd-row'
     }
 
+    const orderCardShow = ref(false)
+    const openOrderCard = () => {
+      orderCardShow.value = true
+    }
+
     return {
       tabIndex,
       tabList,
@@ -316,10 +333,12 @@ export default {
       emailRules,
       tableHeaders,
       tableData,
+      orderCardShow,
       getRowColorClass,
       startEditing,
       cancel,
       save,
+      openOrderCard,
     }
   },
 }
@@ -370,6 +389,11 @@ export default {
   border: 1px solid #ccc;
 }
 
+.even-row,
+.odd-row {
+  cursor: pointer;
+}
+
 .even-row {
   background-color: #f8f8f8;
 }
@@ -379,5 +403,17 @@ export default {
 }
 .order-card ~ .order-card {
   margin-top: 24px;
+}
+
+:deep(.header-cell) {
+  border: none;
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+}
+:deep(.data-cell) {
+  border: none;
+  text-align: center;
+  color: var(--brown);
 }
 </style>
