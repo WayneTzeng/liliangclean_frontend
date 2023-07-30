@@ -381,7 +381,7 @@ export default {
       }
       .office-service {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
       }
       .charge-desc {
         display: flex;
