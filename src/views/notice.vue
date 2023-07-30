@@ -1,7 +1,7 @@
 <template>
   <div class="notice">
     <div class="banner">
-      <h1 class="title">客戶權益須知</h1>
+      <h1 class="title">服務須知</h1>
       <img :src="ImageBanner" />
     </div>
     <div class="why-us">
@@ -25,8 +25,8 @@
         />
       </div>
     </div>
-    <template v-if="false">
-      <ChapterTitle title="為什麼選擇我們" />
+    <template v-if="true">
+      <ChapterTitle title="不服務的內容" />
       <div class="our-right">
         <span
           >*
@@ -49,15 +49,16 @@
           不提供移動或抬起大型傢具、超過體力負荷之重物進行清潔（超過10公斤）。</span
         ><br />
         <span>* 不提供陳年污垢、深層黴菌垢、鏽蝕或是壁癌。</span><br />
-        <span
-          >*
-          不提供特殊清潔項目（如事故現場清潔、水災後、火災後、意外身故或自然身故之現場等）。</span
-        ><br />
+        <span>
+          *不提供特殊清潔項目（如事故現場清潔、水災後、火災後、意外身故或自然身故之現場等）。
+        </span>
+        <br />
         <span>* 不提供環境過於髒亂、惡臭、嘔吐物、排泄物之清潔。</span><br />
         <span>* 不提供提供採購、烹飪、保姆、看護、照護寵物等工作。</span><br />
         <span>* 不提供挑高超過3.2米之區域。</span><br />
         <span>* 不提供抽油煙機機身、瓦斯爐芯拆卸清洗。</span><br />
-        <span>* 不提供冷氣機、洗衣機內部拆洗（需另預約家電服務）。</span><br />
+        <span> * 不提供冷氣機、洗衣機內部拆洗（需另預約家電清潔服務）。 </span>
+        <br />
         <span>* 不提供植物修剪或庭院除草、景觀水池清理。</span><br />
         <span>* 不提供大量噴漆、水泥塊、殘膠清理。</span><br />
         <span>* 不提供具危險性之化學物質處理。</span><br />

@@ -198,24 +198,7 @@ export default {
   margin-top: 0;
 }
 
-@media (max-width: 1000px) {
-  .service-card {
-    margin-top: 30px;
-  }
-  .service-card ~ .service-card {
-    margin-left: 30px;
-  }
-
-  .service-card:nth-child(2n + 1) {
-    margin-left: 0;
-  }
-
-  .service-card:nth-child(3) {
-    margin-top: 30px;
-  }
-}
-
-@media (max-width: 460px) {
+@media (max-width: 760px) {
   .service-card {
   }
 

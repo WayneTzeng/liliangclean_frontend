@@ -16,7 +16,7 @@
         :class="{ active: currenPage === PAGE.notice }"
         @click="goto(PAGE.notice)"
       >
-        客戶須知
+        常見問題
       </div>
       <div
         class="menu__item"
@@ -51,7 +51,7 @@
       :class="{ active: currenPage === PAGE.notice }"
       @click="goto(PAGE.notice)"
     >
-      客戶須知
+      常見問題
     </div>
   </div>
 </template>
@@ -123,7 +123,7 @@ export default {
 <style lang="scss" scoped>
 .navigator {
   width: 100vw;
-  padding: 5px 30px;
+  padding: 5px 90px 5px 30px;
   position: fixed;
   z-index: 99;
   display: flex;

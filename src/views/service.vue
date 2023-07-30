@@ -35,7 +35,9 @@
       <ChapterTitle title="服務內容" />
       <template v-if="tabIndex === 0">
         <div class="service-cards-content">
-          「單次預約」<br />1人服務 $1,800起<br />2人服務 $3,390起<br />（以上皆為平日一～五收費標準）
+          「單次預約」<br />
+          <span> 1人服務 $1,800起<br />2人服務 $3,390起<br /> </span>
+          （以上皆為平日一～五收費標準）
         </div>
         <div class="service-cards use-in-pc use-in-mobile">
           <ServiceCard
@@ -62,14 +64,14 @@
 
       <div v-if="tabIndex !== 0" class="service-desc">
         <template v-if="tabIndex === 1">
-          「裝潢後細清」與「一般清潔的差異」<br /><br />
+          「裝潢細清」與「居家清潔」的差異<br /><br />
           細清是指，施工過程留下來的大量粉塵，針對室內的每個細節擦拭乾淨，可在清潔後讓客戶安心入住
-          居家清潔是指，日常使用或長久使用下留下的污垢、較難去除的髒污，亦或是針對較常使用的區域做定期的維持"
+          居家清潔是指，日常使用或長久使用下留下的污垢、較難去除的髒污，亦或是針對較常使用的區域做定期的維持
           裝潢後需完成『粗清』外，需間隔3天以上再進行細清，效果更佳<br /><br />
           收費方式採『鐘點費』計算
           基本預約2人一組，服務6小時以上，週(一)至(五)平日計費為6780元起
         </template>
-        <template v-if="tabIndex === 2">
+        <template v-if="tabIndex === 3">
           <div class="image-block">
             <div class="image-box">
               <img :src="ImageOffice1" />
@@ -85,11 +87,13 @@
             </div>
           </div>
           <div class="image-block-content">
-            三合一的搭配，可有效沖洗深層的髒污<br />
-            讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
+            除塵蟎 → 活性酵素靜敷 → 嚴選刷具刷洗 → 精油殺菌去除異味 →
+            多道嘖抽回收污垢髒水<br />
+            <br />
+            專業處理讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
           </div>
         </template>
-        <div v-if="tabIndex === 3" class="office-service">
+        <div v-if="tabIndex === 2" class="office-service">
           <ol>
             <li>● 平面清潔</li>
             <li>● 地板清潔</li>
@@ -124,7 +128,7 @@
             ● 購買此方案無法跨地址使用<br />
             ● 此方案使用頻率，最低一個月一次<br />
             ●
-            取消/異動服務日期，需於服務日前4個工作天告知（不含例假日），於服務日4天內告知將酌收600元異動費。<br /><br />
+            取消/異動服務日期，需於服務日前3個工作天告知（不含例假日），於服務日3天內告知將酌收600元異動費。<br /><br />
 
             可能產生額外費用說明：<br />
             ▼ 週末：預約週末（六、日）每人每小時加收100元。<br />
@@ -135,13 +139,12 @@
         </div>
         <div class="customer-connect">
           <template v-if="tabIndex === 3">
-            <div>由於辦公室規格多樣化，</div>
+            <div>由於辦公室規格多樣化</div>
             <div>目前尚未提供官網評估、預約</div>
           </template>
-          <!-- <div><a href="https://lin.ee/8qurIGn">請留下您的基本資訊</a>，</div> -->
-          <!-- <div>客服收到後會儘快和您聯繫，</div> -->
           <div>
-            請加入官方 LINE 洽詢客服，由專人為您服務
+            請加入官方 LINE 洽詢客服<br />
+            由專人為您服務
             <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
             立即諮詢
           </div>
@@ -164,9 +167,15 @@
         </div>
         <MapTaichung class="map" />
         <div class="notice">
-          ● 以74快速道路環狀內為主要範圍區域<br />
-          ● 排班會依據人員案場之間的距離考量，預約前建議可以向客服諮詢<br />
-          ● 若以上區域沒有您在的區域，可以加入官方 LINE 向客服詢問
+          <span> ● 以74快速道路環狀內為主要範圍區域 </span>
+          <br />
+          <span>
+            ● 排班會依據人員案場之間的距離考量，預約前建議可以向客服諮詢
+          </span>
+          <br />
+          <span>
+            ● 若以上區域沒有您在的區域，可以加入官方 LINE 向客服詢問
+          </span>
         </div>
       </div>
     </div>
@@ -285,6 +294,10 @@ export default {
       margin: 36px 0 24px 0;
       text-align: center;
       line-height: 20px;
+      span {
+        font-size: var(--font-l);
+        line-height: 24px;
+      }
     }
     .service-cards.use-in-pc {
       display: flex;
@@ -328,15 +341,13 @@ export default {
         display: flex;
         justify-content: center;
         .image-box {
-          width: calc((60vw - 48px) / 3);
-          height: calc(((60vw - 48px) / 3) * 0.67 + 30px);
+          width: calc((100vw - 48px) / 3);
           display: flex;
           flex-direction: column;
           align-items: center;
           img {
             border-radius: 16px;
             width: 100%;
-            /* height: 100%; */
           }
         }
         .image-box ~ .image-box {
@@ -357,6 +368,7 @@ export default {
         font-size: var(--font-l);
         font-weight: 600;
         line-height: 30px;
+        text-align: center;
 
         a {
           color: #3c2cef;
@@ -418,25 +430,14 @@ export default {
         margin: 30px;
       }
       .notice {
-        font-size: var(--font-s);
-        color: var(--light-gray);
-        line-height: 20px;
-      }
-    }
-  }
-}
-
-@media (max-width: 1000px) {
-  .service {
-    .content {
-      .service-cards.use-in-pc {
-        flex-wrap: wrap;
-        .service-card {
-          flex: 0 0 calc((100% - 30px) / 2);
+        margin-left: 20px;
+        span {
+          font-size: var(--font-s);
+          color: var(--light-gray);
+          line-height: 20px;
+          text-indent: 16px;
+          margin-left: -16px;
         }
-      }
-      .service-desc {
-        padding: 40px 15vw 0 15vw;
       }
     }
   }
@@ -465,16 +466,6 @@ export default {
       }
     } */
     .content {
-      /* .service-cards.use-in-mobile {
-        .service-card {
-          flex: 0 0 100%;
-          opacity: 1;
-          transition: opacity 0.5s ease-in-out;
-          &.fade-out {
-            opacity: 0.2;
-          }
-        }
-      } */
       .service-desc {
         padding: 40px 10vw 0 10vw;
         .image-block {
