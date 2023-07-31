@@ -1,9 +1,9 @@
 export default {
   contentList: [
-    // 大項一
     [
       {
         title: '客廳清潔',
+        subTitle: [],
         can: [
           '沙發擦拭',
           '地毯除塵',
@@ -21,6 +21,7 @@ export default {
       },
       {
         title: '廚房清潔',
+        subTitle: [],
         can: [
           '瓦斯爐台',
           '集油槽油污處理',
@@ -40,8 +41,8 @@ export default {
       },
       {
         title: '房間清潔',
+        subTitle: [],
         can: [
-
           '家電外觀清潔',
           '衣櫃外觀擦拭',
           '被褥整理',
@@ -59,6 +60,7 @@ export default {
       },
       {
         title: '浴室清潔',
+        subTitle: [],
         can: [
           '乾濕玻璃',
           '浴缸清潔',
@@ -78,14 +80,25 @@ export default {
       },
       {
         title: '陽台清潔',
-        can: [
-          '曬衣桿外觀擦拭',
-          '家電外觀擦拭',
-          '地板清潔',
-          '雜物整理',
-        ],
+        subTitle: [],
+        can: ['曬衣桿外觀擦拭', '家電外觀擦拭', '地板清潔', '雜物整理'],
         cant: ['鳥巢移除', '除蟲害', '園藝整理'],
         estimatedTime: ['0.5', '1.5'],
+        desc: ['普通清潔', '空間大、許久未清潔'],
+        notice: '',
+        image: 'https://picsum.photos/500/178',
+      },
+      {
+        title: '其他清潔',
+        subTitle: ['● 窗戶清潔', '● 衣物洗曬'],
+        can: ['窗框、窗溝、紗窗、窗戶玻璃', '衣物丟入洗衣機清洗、晾曬'],
+        cant: [
+          '不拆卸窗戶',
+          '不拆卸窗簾、清洗',
+          '不手洗衣物',
+          '不洗特殊衣物(ex:羊毛、羽絨、拖鞋)',
+        ],
+        estimatedTime: ['+0.5/扇', '1~2'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
         image: 'https://picsum.photos/500/178',

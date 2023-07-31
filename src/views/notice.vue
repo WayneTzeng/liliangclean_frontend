@@ -132,7 +132,7 @@ export default {
     .title {
       position: absolute;
       top: calc(50% - 16px);
-      left: calc(50% - 144px);
+      left: calc(50% - 96px);
       z-index: 20;
       font-size: 48px;
     }
@@ -195,7 +195,7 @@ export default {
     .banner {
       .title {
         top: calc(50% - 11px);
-        left: calc(50% - 66px);
+        left: calc(50% - 44px);
         font-size: var(--font-xl);
       }
     }

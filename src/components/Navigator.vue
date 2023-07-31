@@ -3,7 +3,7 @@
     <div class="logo__block" @click="goto(PAGE.index)">
       <img :src="ImageLogo" />
     </div>
-    <div class="menu__block use-in-pc-760">
+    <div class="menu__block">
       <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.service }"
@@ -26,7 +26,7 @@
         會員
       </div>
     </div>
-    <div class="menu__block-mobile use-in-mobile-760">
+    <div class="menu__block-mobile">
       <img v-if="!isMenuOpen" :src="IconMenu" @click.capture="handleClick" />
       <img v-else :src="IconMenuCross" @click.capture="handleClick" />
     </div>
@@ -140,6 +140,10 @@ export default {
     display: flex;
     justify-content: flex-start;
   }
+  .menu__block-mobile {
+    display: none;
+  }
+
   .menu__item {
     color: var(--brown);
     font-size: var(--font-l);
@@ -163,6 +167,14 @@ export default {
 }
 
 @media (max-width: 760px) {
+  .navigator {
+    .menu__block {
+      display: none !important;
+    }
+    .menu__block-mobile {
+      display: block !important;
+    }
+  }
   .menu__extend {
     width: 100%;
     position: fixed;
@@ -209,30 +221,7 @@ export default {
     }
   }
   .menu__extend {
-    width: 100%;
-    position: fixed;
     top: 46px;
-    left: 0;
-    z-index: 40;
-    box-shadow: 0px 0px 8px 0px #888888;
-
-    .menu__item {
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: var(--height-light);
-      font-size: var(--font-mobile-m);
-      background-color: var(--second);
-
-      &.active {
-        color: var(--brown);
-        background-color: var(--height-light);
-      }
-    }
-    .menu__item ~ .menu__item {
-      border-top: 1px solid var(--beige);
-    }
   }
 }
 </style>

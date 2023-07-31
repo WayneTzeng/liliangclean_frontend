@@ -39,7 +39,7 @@
           <span> 1人服務 $1,800起<br />2人服務 $3,390起<br /> </span>
           （以上皆為平日一～五收費標準）
         </div>
-        <div class="service-cards use-in-pc use-in-mobile">
+        <div class="service-cards">
           <ServiceCard
             v-for="(service, idx) in contentList"
             :key="idx"
@@ -299,7 +299,7 @@ export default {
         line-height: 24px;
       }
     }
-    .service-cards.use-in-pc {
+    .service-cards {
       display: flex;
       justify-content: flex-start;
       padding: 30px 5vw;
@@ -308,7 +308,7 @@ export default {
         flex: 0 0 calc((100% - 60px) / 3);
       }
     }
-    .service-cards.use-in-mobile {
+    /* .service-cards.use-in-mobile {
       position: relative;
       padding: 30px 5vw;
 
@@ -330,7 +330,7 @@ export default {
       .service-card-next {
         right: 5px;
       }
-    }
+    } */
     .service-desc {
       width: 100%;
       padding: 40px 20vw 0 20vw;
@@ -442,10 +442,26 @@ export default {
     }
   }
 }
+@media (max-width: 1060px) {
+  .service {
+    .content {
+      .service-cards {
+        .service-card {
+          flex: 0 0 calc((100% - 30px) / 2);
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out;
+          &.fade-out {
+            opacity: 0.2;
+          }
+        }
+      }
+    }
+  }
+}
 @media (max-width: 760px) {
   .service {
     .content {
-      .service-cards.use-in-mobile {
+      .service-cards {
         .service-card {
           flex: 0 0 100%;
           opacity: 1;
