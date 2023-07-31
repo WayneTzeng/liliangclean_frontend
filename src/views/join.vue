@@ -1,96 +1,98 @@
 <template>
-  <div class="advantage">
-    <ChapterTitle title="團隊優勢" />
-    <div class="advantage-cards">
-      <div
-        class="advantage-card"
-        v-for="(item, idx) in advantageList"
-        :key="idx"
-      >
-        <img :src="item.image" />
-        <div>{{ item.title }}</div>
+  <div>
+    <div class="advantage">
+      <ChapterTitle title="團隊優勢" />
+      <div class="advantage-cards">
+        <div
+          class="advantage-card"
+          v-for="(item, idx) in advantageList"
+          :key="idx"
+        >
+          <img :src="item.image" />
+          <div>{{ item.title }}</div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="join-us">
-    <ChapterTitle title="加入團隊" />
-    <v-container class="mt-9">
-      <v-form ref="formRef">
-        <v-row>
-          <v-col cols="12" sm="6">
-            <v-text-field
-              v-model="formData.name"
-              label="姓名"
-              :rules="commonRules"
-              variant="outlined"
-            />
-          </v-col>
-          <v-col cols="12" sm="6">
-            <v-select
-              v-model="formData.gender"
-              :items="genderOptions"
-              label="性別"
-              :rules="commonRules"
-              variant="outlined"
-            />
-          </v-col>
-          <v-col cols="12" sm="6">
-            <div class="date-picker">
-              <div class="title">出生日期</div>
-              <DatePicker v-model="formData.birthDate" label="出生日期" />
-            </div>
-          </v-col>
-          <v-col cols="12" sm="6">
-            <v-text-field
-              v-model="formData.phone"
-              label="手機"
-              :rules="phoneRules"
-              variant="outlined"
-            />
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              v-model="formData.address"
-              label="居住地址"
-              :rules="commonRules"
-              variant="outlined"
-            />
-          </v-col>
-          <v-col cols="12">
-            <v-file-input
-              v-model="formData.profilePicture"
-              label="大頭照"
-              accept="image/jpeg, image/png"
-              :rules="profilePictureRules"
-              variant="outlined"
-            />
-          </v-col>
-          <v-col cols="12">
-            <v-select
-              v-model="formData.cleaningExperience"
-              :items="cleaningExperienceOptions"
-              label="是否有清潔相關經驗"
-              :rules="commonRules"
-              variant="outlined"
-            />
-          </v-col>
-          <v-col cols="12">
-            <v-select
-              v-model="formData.serviceExperience"
-              :items="serviceExperienceOptions"
-              label="是否有服務業相關經驗"
-              :rules="commonRules"
-              variant="outlined"
-            />
-          </v-col>
-          <v-col cols="12">
-            <v-btn color="primary" class="text-surface" @click="submitForm">
-              確定送出
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-form>
-    </v-container>
+    <div class="join-us">
+      <ChapterTitle title="加入團隊" />
+      <v-container class="mt-9">
+        <v-form ref="formRef">
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="formData.name"
+                label="姓名"
+                :rules="commonRules"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select
+                v-model="formData.gender"
+                :items="genderOptions"
+                label="性別"
+                :rules="commonRules"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12" sm="6">
+              <div class="date-picker">
+                <div class="title">出生日期</div>
+                <DatePicker v-model="formData.birthDate" label="出生日期" />
+              </div>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="formData.phone"
+                label="手機"
+                :rules="phoneRules"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                v-model="formData.address"
+                label="居住地址"
+                :rules="commonRules"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-file-input
+                v-model="formData.profilePicture"
+                label="大頭照"
+                accept="image/jpeg, image/png"
+                :rules="profilePictureRules"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-select
+                v-model="formData.cleaningExperience"
+                :items="cleaningExperienceOptions"
+                label="是否有清潔相關經驗"
+                :rules="commonRules"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-select
+                v-model="formData.serviceExperience"
+                :items="serviceExperienceOptions"
+                label="是否有服務業相關經驗"
+                :rules="commonRules"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-btn color="primary" class="text-surface" @click="submitForm">
+                確定送出
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
+      </v-container>
+    </div>
   </div>
 </template>
 
@@ -207,6 +209,7 @@ export default {
 
 .join-us {
   padding: 72px 0;
+  background-color: var(--beige);
 }
 
 .v-form,
