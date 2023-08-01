@@ -50,7 +50,7 @@ export default {
     top: 20px;
     color: var(--brown);
     font-size: 24px;
-    font-family: Manuale;
+    font-family: 'Noto Sans TC', sans-serif;
     font-weight: 700;
   }
   img {
