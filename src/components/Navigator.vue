@@ -18,13 +18,13 @@
       >
         常見問題
       </div>
-      <div
+      <!-- <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.member }"
         @click="goto(PAGE.member)"
       >
         會員
-      </div>
+      </div> -->
     </div>
     <div class="menu__block-mobile">
       <img v-if="!isMenuOpen" :src="IconMenu" @click.capture="handleClick" />
@@ -32,13 +32,13 @@
     </div>
   </div>
   <div v-if="isMenuOpen" class="menu__extend use-in-mobile-760">
-    <div
+    <!-- <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.member }"
       @click="goto(PAGE.member)"
     >
       會員
-    </div>
+    </div> -->
     <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.service }"

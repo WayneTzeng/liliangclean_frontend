@@ -36,7 +36,7 @@ export default {
         cant: ['排油煙機內機拆洗', '廚餘清理'],
         estimatedTime: ['1.5hr', '3hr'],
         desc: ['普通清潔', '重油汙、許久未清潔'],
-        notice: '',
+        notice: '冰箱內部清潔、整理＋1-1.5小時',
         image: 'https://picsum.photos/500/178',
       },
       {
@@ -75,7 +75,7 @@ export default {
         cant: ['櫃內清潔'],
         estimatedTime: ['0.5hr', '2.5hr'],
         desc: ['普通清潔', '垢重、許久未清潔'],
-        notice: '冰箱內部清潔、整理＋1-1.5小時',
+        notice: '',
         image: 'https://picsum.photos/500/178',
       },
       {
