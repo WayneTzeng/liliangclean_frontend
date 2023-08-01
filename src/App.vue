@@ -5,7 +5,7 @@
     <Navigator />
     <RouterView class="router-view" />
     <BottomInfo />
-    <GoToTop v-if="!showLogin && !showRegister" @click="goToTop" />
+    <SideMenu v-if="!showLogin && !showRegister" @click="goToTop" />
     <Loading v-if="showLoading" />
     <Popup v-model:show="showDialog" :action="dialogAction">
       {{ dialogMessage }}
@@ -21,7 +21,7 @@ import Navigator from './components/Navigator.vue'
 import Login from './components/login.vue'
 import Register from './components/Register.vue'
 import BottomInfo from './components/BottomInfo.vue'
-import GoToTop from './components/GoToTop.vue'
+import SideMenu from './components/SideMenu.vue'
 import Loading from './components/Loading.vue'
 import Popup from './components/Popup.vue'
 import { showLoading } from './helpers/loading.js'
@@ -33,7 +33,7 @@ export default {
     Login,
     Register,
     BottomInfo,
-    GoToTop,
+    SideMenu,
     RouterView,
     Loading,
     Popup,
