@@ -36,7 +36,7 @@
       <template v-if="tabIndex === 0">
         <div class="service-cards-content">
           「單次預約」<br />
-          <span> 1人服務 $1,800起<br />2人服務 $3,390起<br /> </span>
+          <span> 1人服務 $1,800元起<br />2人服務 $3,390元起<br /> </span>
           （以上皆為平日一～五收費標準）
         </div>
         <div class="service-cards">
@@ -68,8 +68,7 @@
           細清是指，施工過程留下來的大量粉塵，針對室內的每個細節擦拭乾淨，可在清潔後讓客戶安心入住
           居家清潔是指，日常使用或長久使用下留下的污垢、較難去除的髒污，亦或是針對較常使用的區域做定期的維持
           裝潢後需完成『粗清』外，需間隔3天以上再進行細清，效果更佳<br /><br />
-          收費方式採『鐘點費』計算
-          基本預約2人一組，服務6小時以上，週(一)至(五)平日計費為6780元起
+          收費方式採『鐘點費』計算，基本預約2人1組，週一至週五計費為6780元起（週末另計）
         </template>
         <template v-if="tabIndex === 3">
           <div class="image-block">
@@ -87,8 +86,10 @@
             </div>
           </div>
           <div class="image-block-content">
-            除塵蟎 → 活性酵素靜敷 → 嚴選刷具刷洗 → 精油殺菌去除異味 →
-            多道嘖抽回收污垢髒水<br />
+            除塵蟎 <img :src="IconArrow" /> 活性酵素靜敷
+            <img :src="IconArrow" /> 嚴選刷具刷洗
+            <img :src="IconArrow" /> 精油殺菌去除異味
+            <img :src="IconArrow" /> 多道嘖抽回收污垢髒水<br />
             <br />
             專業處理讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
           </div>
@@ -154,7 +155,9 @@
     <div class="area">
       <ChapterTitle title="服務區域" />
       <div class="map-block">
+        <h1 class="cictyneme">台  中  市</h1>
         <div class="zip-block">
+          <h1></h1>
           <div
             v-for="(zip, idx) in serviceAreaList"
             :key="idx"
@@ -197,6 +200,7 @@ import ImageOffice3 from '../assets/image/image/image-service-office3.jpeg'
 import IconLine from '../assets/image/icon/icon-line.png'
 import IconNext from '../assets/image/icon/icon-swiper-next.png'
 import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
+import IconArrow from '../assets/image/icon/icon-arrow.png'
 
 export default {
   name: 'ServicePage',
@@ -273,6 +277,7 @@ export default {
       ImageOffice1,
       ImageOffice2,
       ImageOffice3,
+      IconArrow,
     }
   },
 }
@@ -294,8 +299,9 @@ export default {
       margin: 36px 0 24px 0;
       text-align: center;
       line-height: 20px;
+      font-size: 20px;
       span {
-        font-size: var(--font-l);
+        font-size: 20px;
         line-height: 24px;
       }
     }
@@ -356,6 +362,10 @@ export default {
       }
       .image-block-content {
         text-align: center;
+        img {
+          width: 20px;
+          margin: 0 4px;
+        }
       }
       .customer-connect {
         margin-top: 40px;
@@ -440,6 +450,13 @@ export default {
         }
       }
     }
+  }
+  .cictyneme {
+    font-size: 30px;
+    color: #522f0c;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
   }
 }
 @media (max-width: 1060px) {
