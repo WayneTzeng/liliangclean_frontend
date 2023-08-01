@@ -75,7 +75,7 @@ export default {
         cant: ['櫃內清潔'],
         estimatedTime: ['0.5hr', '2.5hr'],
         desc: ['普通清潔', '垢重、許久未清潔'],
-        notice: '',
+        notice: '全區除霉請洽客服人員',
         image: 'https://picsum.photos/500/178',
       },
       {
@@ -91,10 +91,12 @@ export default {
       {
         title: '窗戶清潔',
         subTitle: [],
-        can: ['窗框、窗溝、紗窗、窗戶玻璃'],
+        can: ['窗框','','窗溝','','紗窗','','窗戶玻璃'],
         cant: [
-          '不拆卸窗戶',
-          '不拆卸窗簾、清洗',
+          '拆卸窗戶',
+          '',
+          '拆卸窗簾、清洗',
+          '',
           '爬出窗外',
         ],
         estimatedTime: ['+0.5hr/扇', '0.75hr/扇'],
@@ -105,13 +107,13 @@ export default {
       {
         title: '洗衣晾曬',
         subTitle: [],
-        can: ['衣物清洗','衣物丟入洗衣機清洗','衣物晾曬'],
+        can: ['衣物清洗','','衣物丟入洗衣機清洗','','衣物晾曬'],
         cant: [
           '手洗衣物',
+          '特殊衣物ex:羊毛、羽絨',
           '熨燙衣物',
-          '不洗特殊衣物(ex:羊毛、羽絨、拖鞋)',
         ],
-        estimatedTime: ['+1~2hr', ''],
+        estimatedTime: ['1hr', '2hr'],
         desc: ['普通清潔', '衣物多'],
         notice: '',
         image: 'https://picsum.photos/500/178',

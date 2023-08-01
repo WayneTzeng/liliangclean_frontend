@@ -455,7 +455,7 @@ export default {
     font-size: 30px;
     color: #522f0c;
     margin-bottom: 20px;
-    margin-top: 20px;
+    font-weight: 600;
 
   }
 }

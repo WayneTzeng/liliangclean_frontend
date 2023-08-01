@@ -11,12 +11,22 @@
         </div>
       </div>
       <div class="can-do__box">
-        <div v-for="(canDo, idx) in service.can" :key="idx" class="can-do">
+        <div
+          v-for="(canDo, idx) in service.can"
+          :key="idx"
+          class="can-do"
+          :class="{ active: canDo !== '' }"
+        >
           {{ canDo }}
         </div>
       </div>
       <div class="cant-do__box">
-        <div v-for="(cantDo, idx) in service.cant" :key="idx" class="cant-do">
+        <div
+          v-for="(cantDo, idx) in service.cant"
+          :key="idx"
+          class="cant-do"
+          :class="{ active: canDo !== '' }"
+        >
           {{ cantDo }}
         </div>
       </div>
@@ -115,15 +125,17 @@ export default {
 
     .can-do__box {
       .can-do {
-        &::before {
-          content: '';
-          width: 10px;
-          height: 10px;
-          background: var(--primary);
-          border-radius: 50%;
-          position: absolute;
-          top: 5px;
-          left: -16px;
+        &.active {
+          &::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: -16px;
+          }
         }
       }
     }
