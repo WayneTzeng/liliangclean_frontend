@@ -25,7 +25,7 @@
           v-for="(cantDo, idx) in service.cant"
           :key="idx"
           class="cant-do"
-          :class="{ active: canDo !== '' }"
+          :class="{ active: cantDo !== '' }"
         >
           {{ cantDo }}
         </div>
@@ -142,22 +142,24 @@ export default {
 
     .cant-do__box {
       .cant-do {
-        &::before,
-        &::after {
-          content: '';
-          width: 14px;
-          height: 2px;
-          background: var(--second);
-          border-radius: 2px;
-          position: absolute;
-          top: 9px;
-          left: -18px;
-        }
-        &::before {
-          transform: rotate(45deg);
-        }
-        &::after {
-          transform: rotate(-45deg);
+        &.active {
+          &::before,
+          &::after {
+            content: '';
+            width: 14px;
+            height: 2px;
+            background: var(--second);
+            border-radius: 2px;
+            position: absolute;
+            top: 9px;
+            left: -18px;
+          }
+          &::before {
+            transform: rotate(45deg);
+          }
+          &::after {
+            transform: rotate(-45deg);
+          }
         }
       }
     }
