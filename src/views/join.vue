@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="advantage">
-      <ChapterTitle title="團隊優勢" />
+      <ChapterTitle idData="ct-j1" title="團隊優勢" />
       <div class="advantage-cards">
         <div
           class="advantage-card"
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="join-us">
-      <ChapterTitle title="加入團隊" />
+      <ChapterTitle idData="ct-j2" title="加入團隊" />
       <v-container class="mt-9">
         <v-form ref="formRef">
           <v-row>

@@ -2,7 +2,7 @@
   <div class="blank"></div>
   <ImageSwiper id="swiper-content" :list="bannerList" />
   <div class="reservation">
-    <ChapterTitle title="預約流程" />
+    <ChapterTitle idData="ct-h1" title="預約流程" />
     <div class="reservation__description">
       歡迎加入官方LINE@
       <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="performance">
-    <ChapterTitle title="清潔實績" white />
+    <ChapterTitle idData="ct-h2" title="清潔實績" white />
     <div class="performance__items">
       <ImageCompareCard
         v-for="(imgData, idx) in performanceList"

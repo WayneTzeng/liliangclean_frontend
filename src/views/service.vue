@@ -1,38 +1,9 @@
 <template>
   <div class="service" @click="closeSelect">
-    <!-- <div class="charge">
-      <ChapterTitle title="收費標準" />
-      <div class="charge-desc">
-        <div class="desc">
-          兩人一組服務，效率雙倍 鐘點計費，可客制專屬於您的清潔服務<br />
-          （若有一人服務的需求，請加入官方 LINE 諮詢）
-        </div>
-        <div class="option">
-          <div class="select-1">
-            「單次服務」
-            <Selector
-              :specification="['平日$3390', '週末$3990']"
-              :outer-close="outerCloseSelect"
-            />
-          </div>
-          <div class="select-2">
-            「定期服務」
-            <Selector
-              :specification="[
-                '2人19小時 $19,999',
-                '2人24小時 $26,180',
-                '2人48小時 $51,528',
-              ]"
-              :outer-close="outerCloseSelect"
-            />
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="content">
-      <ChapterTitle title="服務類型" />
+      <ChapterTitle idData="ct-s1" title="服務類型" />
       <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" />
-      <ChapterTitle title="服務內容" />
+      <ChapterTitle idData="ct-s2" title="服務內容" />
       <template v-if="tabIndex === 0">
         <div class="service-cards-content">
           「單次預約」<br />
@@ -153,9 +124,9 @@
       </div>
     </div>
     <div class="area">
-      <ChapterTitle title="服務區域" />
+      <ChapterTitle idData="ct-s3" title="服務區域" />
       <div class="map-block">
-        <h1 class="cictyneme">台  中  市</h1>
+        <h1 class="cictyneme">台 中 市</h1>
         <div class="zip-block">
           <h1></h1>
           <div
@@ -456,7 +427,6 @@ export default {
     color: #522f0c;
     margin-bottom: 20px;
     font-weight: 600;
-
   }
 }
 @media (max-width: 1060px) {

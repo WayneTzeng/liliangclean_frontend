@@ -5,7 +5,7 @@
       <img :src="ImageBanner" />
     </div>
     <div class="why-us">
-      <ChapterTitle title="為什麼選擇我們" />
+      <ChapterTitle idData="ct-n1" title="為什麼選擇我們" />
       <div class="button-title">專員三大保證</div>
       <div class="icon-description-block">
         <IconDescription
@@ -26,7 +26,7 @@
       </div>
     </div>
     <template v-if="true">
-      <ChapterTitle title="不服務的內容" />
+      <ChapterTitle idData="ct-n2" title="不服務的內容" />
       <div class="our-right">
         <span
           >*
@@ -70,7 +70,7 @@
       </div>
     </template>
     <div class="question">
-      <ChapterTitle title="常見問題" />
+      <ChapterTitle idData="ct-n3" title="常見問題" />
       <div class="expend">
         <ExpendBlock
           v-for="(item, idx) in questionList"
