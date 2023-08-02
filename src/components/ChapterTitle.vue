@@ -72,7 +72,7 @@ export default {
 
   .left-line,
   .right-line {
-    width: calc(((60vw - var(--titleWidth) * 1px) - 36px) / 2);
+    width: calc(((60vw - var(--titleWidth) * 1px) - 72px) / 2);
     height: 2px;
     position: absolute;
     top: 10px;
