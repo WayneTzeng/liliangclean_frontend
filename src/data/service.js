@@ -1,3 +1,12 @@
+import service1 from '../assets/image/image/image-service-01.jpg'
+import service2 from '../assets/image/image/image-service-02.jpg'
+import service3 from '../assets/image/image/image-service-03.jpg'
+import service4 from '../assets/image/image/image-service-04.jpg'
+import service5 from '../assets/image/image/image-service-05.jpg'
+import service6 from '../assets/image/image/image-service-06.jpg'
+import service7 from '../assets/image/image/image-service-07.jpg'
+
+
 export default {
   contentList: [
     [
@@ -17,7 +26,7 @@ export default {
         estimatedTime: ['0.5hr', '1.5hr'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
-        image: 'https://picsum.photos/500/178',
+        image: service1,
       },
       {
         title: '廚房清潔',
@@ -37,7 +46,7 @@ export default {
         estimatedTime: ['1.5hr', '3hr'],
         desc: ['普通清潔', '重油汙、許久未清潔'],
         notice: '冰箱內部清潔、整理＋1-1.5小時',
-        image: 'https://picsum.photos/500/178',
+        image: service2,
       },
       {
         title: '房間清潔',
@@ -56,7 +65,7 @@ export default {
         estimatedTime: ['0.5hr', '1hr'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
-        image: 'https://picsum.photos/500/178',
+        image: service3 ,
       },
       {
         title: '浴室清潔',
@@ -76,7 +85,7 @@ export default {
         estimatedTime: ['0.5hr', '2.5hr'],
         desc: ['普通清潔', '垢重、許久未清潔'],
         notice: '全區除霉請洽客服人員',
-        image: 'https://picsum.photos/500/178',
+        image: service4 ,
       },
       {
         title: '陽台清潔',
@@ -86,7 +95,7 @@ export default {
         estimatedTime: ['0.5hr', '1.5hr'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
-        image: 'https://picsum.photos/500/178',
+        image: service5,
       },
       {
         title: '窗戶清潔',
@@ -102,7 +111,7 @@ export default {
         estimatedTime: ['+0.5hr/扇', '0.75hr/扇'],
         desc: ['普通清潔', '窗戶大、許久未清潔'],
         notice: '',
-        image: 'https://picsum.photos/500/178',
+        image: service6 ,
       },
       {
         title: '洗衣晾曬',
@@ -110,13 +119,15 @@ export default {
         can: ['衣物清洗','','衣物丟入洗衣機清洗','','衣物晾曬'],
         cant: [
           '手洗衣物',
-          '特殊衣物ex:羊毛、羽絨',
+          '',
           '熨燙衣物',
+          '',
+          '特殊衣物ex:羊毛、羽絨',
         ],
         estimatedTime: ['1hr', '2hr'],
         desc: ['普通清潔', '衣物多'],
         notice: '',
-        image: 'https://picsum.photos/500/178',
+        image: service7,
       },
     ],
   ],
