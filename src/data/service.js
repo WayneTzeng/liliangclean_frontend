@@ -108,7 +108,7 @@ export default {
           '',
           '爬出窗外',
         ],
-        estimatedTime: ['+0.5hr/扇', '0.75hr/扇'],
+        estimatedTime: ['0.5hr/扇', '0.75hr/扇'],
         desc: ['普通清潔', '窗戶大、許久未清潔'],
         notice: '',
         image: service6 ,

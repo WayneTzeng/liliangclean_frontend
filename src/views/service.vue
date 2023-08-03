@@ -36,12 +36,12 @@
       <div v-if="tabIndex !== 0" class="service-desc">
         <template v-if="tabIndex === 1">
           「裝潢細清」與「居家清潔」的差異<br /><br />
-          細清是指，施工過程留下來的大量粉塵，針對室內的每個細節擦拭乾淨，可在清潔後讓客戶安心入住
-          居家清潔是指，日常使用或長久使用下留下的污垢、較難去除的髒污，亦或是針對較常使用的區域做定期的維持
-          裝潢後需完成『粗清』外，需間隔3天以上再進行細清，效果更佳<br /><br />
-          收費方式採『鐘點費』計算，基本預約2人1組，週一至週五計費為6780元起（週末另計）
+          「裝潢細清」針對施工過程留下來的大量粉塵，進行細部清潔，由上到下、由內到外，包含天花板、間接照明、牆壁、櫃體表面、櫃內以及所有碰觸到的物體表面以及櫃內間隔零件，清潔後可安心入住。<br /><br />
+          「居家清潔」針對日常因居住所留下的髒污、較難去除的污垢做清潔，或是針對較常使用的區域做定期的維持。<br /><br />
+           裝潢細清除了需事先完成『粗清』外，粗清後需間隔3天以上再進行細清，<br /><br />
+           效果更佳。收費方式採鐘點費計價，基本預約為2人1組，週一至週五費用為6780元起（週末另計）。
         </template>
-        <template v-if="tabIndex === 3">
+        <template v-if="tabIndex === 4">
           <div class="image-block">
             <div class="image-box">
               <img :src="ImageOffice1" />
@@ -77,7 +77,7 @@
             <li>● 玻璃清潔</li>
           </ol>
         </div>
-        <div v-if="tabIndex === 4" class="charge-desc">
+        <div v-if="tabIndex === 3" class="charge-desc">
           <div class="option">
             <div class="select-2">
               「定期服務」<br /><br />
@@ -362,7 +362,7 @@ export default {
       }
       .office-service {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
       }
       .charge-desc {
         display: flex;
@@ -494,6 +494,12 @@ export default {
           }
         }
       }
+      .service-cards-content {
+      span {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
     }
     .area {
       .map-block {
@@ -503,3 +509,5 @@ export default {
   }
 }
 </style>
+
+    

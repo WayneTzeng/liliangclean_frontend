@@ -1,5 +1,8 @@
 import ImageBanner1 from '../assets/image/image/image-banner-1.png'
 import ImageBanner2 from '../assets/image/image/image-banner-2.png'
+import ImageBanner3 from '../assets/image/image/image-banner-3.png'
+
+
 
 
 
@@ -16,6 +19,10 @@ import ImagePerformance3 from '../assets/image/image/image-performance-3.png'
 import ImagePerformance4 from '../assets/image/image/image-performance-4.png'
 import ImagePerformance5 from '../assets/image/image/image-performance-5.png'
 import ImagePerformance6 from '../assets/image/image/image-performance-6.png'
+import ImagePerformance7 from '../assets/image/image/image-performance-7.png'
+import ImagePerformance8 from '../assets/image/image/image-performance-8.png'
+import ImagePerformance9 from '../assets/image/image/image-performance-9.png'
+
 
 export default {
   bannerList: [
@@ -24,7 +31,11 @@ export default {
     },
     {
       url: ImageBanner2,
+    },
+    {
+      url: ImageBanner3,
     }
+
   ],
   reservationIconList: [
     {
@@ -77,5 +88,15 @@ export default {
       image: ImagePerformance6,
       btnText: '廚房清潔',
     },
+    // {
+    //   image: ImagePerformance7,
+    //   btnText: '空屋/裝潢 抽屜軌道清潔',
+    // },    {
+    //   image: ImagePerformance8,
+    //   btnText: '裝潢細清系統櫃',
+    // },    {
+    //   image: ImagePerformance9,
+    //   btnText: '衛浴乾濕玻璃清潔',
+    // }
   ],
 }
