@@ -497,7 +497,8 @@ export default {
         }
       }
       .service-cards-content {
-        span {
+          font-size: 18px;
+F        span {
           font-size: 18px;
           line-height: 24px;
         }
