@@ -1,6 +1,8 @@
 import ImageBanner1 from '../assets/image/image/image-banner-1.png'
 import ImageBanner2 from '../assets/image/image/image-banner-2.png'
 import ImageBanner3 from '../assets/image/image/image-banner-3.png'
+import ImageBanner4 from '../assets/image/image/image-banner-4.png'
+
 
 
 
@@ -34,6 +36,9 @@ export default {
     },
     {
       url: ImageBanner3,
+    },
+    {
+      url: ImageBanner4,
     }
 
   ],
