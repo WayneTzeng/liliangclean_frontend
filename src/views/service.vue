@@ -112,7 +112,7 @@
           </div>
         </div>
         <div class="customer-connect">
-          <template v-if="tabIndex === 3">
+          <template v-if="tabIndex === 2">
             <div>由於辦公室規格多樣化</div>
             <div>目前尚未提供官網評估、預約</div>
           </template>

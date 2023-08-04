@@ -98,10 +98,10 @@ export default {
       btnText: '空屋/裝潢 抽屜軌道清潔',
     },    {
       image: ImagePerformance8,
-      btnText: '裝潢細清系統櫃',
+      btnText: '衛浴乾濕玻璃清潔',
     },    {
       image: ImagePerformance9,
-      btnText: '衛浴乾濕玻璃清潔',
+      btnText: '裝潢細清系統櫃',
     }
   ],
 }
