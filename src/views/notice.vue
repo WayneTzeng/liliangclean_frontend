@@ -70,7 +70,7 @@
       </div>
     </template>
     <div class="question">
-      <ChapterTitle idData="ct-n3" title="常見問題" />
+      <ChapterTitle idData="ct-n3" title="常見問題" white/>
       <div class="expend">
         <ExpendBlock
           v-for="(item, idx) in questionList"
