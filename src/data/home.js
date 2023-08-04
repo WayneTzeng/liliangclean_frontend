@@ -93,15 +93,15 @@ export default {
       image: ImagePerformance6,
       btnText: '廚房清潔',
     },
-    // {
-    //   image: ImagePerformance7,
-    //   btnText: '空屋/裝潢 抽屜軌道清潔',
-    // },    {
-    //   image: ImagePerformance8,
-    //   btnText: '裝潢細清系統櫃',
-    // },    {
-    //   image: ImagePerformance9,
-    //   btnText: '衛浴乾濕玻璃清潔',
-    // }
+    {
+      image: ImagePerformance7,
+      btnText: '空屋/裝潢 抽屜軌道清潔',
+    },    {
+      image: ImagePerformance8,
+      btnText: '裝潢細清系統櫃',
+    },    {
+      image: ImagePerformance9,
+      btnText: '衛浴乾濕玻璃清潔',
+    }
   ],
 }
