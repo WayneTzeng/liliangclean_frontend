@@ -1,10 +1,10 @@
-import emitter from '../helpers/emitter';
+import emitter from '../helpers/emitter'
 import {
   TokenErrorCodes,
   HttpStatus,
   CODE_TIMEOUT,
-  UNKNOWN_ERROR,
-} from './const';
+  UNKNOWN_ERROR
+} from './const'
 
 /**
  * Handle error from api
@@ -13,53 +13,53 @@ import {
  * @param requestTimesLimit limit of request times
  */
 export default (error, requestTimes, requestTimesLimit) => {
-  let errorRes;
-  const noPhoneNumber = true;
+  let errorRes
+  const noPhoneNumber = true
 
   if (!error || !error.status || error.status !== HttpStatus.OK) {
-    console.error(JSON.parse(JSON.stringify(error)));
+    console.error(JSON.parse(JSON.stringify(error)))
     emitter.emit('callMessager', {
       message: '您好，目前無法取得資訊，請稍後再試或與客服人員聯繫，謝謝',
       action: () => close(),
-      noPhoneNumber,
-    });
+      noPhoneNumber
+    })
     errorRes = {
       code: UNKNOWN_ERROR,
-      message: UNKNOWN_ERROR,
-    };
-    return errorRes;
+      message: UNKNOWN_ERROR
+    }
+    return errorRes
   }
 
   if (error.code === CODE_TIMEOUT) {
     if (requestTimes === requestTimesLimit - 1) {
       emitter.emit('callMessager', {
         message: '您好，目前無法取得資訊，請稍後再試或與客服人員聯繫，謝謝.',
-        action: () => close(),
-      });
+        action: () => close()
+      })
     }
     errorRes = {
       code: CODE_TIMEOUT,
-      message: 'Api timeout',
-    };
-    return errorRes;
+      message: 'Api timeout'
+    }
+    return errorRes
   }
 
   if (TokenErrorCodes.includes(error.data.code)) {
     emitter.emit('callMessager', {
       message: `您好，目前無法取得資訊，請稍後再試或與客服人員聯繫，謝謝(${error.data.code})`,
       action: () => close(),
-      noPhoneNumber,
-    });
+      noPhoneNumber
+    })
   } else {
     emitter.emit('callMessager', {
       message: `您好，目前無法取得資訊，請稍後再試或與客服人員聯繫，謝謝(-${error.data.code})`,
-      action: () => close(),
-    });
+      action: () => close()
+    })
   }
 
   errorRes = {
     code: error.data.code,
-    message: error.data.message,
-  };
-  return errorRes;
-};
+    message: error.data.message
+  }
+  return errorRes
+}

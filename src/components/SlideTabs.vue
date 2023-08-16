@@ -11,7 +11,7 @@
       :slidesPerView="slidesPerView"
       :scrollbar="{
         hide: false,
-        draggable: true,
+        draggable: true
       }"
       :spaceBetween="8"
       @swiper="onSwiper"
@@ -45,21 +45,21 @@ export default {
   name: 'SwiperBrandIcon',
   components: {
     Swiper,
-    SwiperSlide,
+    SwiperSlide
   },
   props: {
     list: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     index: {
       type: Number,
-      default: 0,
+      default: 0
     },
     commonType: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   emits: ['update:index'],
   setup(props, { emit }) {
@@ -90,8 +90,11 @@ export default {
     onMounted(() => {
       calcSlidesPerView()
     })
-    window.onresize = () => {
-      calcSlidesPerView()
+
+    if (!import.meta.env.SSR) {
+      window.onresize = () => {
+        calcSlidesPerView()
+      }
     }
 
     const selectTab = (index) => {
@@ -106,9 +109,9 @@ export default {
       selectTab,
       modules: [Scrollbar],
       IconNext,
-      IconPrev,
+      IconPrev
     }
-  },
+  }
 }
 </script>
 

@@ -3,8 +3,8 @@ export default {
   Login: {
     code: 1,
     data: {
-      token: 'xxccvvssyy',
+      token: 'xxccvvssyy'
     },
-    message: '成功',
-  },
+    message: '成功'
+  }
 }

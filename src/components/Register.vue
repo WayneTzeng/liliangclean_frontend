@@ -95,7 +95,7 @@ import ImageLogo from '../assets/image/image/image-logo.png'
 export default {
   name: 'RegisterComponent',
   components: {
-    Overlay,
+    Overlay
   },
   setup() {
     const name = ref('')
@@ -113,23 +113,23 @@ export default {
 
     const phoneRules = [
       (value) => !!value || 'Phone is required',
-      (value) => /^\d{10}$/.test(value) || 'Phone must be 10 digits',
+      (value) => /^\d{10}$/.test(value) || 'Phone must be 10 digits'
     ]
 
     const emailRules = [
       (value) => !!value || 'Email is required',
       (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || 'Email must be valid',
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || 'Email must be valid'
     ]
 
     const passwordRules = [
       (value) => !!value || 'Password is required',
-      (value) => value.length >= 6 || 'Password must be at least 6 characters',
+      (value) => value.length >= 6 || 'Password must be at least 6 characters'
     ]
 
     const confirmPasswordRules = [
       (value) => !!value || 'Confirm Password is required',
-      (value) => value === password.value || 'Passwords do not match',
+      (value) => value === password.value || 'Passwords do not match'
     ]
 
     const register = () => {
@@ -227,9 +227,9 @@ export default {
       register,
       closeLogin,
       goToLogin,
-      ImageLogo,
+      ImageLogo
     }
-  },
+  }
 }
 </script>
 

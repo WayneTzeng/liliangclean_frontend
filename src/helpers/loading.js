@@ -1,6 +1,6 @@
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-export const showLoading = ref(false);
+export const showLoading = ref(false)
 export const setLoading = (show) => {
-  showLoading.value = show;
-};
+  showLoading.value = show
+}

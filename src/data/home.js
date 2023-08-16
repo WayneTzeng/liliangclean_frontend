@@ -3,11 +3,6 @@ import ImageBanner2 from '../assets/image/image/image-banner-2.png'
 import ImageBanner3 from '../assets/image/image/image-banner-3.png'
 import ImageBanner4 from '../assets/image/image/image-banner-4.png'
 
-
-
-
-
-
 import Icon1 from '../assets/image/icon/icon-1.svg'
 import Icon2 from '../assets/image/icon/icon-2.svg'
 import Icon3 from '../assets/image/icon/icon-3.svg'
@@ -25,83 +20,83 @@ import ImagePerformance7 from '../assets/image/image/image-performance-7.png'
 import ImagePerformance8 from '../assets/image/image/image-performance-8.png'
 import ImagePerformance9 from '../assets/image/image/image-performance-9.png'
 
-
 export default {
   bannerList: [
     {
-      url: ImageBanner1,
+      url: ImageBanner1
     },
     {
-      url: ImageBanner2,
+      url: ImageBanner2
     },
     {
-      url: ImageBanner3,
+      url: ImageBanner3
     },
     {
-      url: ImageBanner4,
+      url: ImageBanner4
     }
-
   ],
   reservationIconList: [
     {
       title: '加入官方 LINE',
-      icon: Icon1,
+      icon: Icon1
     },
     {
       title: '提供現場照片',
-      icon: Icon2,
+      icon: Icon2
     },
     {
       title: '選擇日期',
-      icon: Icon3,
+      icon: Icon3
     },
     {
       title: '確認付款',
-      icon: Icon4,
+      icon: Icon4
     },
     {
       title: '到府清潔',
-      icon: Icon5,
+      icon: Icon5
     },
     {
       title: '成果驗收',
-      icon: Icon6,
-    },
+      icon: Icon6
+    }
   ],
   performanceList: [
     {
       image: ImagePerformance1,
-      btnText: '窗溝清潔',
+      btnText: '窗溝清潔'
     },
     {
       image: ImagePerformance2,
-      btnText: '浴室清潔',
+      btnText: '浴室清潔'
     },
     {
       image: ImagePerformance3,
-      btnText: '水龍頭清潔',
+      btnText: '水龍頭清潔'
     },
     {
       image: ImagePerformance4,
-      btnText: '乾濕分離玻璃清潔',
+      btnText: '乾濕分離玻璃清潔'
     },
     {
       image: ImagePerformance5,
-      btnText: '窗戶清潔',
+      btnText: '窗戶清潔'
     },
     {
       image: ImagePerformance6,
-      btnText: '廚房清潔',
+      btnText: '廚房清潔'
     },
     {
       image: ImagePerformance7,
-      btnText: '空屋/裝潢 抽屜軌道清潔',
-    },    {
+      btnText: '空屋/裝潢 抽屜軌道清潔'
+    },
+    {
       image: ImagePerformance8,
-      btnText: '衛浴乾濕玻璃清潔',
-    },    {
+      btnText: '衛浴乾濕玻璃清潔'
+    },
+    {
       image: ImagePerformance9,
-      btnText: '裝潢細清系統櫃',
+      btnText: '裝潢細清系統櫃'
     }
-  ],
+  ]
 }

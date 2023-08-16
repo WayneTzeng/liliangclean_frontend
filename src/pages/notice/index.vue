@@ -50,7 +50,8 @@
         ><br />
         <span>* 不提供陳年污垢、深層黴菌垢、鏽蝕或是壁癌。</span><br />
         <span>
-          * 不提供特殊清潔項目（如事故現場清潔、水災後、火災後、意外身故或自然身故之現場等）。
+          *
+          不提供特殊清潔項目（如事故現場清潔、水災後、火災後、意外身故或自然身故之現場等）。
         </span>
         <br />
         <span>* 不提供環境過於髒亂、惡臭、嘔吐物、排泄物之清潔。</span><br />
@@ -70,7 +71,7 @@
       </div>
     </template>
     <div class="question">
-      <ChapterTitle idData="ct-n3" title="常見問題" white/>
+      <ChapterTitle idData="ct-n3" title="常見問題" white />
       <div class="expend">
         <ExpendBlock
           v-for="(item, idx) in questionList"
@@ -86,18 +87,18 @@
 
 <script>
 import { ref } from 'vue'
-import { noticeData } from '../data/index'
-import ChapterTitle from '../components/ChapterTitle.vue'
-import IconDescription from '../components/IconDescription.vue'
-import ExpendBlock from '../components/ExpendBlock.vue'
-import ImageBanner from '../assets/image/image/image-notice-banner.png'
+import { noticeData } from '@/data/index'
+import ChapterTitle from '@/components/ChapterTitle.vue'
+import IconDescription from '@/components/IconDescription.vue'
+import ExpendBlock from '@/components/ExpendBlock.vue'
+import ImageBanner from '@/assets/image/image/image-notice-banner.png'
 
 export default {
   name: 'NoticePage',
   components: {
     ChapterTitle,
     IconDescription,
-    ExpendBlock,
+    ExpendBlock
   },
   setup() {
     const promiseList = ref(noticeData.promiseList)
@@ -118,9 +119,9 @@ export default {
       reassureList,
       questionList,
       showExpendBlock,
-      ImageBanner,
+      ImageBanner
     }
-  },
+  }
 }
 </script>
 

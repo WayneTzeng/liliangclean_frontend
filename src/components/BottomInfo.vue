@@ -46,9 +46,9 @@ export default {
       ImageLogo,
       IconLine,
       IconFB,
-      IconIG,
+      IconIG
     }
-  },
+  }
 }
 </script>
 

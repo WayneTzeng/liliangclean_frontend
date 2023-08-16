@@ -8,6 +8,6 @@ export default {
     { title: '彈性排班', image: IconCalendar },
     { title: '優渥時薪', image: IconSaveMoney },
     { title: '專職訓練', image: IconBlackBoard },
-    { title: '升遷制度', image: IconRocket },
-  ],
+    { title: '升遷制度', image: IconRocket }
+  ]
 }

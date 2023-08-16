@@ -1,37 +1,45 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter as _createRouter,
+  createMemoryHistory,
+  createWebHistory
+} from 'vue-router'
 
 const routes = [
   {
     path: '/',
     name: 'Index',
-    component: () => import('../views/index.vue'),
+    component: () => import('@/pages/index.vue')
   },
   {
     path: '/service',
     name: 'Service',
-    component: () => import('../views/service.vue'),
+    component: () => import('@/pages/service/index.vue')
   },
   {
     path: '/notice',
     name: 'Notice',
-    component: () => import('../views/notice.vue'),
+    component: () => import('@/pages/notice/index.vue')
   },
   {
     path: '/member',
     name: 'Member',
-    component: () => import('../views/member.vue'),
+    component: () => import('@/pages/member/index.vue')
   },
   {
     path: '/join',
     name: 'Join',
-    component: () => import('../views/join.vue'),
+    component: () => import('@/pages/join/index.vue')
   },
+  {
+    path: '/test',
+    name: 'Test',
+    component: () => import('@/pages/test/index.vue')
+  }
 ]
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-})
-
-export default router
-export { routes }
+export function createRouter() {
+  return _createRouter({
+    history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
+    routes
+  })
+}

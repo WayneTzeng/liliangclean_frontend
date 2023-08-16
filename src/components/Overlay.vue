@@ -8,9 +8,9 @@ export default {
   props: {
     light: {
       type: Boolean,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 }
 </script>
 

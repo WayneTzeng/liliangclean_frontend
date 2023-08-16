@@ -72,7 +72,7 @@ import IconMenuCross from '../assets/image/icon/icon-menu-cross.svg'
 export default {
   name: 'LoginComponent',
   components: {
-    Overlay,
+    Overlay
   },
   setup() {
     const router = useRouter()
@@ -92,13 +92,12 @@ export default {
           phoneRegex.test(value) ||
           '請輸入正確手機號碼或電子信箱'
         )
-      },
+      }
     ]
 
     const passwordRules = [
       (value) => !!value || '此欄位不可空白',
-      (value) =>
-        (value.length >= 6 && value.length <= 12) || '請輸入正確的密碼',
+      (value) => (value.length >= 6 && value.length <= 12) || '請輸入正確的密碼'
     ]
 
     const login = () => {
@@ -177,9 +176,9 @@ export default {
       closeLogin,
       goToRegister,
       ImageLogo,
-      IconMenuCross,
+      IconMenuCross
     }
-  },
+  }
 }
 </script>
 

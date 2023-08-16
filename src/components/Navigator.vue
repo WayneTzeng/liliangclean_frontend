@@ -62,7 +62,7 @@ const PAGE = {
   service: 'Service',
   notice: 'Notice',
   member: 'Member',
-  login: 'Login',
+  login: 'Login'
 }
 
 import { ref, computed } from 'vue'
@@ -99,10 +99,13 @@ export default {
         }
       }
 
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
+      if (!import.meta.env.SSR) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }
+
       router.push({ name: page })
     }
 
@@ -114,9 +117,9 @@ export default {
       goto,
       ImageLogo,
       IconMenu,
-      IconMenuCross,
+      IconMenuCross
     }
-  },
+  }
 }
 </script>
 

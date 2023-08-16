@@ -363,7 +363,7 @@ export default {
       selectedZip = zip
     }
     return {}
-  },
+  }
 }
 </script>
 

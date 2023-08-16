@@ -4,7 +4,7 @@
     :loop="true"
     :modules="modules"
     :autoplay="{
-      delay: 4500,
+      delay: 4500
     }"
     :follow-finger="false"
     @swiper="onSwiper"
@@ -35,13 +35,13 @@ export default defineComponent({
   name: 'ImageSwiperComponent',
   components: {
     Swiper,
-    SwiperSlide,
+    SwiperSlide
   },
   props: {
     list: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   setup() {
     const swiper = ref(null)
@@ -78,8 +78,10 @@ export default defineComponent({
       resetButtonHeight()
     })
 
-    window.onresize = () => {
-      resetButtonHeight()
+    if (!import.meta.env.SSR) {
+      window.onresize = () => {
+        resetButtonHeight()
+      }
     }
 
     return {
@@ -88,10 +90,10 @@ export default defineComponent({
       swiperNext,
       IconNext,
       IconPrev,
-      modules: [Autoplay],
+      modules: [Autoplay]
     }
   },
-  computed: {},
+  computed: {}
 })
 </script>
 

@@ -14,34 +14,33 @@ export default {
   props: {
     text: {
       type: String,
-      default: '按鈕',
+      default: '按鈕'
     },
     gray: {
       type: Boolean,
-      default: false,
+      default: false
     },
     outline: {
       type: Boolean,
-      default: false,
+      default: false
     },
     disable: {
       type: Boolean,
-      default: false,
+      default: false
     },
     full: {
       type: Boolean,
-      default: false,
+      default: false
     },
     half: {
       type: Boolean,
-      default: false,
+      default: false
     },
     rounded: {
       type: Boolean,
-      default: false,
-    },
-  },
-  setup() {},
+      default: false
+    }
+  }
 }
 </script>
 

@@ -20,20 +20,20 @@ export default {
   props: {
     idData: {
       type: String,
-      default: '',
+      default: ''
     },
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     white: {
       type: Boolean,
-      default: false,
+      default: false
     },
     beige: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   setup(props) {
     const titleWidth = ref(0)
@@ -44,15 +44,17 @@ export default {
     onMounted(() => {
       calcWidth()
     })
-
-    window.onresize = () => {
-      calcWidth()
+    console.log(import.meta.env.SSR)
+    if (!import.meta.env.SSR) {
+      window.onresize = () => {
+        calcWidth()
+      }
     }
 
     return {
-      titleWidth,
+      titleWidth
     }
-  },
+  }
 }
 </script>
 

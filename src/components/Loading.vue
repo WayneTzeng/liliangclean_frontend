@@ -20,13 +20,13 @@ import Overlay from './Overlay.vue'
 export default {
   name: 'LoadingComponent',
   components: {
-    Overlay,
+    Overlay
   },
   setup() {
     return {
-      loadingCircle,
+      loadingCircle
     }
-  },
+  }
 }
 </script>
 

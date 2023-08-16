@@ -11,21 +11,18 @@ import CustomButton from './Button.vue'
 export default {
   name: 'ImageCompareCardComponent',
   components: {
-    CustomButton,
+    CustomButton
   },
   props: {
     imgData: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     isFirst: {
       type: Boolean,
-      default: false,
-    },
-  },
-  setup() {
-    return {}
-  },
+      default: false
+    }
+  }
 }
 </script>
 

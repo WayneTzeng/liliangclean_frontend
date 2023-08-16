@@ -94,9 +94,9 @@ export default {
       totalAmount,
       paymentMethod,
       paymentStatus,
-      closeCard,
+      closeCard
     }
-  },
+  }
 }
 </script>
 

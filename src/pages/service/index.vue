@@ -18,19 +18,6 @@
             class="service-card"
           />
         </div>
-        <!-- <div class="service-cards use-in-mobile">
-          <ServiceCard
-            :service="contentList[serviceCardIndex]"
-            class="service-card"
-            :class="{ 'fade-out': isFadeOut }"
-          />
-          <div class="service-card-prev" @click="handlePrev">
-            <img :src="IconPrev" />
-          </div>
-          <div class="service-card-next" @click="handleNext">
-            <img :src="IconNext" />
-          </div>
-        </div> -->
       </template>
 
       <div v-if="tabIndex !== 0" class="service-desc">
@@ -160,20 +147,20 @@
 
 <script>
 import { ref, computed } from 'vue'
-import emitter from '../helpers/emitter'
-import { serviceData } from '../data/index'
-import ChapterTitle from '../components/ChapterTitle.vue'
-import Selector from '../components/Selector.vue'
-import Tabs from '../components/SlideTabs.vue'
-import ServiceCard from '../components/ServiceCard.vue'
-import MapTaichung from '../components/MapTaichung.vue'
-import ImageOffice1 from '../assets/image/image/image-service-office1.jpeg'
-import ImageOffice2 from '../assets/image/image/image-service-office2.jpeg'
-import ImageOffice3 from '../assets/image/image/image-service-office3.jpeg'
-import IconLine from '../assets/image/icon/icon-line.png'
-import IconNext from '../assets/image/icon/icon-swiper-next.png'
-import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
-import IconArrow from '../assets/image/icon/icon-arrow.png'
+import emitter from '@/helpers/emitter'
+import { serviceData } from '@/data/index'
+import ChapterTitle from '@/components/ChapterTitle.vue'
+import Selector from '@/components/Selector.vue'
+import Tabs from '@/components/SlideTabs.vue'
+import ServiceCard from '@/components/ServiceCard.vue'
+import MapTaichung from '@/components/MapTaichung.vue'
+import ImageOffice1 from '@/assets/image/image/image-service-office1.jpeg'
+import ImageOffice2 from '@/assets/image/image/image-service-office2.jpeg'
+import ImageOffice3 from '@/assets/image/image/image-service-office3.jpeg'
+import IconLine from '@/assets/image/icon/icon-line.png'
+import IconNext from '@/assets/image/icon/icon-swiper-next.png'
+import IconPrev from '@/assets/image/icon/icon-swiper-prev.png'
+import IconArrow from '@/assets/image/icon/icon-arrow.png'
 
 export default {
   name: 'ServicePage',
@@ -182,7 +169,7 @@ export default {
     Selector,
     Tabs,
     ServiceCard,
-    MapTaichung,
+    MapTaichung
   },
   setup() {
     const tabIndex = ref(0)
@@ -250,9 +237,9 @@ export default {
       ImageOffice1,
       ImageOffice2,
       ImageOffice3,
-      IconArrow,
+      IconArrow
     }
-  },
+  }
 }
 </script>
 
@@ -497,8 +484,8 @@ export default {
         }
       }
       .service-cards-content {
-          font-size: 18px;
-F        span {
+        font-size: 18px;
+        F span {
           font-size: 18px;
           line-height: 24px;
         }
@@ -512,5 +499,3 @@ F        span {
   }
 }
 </style>
-
-    

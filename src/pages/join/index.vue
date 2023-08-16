@@ -97,31 +97,53 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
-import { joinData } from '../data'
-import DatePicker from 'vue3-datepicker'
-import ChapterTitle from '../components/ChapterTitle.vue'
+import { ref, reactive, defineAsyncComponent } from 'vue'
+import { joinData } from '@/data/index'
+import ChapterTitle from '@/components/ChapterTitle.vue'
+
+const DatePicker = defineAsyncComponent(() => import('vue3-datepicker'))
 
 export default {
   name: 'RegisterComponent',
   components: {
-    DatePicker,
     ChapterTitle,
+    DatePicker
   },
   setup() {
     const advantageList = joinData.advantageList
+
+    const getAdultDate = () => {
+      const now = new Date()
+
+      const _year = now.getFullYear()
+      const _month = `${now.getMonth() + 1}`
+      const _date = `${now.getDate()}`
+      const _hour = `${now.getHours()}`
+      const _min = `${now.getMinutes()}`
+      const _sec = `${now.getSeconds()}`
+
+      const adultDate = `${_year - 20}-${_month.padStart(
+        2,
+        '0'
+      )}-${_date.padStart(2, '0')}T${_hour.padStart(2, '0')}:${_min.padStart(
+        2,
+        '0'
+      )}:${_sec.padStart(2, '0')}+08:00`
+
+      return new Date(adultDate)
+    }
 
     const formRef = ref(null)
     const selectedDate = ref(null)
     const formData = ref({
       name: '',
       gender: '',
-      birthDate: new Date(),
+      birthDate: getAdultDate(),
       phone: '',
       address: '',
       profilePicture: null,
       cleaningExperience: '',
-      serviceExperience: '',
+      serviceExperience: ''
     })
 
     const genderOptions = reactive(['男', '女'])
@@ -130,7 +152,7 @@ export default {
       '是，經驗3年以上',
       '是，經驗小於3年',
       '無，平常會做家事',
-      '無，完全沒有經驗，但有興趣',
+      '無，完全沒有經驗，但有興趣'
     ])
 
     const serviceExperienceOptions = reactive(['是', '否'])
@@ -139,12 +161,12 @@ export default {
 
     const phoneRules = [
       (value) => !!value || '手機不能為空',
-      (value) => /^\d{10}$/.test(value) || '手機號碼格式不正確',
+      (value) => /^\d{10}$/.test(value) || '手機號碼格式不正確'
     ]
 
     const profilePictureRules = [
       (value) => !!value || '請上傳大頭照',
-      (value) => !value || value.size <= 1048576 || '檔案大小不能超過 1MB',
+      (value) => !value || value.size <= 1048576 || '檔案大小不能超過 1MB'
     ]
 
     const submitForm = () => {
@@ -163,9 +185,9 @@ export default {
       commonRules,
       phoneRules,
       profilePictureRules,
-      submitForm,
+      submitForm
     }
-  },
+  }
 }
 </script>
 

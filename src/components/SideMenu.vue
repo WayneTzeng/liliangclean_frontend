@@ -18,9 +18,9 @@ export default {
   setup() {
     return {
       IconGoToTop,
-      IconLine,
+      IconLine
     }
-  },
+  }
 }
 </script>
 

@@ -60,14 +60,14 @@ export default {
   props: {
     service: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   setup() {
     return {
-      IconClock,
+      IconClock
     }
-  },
+  }
 }
 </script>
 

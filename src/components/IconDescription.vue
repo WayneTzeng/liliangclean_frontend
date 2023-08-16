@@ -12,16 +12,13 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     count: {
       type: Number,
-      default: 0,
-    },
-  },
-  setup() {
-    return {}
-  },
+      default: 0
+    }
+  }
 }
 </script>
 

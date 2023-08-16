@@ -34,13 +34,13 @@
 
 <script>
 import { ref } from 'vue'
-import { homeData } from '../data/index'
-import ImageSwiper from '../components/ImageSwiper.vue'
-import ChapterTitle from '../components/ChapterTitle.vue'
-import ReservationIcon from '../components/ReservationIcon.vue'
-import ImageCompareCard from '../components/ImageCompareCard.vue'
-import ImageLogo from '../assets/image/image/image-logo.png'
-import IconLine from '../assets/image/icon/icon-line.png'
+import { homeData } from '@/data/index'
+import ImageSwiper from '@/components/ImageSwiper.vue'
+import ChapterTitle from '@/components/ChapterTitle.vue'
+import ReservationIcon from '@/components/ReservationIcon.vue'
+import ImageCompareCard from '@/components/ImageCompareCard.vue'
+import ImageLogo from '@/assets/image/image/image-logo.png'
+import IconLine from '@/assets/image/icon/icon-line.png'
 
 export default {
   name: 'IndexPage',
@@ -48,10 +48,9 @@ export default {
     ImageSwiper,
     ChapterTitle,
     ReservationIcon,
-    ImageCompareCard,
+    ImageCompareCard
   },
   setup() {
-    console.log('homeData', homeData)
     const bannerList = ref(homeData.bannerList)
     const reservationIconList = ref(homeData.reservationIconList)
     const performanceList = ref(homeData.performanceList)
@@ -61,9 +60,9 @@ export default {
       reservationIconList,
       performanceList,
       ImageLogo,
-      IconLine,
+      IconLine
     }
-  },
+  }
 }
 </script>
 

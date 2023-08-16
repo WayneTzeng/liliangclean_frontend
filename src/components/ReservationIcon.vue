@@ -14,25 +14,25 @@ export default {
   props: {
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     icon: {
       type: String,
-      default: '',
+      default: ''
     },
     index: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   setup(props) {
     const innerIndex = computed(() =>
       props.index < 10 ? `0${props.index}` : props.index
     )
     return {
-      innerIndex,
+      innerIndex
     }
-  },
+  }
 }
 </script>
 
