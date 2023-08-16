@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no"
     />
-    <link rel="icon" href="%BASE_URL%favicon.ico" />
+    <!--preload-links-->
+    <link rel="icon" href="/favicon.ico" />
     <link
       href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
       rel="stylesheet"
@@ -19,10 +20,7 @@
       rel="stylesheet"
     />
     <title>立亮居家家飾清潔</title>
-    <meta
-      name="description"
-      content="立亮居家家飾清潔位於大台中地區，在此為您提供居家清潔、裝潢細清、空屋清潔、搬出/搬入清潔、套房清潔、辦公室清潔、年節大掃除、定期清潔、整理收納、沙發清洗、床墊清洗、分離式冷氣清洗、直立式洗衣機清洗、窗戶清潔、廚房清潔、衛浴清潔、客廳清潔、陽台清潔、除塵蟎等家事服務，我們的清潔人員皆為臺灣籍具有良民證、經過專業訓練，採鐘點費清潔，歡迎線上預約諮詢。立亮絕對是有效率、值得信賴的清潔公司。"
-    />
+    <!--custom-meta-->
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -64,29 +62,19 @@
           display: block !important;
         }
       }
-      /* .use-in-pc-760 {
-        display: block;
-        @media (max-width: 760px) {
-          display: none !important;
-        }
-      }
-      .use-in-mobile-760 {
-        display: none;
-        @media (max-width: 760px) {
-          display: block !important;
-        }
-      } */
     </style>
   </head>
-
   <body>
     <noscript>
       <strong
         >立亮居家家飾清潔位於大台中地區，在此為您提供居家清潔、裝潢細清、空屋清潔、搬出/搬入清潔、套房清潔、辦公室清潔、年節大掃除、定期清潔、整理收納、沙發清洗、床墊清洗、分離式冷氣清洗、直立式洗衣機清洗、窗戶清潔、廚房清潔、衛浴清潔、客廳清潔、陽台清潔、除塵蟎等家事服務，我們的清潔人員皆為臺灣籍具有良民證、經過專業訓練，採鐘點費清潔，歡迎線上預約諮詢。立亮絕對是有效率、值得信賴的清潔公司。
       </strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app"><!--ssr-outlet--></div>
     <script type="module" src="/src/main.js"></script>
-    <!-- built files will be auto injected -->
+    <script type="module" src="/src/entry-client.js"></script>
+    <script>
+      window.__INITIAL_STATE__ = '<!--pinia-state-->'
+    </script>
   </body>
 </html>

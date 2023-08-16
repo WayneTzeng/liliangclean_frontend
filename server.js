@@ -2,8 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import express from 'express'
-
 import { createRequire } from 'module'
+
 const require = createRequire(import.meta.url)
 const resolve = (p) =>
   path.resolve(path.dirname(fileURLToPath(import.meta.url)), p)
@@ -38,6 +38,8 @@ const createServer = async (isTest = false) => {
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl
+    const axios = require('axios')
+
     try {
       // get html template and rendering functions for different env
       let template, render
@@ -49,11 +51,16 @@ const createServer = async (isTest = false) => {
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('/src/entry-server.js')).render
       }
-      const [appHtml, preloadLinks, piniaState] = await render(url, manifest)
+      const [appHtml, customMeta, preloadLinks, piniaState] = await render(
+        url,
+        manifest,
+        axios
+      )
 
       // replace processed resources
       const html = template
         .replace(`<!--preload-links-->`, preloadLinks)
+        .replace(`<!--custom-meta-->`, customMeta)
         .replace(`<!--ssr-outlet-->`, appHtml)
         .replace(`<!--pinia-state-->`, piniaState)
 

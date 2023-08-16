@@ -44,7 +44,7 @@ export default {
     onMounted(() => {
       calcWidth()
     })
-    console.log(import.meta.env.SSR)
+
     if (!import.meta.env.SSR) {
       window.onresize = () => {
         calcWidth()

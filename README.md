@@ -26,45 +26,6 @@ curl -o- -L https://yarnpkg.com/install.sh | bash
 yarn global add serve
 ```
 
-## Build Setup
-
-```bash
-# 安裝套件
-$ yarn
-
-# 啟動開發用伺服器
-$ yarn start #(NODE_ENV: development, for maintenance, connect uat api path)
-$ yarn start-mock #(NODE_ENV: mock)
-$ yarn start-sit #(NODE_ENV: sit)
-$ yarn start-uat #(NODE_ENV: uat)
-$ yarn start-prd #(NODE_ENV: production)
-
-
-# 正式環境
-$ yarn build # 將專案打包正式環境的靜態檔案
-$ yarn serve # 啟動伺服器 (NODE_ENV: production)
-
-# or
-$ yarn restart # 快速重新包版並啟動伺服器
-```
-
-## Environments
-
-- development: for local development (with debugging)
-- mock: for mock data (with debugging)
-- sit: for development testing (with debugging)
-- uat: for uat (with debugging)
-- production: for production
-
-### Building by Different Environment
-
-```bash
-$ yarn build --mode <mode name>
-
-# example
-$ yarn build --mode uatDebug
-```
-
 ## Workflow
 
 - 開發流程採 [Git Flow](https://gitbook.tw/chapters/gitflow/why-need-git-flow.html)
@@ -127,10 +88,25 @@ git commit -m "refactor: rewrite get user function for better reading"
 }
 ```
 
+# SSR
+
 ## SSR building based on Vue3 + Vite3
 
 🛠 Tech Stack: **Vite3** + **Vue3** + **Pinia** + **VueRouter4** + **Express**  
 📝 Document：[Vue3+Vite3 SSR 基本搭建](https://lhrun.github.io/2022/08/27/Vue3-Vite3-SSR%E5%9F%BA%E6%9C%AC%E6%90%AD%E5%BB%BA/)
+
+## Build Setup
+
+```bash
+# 啟動開發用伺服器
+$ yarn
+$ yarn start
+
+# 正式環境
+$ yarn
+$ yarn build
+$ yarn serve
+```
 
 ### File list
 

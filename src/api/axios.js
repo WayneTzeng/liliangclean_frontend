@@ -6,7 +6,7 @@ import { setLoading } from '../helpers/loading'
 
 const MOCK_DELAY_TIME = 1500
 const IS_USE_MOCK = import.meta.env.VITE_VUE_APP_USE_MOCK === 'true'
-const API_URL = import.meta.env.VITE_VUE_APP_BASE_API_URL
+const API_URL = 'https://stamp.family.com.tw/api/'
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
@@ -16,11 +16,18 @@ export class Axios {
     this._token = token
     this._recallOn = recallOn
     this._recallTimes = recallTimes
-
-    this._init()
   }
 
-  _init() {
+  _setOption(option) {
+    if (option.baseURL) this._baseURL = option.baseURL
+    if (option.timeout) this._timeout = option.timeout
+    if (option.recallOn === false) this._timeout = option.timeout
+    if (option.recallTimes) this._recallTimes = option.recallTimes
+  }
+
+  _init(option) {
+    this._setOption(option)
+
     this._axios = axios.create({
       baseURL: this._baseURL,
       timeout: this._timeout,
@@ -83,7 +90,8 @@ export class Axios {
    * @param url target path
    * @param params request params
    */
-  get(url, params) {
+  get(url, params, option = {}) {
+    this._init(option)
     return this._api(Methods.GET, url, params)
   }
 
@@ -94,7 +102,8 @@ export class Axios {
    * @param recallOn enable recall (default: true)
    * @param recallTimes times of recall (default: 3)
    */
-  post(url, params) {
+  post(url, params, option = {}) {
+    this._init(option)
     return this._api(Methods.POST, url, params)
   }
 

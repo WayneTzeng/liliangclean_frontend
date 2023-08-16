@@ -31,5 +31,23 @@ export default {
           reject(error)
         })
     })
+  },
+  getMapList() {
+    const _params = {}
+    const _option = {} // 可設定 baseURL timeout recallOn recallTimes
+    return new Promise((resolve, reject) => {
+      axios
+        .get('maps/MapList', _params, _option)
+        .then((res) => {
+          if (res.code === Code.Success) {
+            resolve(res.data)
+          } else {
+            throw res
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   }
 }
