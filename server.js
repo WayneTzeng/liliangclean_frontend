@@ -44,9 +44,11 @@ const createServer = async (isTest = false) => {
       // get html template and rendering functions for different env
       let template, render
       if (isProd) {
+        console.log('isProd')
         template = fs.readFileSync(resolve('./dist/client/index.html'), 'utf-8')
         render = (await import('./dist/server/entry-server.js')).render
       } else {
+        console.log('!isProd')
         template = fs.readFileSync(resolve('index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('/src/entry-server.js')).render

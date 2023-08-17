@@ -8,12 +8,13 @@
     "build": "yarn build:client && yarn run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
-    "serve": "cross-env NODE_ENV=production node start-server",
+    "serve": "NODE_ENV=production node server2",
     "test": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@img-comparison-slider/vue": "^8.0.0",
     "axios": "^1.4.0",
     "compression": "^1.7.4",
     "core-js": "^3.31.1",

@@ -63,10 +63,8 @@ async function renderCustomMeta(url, axios) {
   console.log('url', url)
   if (url.includes('service')) {
     const content = await getMetaFromApi(axios)
-    console.log('axios', content)
     return `<meta name="description" content="${content}" />`
   } else {
-    console.log('no axios')
     return `<meta name="description" content="立亮居家家飾清潔位於大台中地區，在此為您提供居家清潔、裝潢細清、空屋清潔、搬出/搬入清潔、套房清潔、辦公室清潔、年節大掃除、定期清潔、整理收納、沙發清洗、床墊清洗、分離式冷氣清洗、直立式洗衣機清洗、窗戶清潔、廚房清潔、衛浴清潔、客廳清潔、陽台清潔、除塵蟎等家事服務，我們的清潔人員皆為臺灣籍具有良民證、經過專業訓練，採鐘點費清潔，歡迎線上預約諮詢。立亮絕對是有效率、值得信賴的清潔公司。" />`
   }
 }
