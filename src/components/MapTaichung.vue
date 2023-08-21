@@ -1,7 +1,7 @@
 <template>
   <svg
     data-v-fb19f81c=""
-    width="800"
+    width="360"
     height="400"
     stroke-width="1"
     stroke="#d2d2d2"
@@ -260,7 +260,7 @@
         <title data-v-fb19f81c="">大里區</title>
       </path>
     </g>
-    <g data-v-fb19f81c="">
+    <!-- <g data-v-fb19f81c="">
       <path
         id="和平區"
         data-v-fb19f81c=""
@@ -270,7 +270,7 @@
       >
         <title data-v-fb19f81c="">和平區</title>
       </path>
-    </g>
+    </g> -->
     <g data-v-fb19f81c="">
       <path
         id="大甲區"
@@ -371,14 +371,27 @@ export default {
 .map-taichung {
 }
 
-@media (max-width: 800px) {
+@media (max-width: 400px) {
+  .map-taichung {
+  }
+  svg {
+    transform: scale(0.9);
+  }
+}
+@media (max-width: 360px) {
+  .map-taichung {
+  }
   svg {
     transform: scale(0.8);
   }
 }
 
-@media (max-width: 460px) {
+@media (min-width: 1000px) {
   .map-taichung {
+    height: 600px;
+  }
+  svg {
+    transform: translate(0, 120px) scale(1.4);
   }
 }
 </style>

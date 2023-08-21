@@ -2,17 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import vuetify from './plugin/vuetify'
 import './assets/style/index.scss'
-
-// Vuetify
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
-const vuetify = createVuetify({
-  components,
-  directives,
-})
+import 'vuetify/styles' // 引入 Vuetify 的 CSS 样式
 
 export { store }
 
