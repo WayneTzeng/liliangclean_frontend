@@ -9,17 +9,14 @@ export default {
   updateToken(token) {
     axios.updateToken(token)
   },
-
-  /**
-   * 取得活動列表頁與活動詳細頁資訊
-   * @param params 參數
-   * @param params.memberCode 會員號碼
-   */
-  login({ memberCode } = { params: '091234567' }) {
+  login(username, password) {
     return new Promise((resolve, reject) => {
-      const params = { memberCode }
+      const params = {
+        username,
+        password
+      }
       axios
-        .post('Login', params)
+        .post('auth/login', params)
         .then((res) => {
           if (res.code === Code.Success) {
             resolve(res.data)
@@ -32,12 +29,52 @@ export default {
         })
     })
   },
-  getMapList() {
+  register(username, userPhone, userHomePhone, userMail, userPwd, userAddress) {
+    return new Promise((resolve, reject) => {
+      const params = {
+        username,
+        userPhone,
+        userHomePhone,
+        userMail,
+        userPwd,
+        userAddress
+      }
+      axios
+        .post('member/register', params)
+        .then((res) => {
+          if (res.code === Code.Success) {
+            resolve(res.data)
+          } else {
+            throw res
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  getCategory() {
     const _params = {}
-    const _option = {} // 可設定 baseURL timeout recallOn recallTimes
     return new Promise((resolve, reject) => {
       axios
-        .get('maps/MapList', _params, _option)
+        .get('category', _params)
+        .then((res) => {
+          if (res.code === Code.Success) {
+            resolve(res.data)
+          } else {
+            throw res
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  getCategoryDetail(category_id) {
+    const _params = { category_id }
+    return new Promise((resolve, reject) => {
+      axios
+        .get('category/detail', _params)
         .then((res) => {
           if (res.code === Code.Success) {
             resolve(res.data)

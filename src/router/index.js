@@ -25,6 +25,21 @@ const routes = [
     name: 'Member',
     component: () => import('@/pages/member/index.vue')
   },
+  // {
+  //   path: '/performance',
+  //   name: 'Performance',
+  //   component: () => import('@/pages/performance/index.vue')
+  // },
+  // {
+  //   path: '/performance/:id',
+  //   name: 'PerformanceList',
+  //   component: () => import('@/pages/performance/list.vue')
+  // },
+  // {
+  //   path: '/performance-detail/:id',
+  //   name: 'PerformanceDetail',
+  //   component: () => import('@/pages/performance/detail.vue')
+  // },
   {
     path: '/join',
     name: 'Join',

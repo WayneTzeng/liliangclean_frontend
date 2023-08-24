@@ -1,9 +1,11 @@
 module.exports = {
-  printWidth: 80,
-  tabWidth: 2,
-  useTabs: false,
-  singleQuote: true,
+  $schema: 'https://json.schemastore.org/prettierrc',
   semi: false,
-  trailingComma: "none",
-  bracketSpacing: true
+  tabWidth: 2,
+  singleQuote: true,
+  bracketSpacing: true,
+  printWidth: 80,
+  trailingComma: 'es5',
+  useTabs: false,
+  endOfLine: 'auto',
 }
