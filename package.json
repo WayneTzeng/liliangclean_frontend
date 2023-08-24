@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18 <20"
+  },
   "scripts": {
     "start": "node start-server",
-    "start-mock": "cross-env NODE_VERSION=18.16.1 VITE_ENV_TYPE=mock node start-server",
+    "start-mock": "cross-env VITE_ENV_TYPE=mock node start-server",
     "start-uat": "cross-env VITE_ENV_TYPE=uat node start-server",
-    "build": "cross-env NODE_VERSION=18.16.1 yarn build:client && yarn run build:server",
+    "build": "cross-env yarn build:client && yarn run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
     "serve": "cross-env NODE_ENV=production NODE_VERSION=18.16.1 VITE_ENV_TYPE=prd node start-server",
