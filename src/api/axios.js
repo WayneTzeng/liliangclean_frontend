@@ -5,8 +5,14 @@ import { ErrorCodes, Methods, CODE_TIMEOUT } from './const'
 import { setLoading } from '../helpers/loading'
 
 const MOCK_DELAY_TIME = 1500
-const IS_USE_MOCK = import.meta.env.VITE_VUE_APP_USE_MOCK === 'true'
-const API_URL = 'https://stamp.family.com.tw/api/'
+const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
+const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
+const isPRD = import.meta.env.VITE_ENV_TYPE === 'prd'
+const API_URL = isUAT
+  ? 'https://{uat}/liliangclean-api/'
+  : isPRD
+  ? 'https://{prd}/liliangclean-api/'
+  : ''
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {

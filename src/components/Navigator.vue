@@ -9,8 +9,15 @@
         :class="{ active: currenPage === PAGE.service }"
         @click="goto(PAGE.service)"
       >
-        服務內容
+        服務項目
       </div>
+      <!-- <div
+        class="menu__item"
+        :class="{ active: currenPage === PAGE.performance }"
+        @click="goto(PAGE.performance)"
+      >
+        清潔實績
+      </div> -->
       <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.notice }"
@@ -44,8 +51,15 @@
       :class="{ active: currenPage === PAGE.service }"
       @click="goto(PAGE.service)"
     >
-      服務內容
+      服務項目
     </div>
+    <!-- <div
+      class="menu__item"
+      :class="{ active: currenPage === PAGE.performance }"
+      @click="goto(PAGE.performance)"
+    >
+      清潔實績
+    </div> -->
     <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.notice }"
@@ -62,7 +76,8 @@ const PAGE = {
   service: 'Service',
   notice: 'Notice',
   member: 'Member',
-  login: 'Login'
+  login: 'Login',
+  performance: 'Performance',
 }
 
 import { ref, computed } from 'vue'
@@ -102,7 +117,7 @@ export default {
       if (!import.meta.env.SSR) {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         })
       }
 
@@ -117,9 +132,9 @@ export default {
       goto,
       ImageLogo,
       IconMenu,
-      IconMenuCross
+      IconMenuCross,
     }
-  }
+  },
 }
 </script>
 

@@ -2,26 +2,25 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2021: true,
-    commonjs: true,
-    node: true
+    node: true,
+    es6: true,
   },
   extends: [
+    'plugin:vue/vue3-recommended',
     'eslint:recommended',
-    'plugin:vue/vue3-essential',
-    'plugin:prettier/recommended'
+    '@vue/eslint-config-prettier/skip-formatting',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
-    ecmaVersion: 'latest'
-    // sourceType: 'module',
-    // parser: '@typescript-eslint/parser'
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
   plugins: ['vue', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
-    'arrow-body-style': 'off',
-    'prefer-arrow-callback': 'off',
-    'vue/multi-word-component-names': 'off'
-  }
+    'vue/multi-word-component-names': 'off',
+    'vue/v-on-event-hyphenation': 'off',
+    'vue/attribute-hyphenation': 'off',
+    'vue/prop-name-casing': 'off',
+    'vue/no-v-html': 'off',
+  },
 }

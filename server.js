@@ -18,15 +18,15 @@ const createServer = async (isTest = false) => {
     app.use(require('compression')())
     app.use(
       require('serve-static')(resolve('./dist/client'), {
-        index: false
+        index: false,
       })
     )
   } else {
     vite = await require('vite').createServer({
       server: {
-        middlewareMode: true
+        middlewareMode: true,
       },
-      appType: 'custom'
+      appType: 'custom',
     })
     app.use(vite.middlewares)
   }
