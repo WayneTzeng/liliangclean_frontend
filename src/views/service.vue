@@ -1,78 +1,124 @@
 <template>
   <div class="service" @click="closeSelect">
-    <div class="charge">
-      <ChapterTitle title="收費標準" />
-      <div class="charge-desc">
-        <div class="desc">
-          兩人一組服務，效率雙倍 鐘點計費，可客制專屬於您的清潔服務<br />
-          （若有一人服務的需求，請加入官方 LINE 諮詢）
-        </div>
-        <div class="option">
-          <div class="select-1">
-            「單次服務」
-            <Selector
-              :specification="['平日$3390', '週末$3990']"
-              :outer-close="outerCloseSelect"
-            />
-          </div>
-          <div class="select-2">
-            「定期服務」
-            <Selector
-              :specification="[
-                '2人19小時 $19,999',
-                '2人24小時 $26,180',
-                '2人48小時 $51,528',
-              ]"
-              :outer-close="outerCloseSelect"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="content">
-      <ChapterTitle title="基本服務內容" />
-      <Tabs v-model:index="tabIndex" :list="tabList" />
-      <div v-if="tabIndex === 0" class="service-cards">
-        <ServiceCard
-          v-for="(service, idx) in contentList"
-          :key="idx"
-          :service="service"
-          class="service-card"
-        />
-      </div>
-      <div class="service-desc">
-        <div v-if="tabIndex === 1">
-          「裝潢後細清」與「一般清潔的差異」
-          細清是指，施工過程留下來的大量粉塵，針對室內的每個細節擦拭乾淨，可在清潔後讓客戶安心入住
-          居家清潔是指，日常使用或長久使用下留下的污垢、較難去除的髒污，亦或是針對較常使用的區域做定期的維持"
-          裝潢後需完成『粗清』外，需間隔3天以上再進行細清，效果更佳
-          收費方式採『鐘點費』計算
-          基本預約2人一組，服務6小時以上，週(一)至(五)平日計費為6780元起
+      <ChapterTitle idData="ct-s1" title="服務類型" />
+      <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" />
+      <ChapterTitle idData="ct-s2" title="服務內容" />
+      <template v-if="tabIndex === 0">
+        <div class="service-cards-content">
+          「單次預約」<br />
+          <span> 1人服務 $1,800元起<br />2人服務 $3,390元起<br /> </span>
+          （以上為平日一到五收費，附發票）
         </div>
-        <div v-if="tabIndex === 2">
-          採用 ●茶樹精油 ●中性的酵素清潔劑 ●真空抽洗
-          三合一的搭配，可有效沖洗深層的髒污
-          讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
+        <div class="service-cards">
+          <ServiceCard
+            v-for="(service, idx) in contentList"
+            :key="idx"
+            :service="service"
+            class="service-card"
+          />
         </div>
-        <div v-if="tabIndex === 3">
+        <!-- <div class="service-cards use-in-mobile">
+          <ServiceCard
+            :service="contentList[serviceCardIndex]"
+            class="service-card"
+            :class="{ 'fade-out': isFadeOut }"
+          />
+          <div class="service-card-prev" @click="handlePrev">
+            <img :src="IconPrev" />
+          </div>
+          <div class="service-card-next" @click="handleNext">
+            <img :src="IconNext" />
+          </div>
+        </div> -->
+      </template>
+
+      <div v-if="tabIndex !== 0" class="service-desc">
+        <template v-if="tabIndex === 1">
+          「裝潢細清」與「居家清潔」的差異<br /><br />
+          「裝潢細清」針對施工過程留下來的大量粉塵，進行細部清潔，由上到下、由內到外，包含天花板、間接照明、牆壁、櫃體表面、櫃內以及所有碰觸到的物體表面以及櫃內間隔零件，清潔後可安心入住。
+          <br /><br />
+          「居家清潔」針對日常因居住所留下的髒污、較難去除的污垢做清潔，或是針對較常使用的區域做定期的維持。
+          <br /><br />
+          裝潢細清除了需事先完成『粗清』外，粗清後需間隔3天以上再進行細清，效果更佳。<br />
+          收費方式採鐘點費計價，基本預約為2人1組，週一至週五費用為6780元起(週末另計)。
+        </template>
+        <template v-if="tabIndex === 4">
+          <div class="image-block">
+            <div class="image-box">
+              <img :src="ImageOffice1" />
+              <span>精油</span>
+            </div>
+            <div class="image-box">
+              <img :src="ImageOffice2" />
+              <span>酵素</span>
+            </div>
+            <div class="image-box">
+              <img :src="ImageOffice3" />
+              <span>真空抽洗</span>
+            </div>
+          </div>
+          <div class="image-block-content">
+            除塵蟎 <img :src="IconArrow" /> 活性酵素靜敷
+            <img :src="IconArrow" /> 嚴選刷具刷洗
+            <img :src="IconArrow" /> 精油殺菌去除異味
+            <img :src="IconArrow" /> 多道嘖抽回收污垢髒水<br />
+            <br />
+            專業處理讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
+          </div>
+        </template>
+        <div v-if="tabIndex === 2" class="office-service">
           <ol>
-            <li>平面清潔</li>
-            <li>地板清潔</li>
-            <li>廁所清潔</li>
-            <li>茶水間清潔</li>
-            <li>垃圾整理</li>
-            <li>玻璃清潔</li>
+            <li>● 平面清潔</li>
+            <li>● 地板清潔</li>
+            <li>● 廁所清潔</li>
+          </ol>
+          <ol>
+            <li>● 茶水間清潔</li>
+            <li>● 垃圾整理</li>
+            <li>● 玻璃清潔</li>
           </ol>
         </div>
+        <div v-if="tabIndex === 3" class="charge-desc">
+          <div class="option">
+            <div class="select-2">
+              「定期服務」<br /><br />
+              <Selector
+                v-model:index="selectorIndex"
+                :specification="['2人18小時', '2人24小時', '2人48小時']"
+                :outer-close="outerCloseSelect"
+              />
+              <br />
+              <br />
+              <div v-if="selectorIndex === 0">$19,999</div>
+              <div v-if="selectorIndex === 1">$26,180</div>
+              <div v-if="selectorIndex === 2">$51,528</div>
+            </div>
+            <br />
+            <hr />
+            <br />
+            ● 可比一般客戶優先預約下個月的服務<br />
+            ● 較能安排喜愛的清潔人員<br />
+            ● 購買此方案無法跨地址使用<br />
+            ● 此方案使用頻率，最低一個月一次<br />
+            ●
+            取消/異動服務日期，需於服務日前3個工作天告知（不含例假日），於服務日3天內告知將酌收600元異動費。<br /><br />
+
+            可能產生額外費用說明：<br />
+            ▼ 週末：預約週末（六、日）每人每小時加收100元。<br />
+            ▼
+            車馬：於車馬費地段，預約當天酌收100元/人車馬費（請與客服確認）。<br />
+            ▼ 年節：過年大掃除期間，依當年度活動訂定之。
+          </div>
+        </div>
         <div class="customer-connect">
-          <template v-if="tabIndex === 3">
-            <div>由於辦公室規格多樣化，</div>
+          <template v-if="tabIndex === 2">
+            <div>由於辦公室規格多樣化</div>
             <div>目前尚未提供官網評估、預約</div>
           </template>
-          <div>請留下您的基本資訊，</div>
-          <div>客服收到後會儘快和您聯繫，</div>
           <div>
-            或加入官方 @LINE
+            請加入官方 LINE 洽詢客服<br />
+            由專人為您服務
             <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
             立即諮詢
           </div>
@@ -80,9 +126,11 @@
       </div>
     </div>
     <div class="area">
-      <ChapterTitle title="服務區域" />
+      <ChapterTitle idData="ct-s3" title="服務區域" />
       <div class="map-block">
+        <h1 class="cictyneme">台 中 市</h1>
         <div class="zip-block">
+          <h1></h1>
           <div
             v-for="(zip, idx) in serviceAreaList"
             :key="idx"
@@ -95,9 +143,15 @@
         </div>
         <MapTaichung class="map" />
         <div class="notice">
-          ● 以74快速道路環狀內為主要範圍區域<br />
-          ● 排班會依據人員案場之間的距離考量，預約前建議可以向客服諮詢<br />
-          ● 若以上區域沒有您在的區域，可以加入官方 LINE 向客服詢問
+          <span> ● 以74快速道路環狀內為主要範圍區域 </span>
+          <br />
+          <span>
+            ● 排班會依據人員案場之間的距離考量，預約前建議可以向客服諮詢
+          </span>
+          <br />
+          <span>
+            ● 若以上區域沒有您在的區域，可以加入官方 LINE 向客服詢問
+          </span>
         </div>
       </div>
     </div>
@@ -110,10 +164,16 @@ import emitter from '../helpers/emitter'
 import { serviceData } from '../data/index'
 import ChapterTitle from '../components/ChapterTitle.vue'
 import Selector from '../components/Selector.vue'
-import Tabs from '../components/Tabs.vue'
+import Tabs from '../components/SlideTabs.vue'
 import ServiceCard from '../components/ServiceCard.vue'
 import MapTaichung from '../components/MapTaichung.vue'
+import ImageOffice1 from '../assets/image/image/image-service-office1.jpeg'
+import ImageOffice2 from '../assets/image/image/image-service-office2.jpeg'
+import ImageOffice3 from '../assets/image/image/image-service-office3.jpeg'
 import IconLine from '../assets/image/icon/icon-line.png'
+import IconNext from '../assets/image/icon/icon-swiper-next.png'
+import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
+import IconArrow from '../assets/image/icon/icon-arrow.png'
 
 export default {
   name: 'ServicePage',
@@ -126,6 +186,7 @@ export default {
   },
   setup() {
     const tabIndex = ref(0)
+    const selectorIndex = ref(0)
     const contentList = computed(() => serviceData.contentList[tabIndex.value])
 
     const tabList = ref(serviceData.tabList)
@@ -143,19 +204,53 @@ export default {
       setTimeout(() => {
         outerCloseSelect.value = false
       }, 50)
-      console.log('111')
+    }
+
+    const serviceCardIndex = ref(0)
+    const isFadeOut = ref(false)
+    const handlePrev = () => {
+      isFadeOut.value = true
+
+      setTimeout(() => {
+        isFadeOut.value = false
+        serviceCardIndex.value =
+          serviceCardIndex.value - 1 < 0
+            ? contentList.value.length - 1
+            : serviceCardIndex.value - 1
+      }, 500)
+    }
+    const handleNext = () => {
+      isFadeOut.value = true
+      setTimeout(() => {
+        isFadeOut.value = false
+        serviceCardIndex.value =
+          serviceCardIndex.value + 1 > contentList.value.length - 1
+            ? 0
+            : serviceCardIndex.value + 1
+      }, 500)
     }
 
     return {
       outerCloseSelect,
       tabIndex,
+      selectorIndex,
       contentList,
       tabList,
       serviceAreaList,
       selectZipIndex,
+      serviceCardIndex,
+      isFadeOut,
       closeSelect,
       selectZip,
+      handlePrev,
+      handleNext,
       IconLine,
+      IconNext,
+      IconPrev,
+      ImageOffice1,
+      ImageOffice2,
+      ImageOffice3,
+      IconArrow,
     }
   },
 }
@@ -163,38 +258,26 @@ export default {
 
 <style lang="scss" scoped>
 .service {
-  .charge {
+  /* .charge {
     background-color: var(--beige);
     padding: 72px 0;
-    .charge-desc {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: var(--brown);
-      .desc {
-        font-size: var(--font-m);
-        color: var(--brown);
-        line-height: 28px;
-      }
-      .option {
-        margin-top: 30px;
-        .select-1 {
-          position: relative;
-          z-index: 10;
-        }
-        .select-2 {
-          position: relative;
-          z-index: 5;
-          margin-top: 16px;
-        }
-      }
-    }
-  }
+  } */
   .content {
     background-color: var(--white);
     padding: 72px 0;
+    .tabs {
+      margin: 35px auto;
+    }
+    .service-cards-content {
+      margin: 36px 0 24px 0;
+      text-align: center;
+      line-height: 20px;
+      font-size: 20px;
+      span {
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
     .service-cards {
       display: flex;
       justify-content: flex-start;
@@ -204,7 +287,59 @@ export default {
         flex: 0 0 calc((100% - 60px) / 3);
       }
     }
+    /* .service-cards.use-in-mobile {
+      position: relative;
+      padding: 30px 5vw;
+
+      .service-card-prev,
+      .service-card-next {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        overflow: hidden;
+        background-color: #ffffff;
+        top: 23%;
+        border-radius: 50%;
+        box-shadow: 0px 2px 4px 0px #666666;
+      }
+
+      .service-card-prev {
+        left: 5px;
+      }
+      .service-card-next {
+        right: 5px;
+      }
+    } */
     .service-desc {
+      width: 100%;
+      padding: 40px 20vw 0 20vw;
+      line-height: 24px;
+      font-size: var(--font-l);
+      .image-block {
+        padding-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        .image-box {
+          width: calc((100vw - 48px) / 3);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          img {
+            border-radius: 16px;
+            width: 100%;
+          }
+        }
+        .image-box ~ .image-box {
+          margin-left: 24px;
+        }
+      }
+      .image-block-content {
+        text-align: center;
+        img {
+          width: 20px;
+          margin: 0 4px;
+        }
+      }
       .customer-connect {
         margin-top: 40px;
         width: 100%;
@@ -216,10 +351,33 @@ export default {
         font-size: var(--font-l);
         font-weight: 600;
         line-height: 30px;
+        text-align: center;
+
+        a {
+          color: #3c2cef;
+        }
 
         img {
           width: 20px;
           margin: 0 4px;
+        }
+      }
+      .office-service {
+        display: flex;
+        justify-content: center;
+      }
+      .charge-desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--brown);
+        .option {
+          .select-2 {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+          }
         }
       }
     }
@@ -255,41 +413,104 @@ export default {
         margin: 30px;
       }
       .notice {
-        font-size: var(--font-s);
-        color: var(--light-gray);
-        line-height: 20px;
+        margin-left: 20px;
+        span {
+          font-size: var(--font-s);
+          color: var(--light-gray);
+          line-height: 20px;
+          text-indent: 16px;
+          margin-left: -16px;
+        }
       }
     }
   }
+  .cictyneme {
+    font-size: 30px;
+    color: #522f0c;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
 }
-
-@media (max-width: 1000px) {
+@media (max-width: 1060px) {
   .service {
     .content {
       .service-cards {
-        flex-wrap: wrap;
         .service-card {
           flex: 0 0 calc((100% - 30px) / 2);
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out;
+          &.fade-out {
+            opacity: 0.2;
+          }
         }
       }
     }
   }
 }
-
-@media (max-width: 460px) {
+@media (max-width: 760px) {
   .service {
-    .charge {
-      .charge-desc {
-        padding: 0 5vw;
-      }
-    }
     .content {
       .service-cards {
         .service-card {
           flex: 0 0 100%;
+          opacity: 1;
+          transition: opacity 0.5s ease-in-out;
+          &.fade-out {
+            opacity: 0.2;
+          }
         }
+      }
+    }
+  }
+}
+@media (max-width: 460px) {
+  .service {
+    /* .charge {
+      .charge-desc {
+        padding: 0 5vw;
+      }
+    } */
+    .content {
+      .service-desc {
+        padding: 40px 10vw 0 10vw;
+        .image-block {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .image-box {
+            width: 80vw;
+            height: calc(80vw * 0.7);
+          }
+        }
+
+        .image-box ~ .image-box {
+          margin-left: 0 !important;
+          margin-top: 32px;
+        }
+        .office-service {
+          justify-content: flex-start;
+          flex-direction: column;
+          ol {
+            width: 120px;
+            margin: 0 auto;
+          }
+        }
+      }
+      .service-cards-content {
+        font-size: 18px;
+        F span {
+          font-size: 18px;
+          line-height: 24px;
+        }
+      }
+    }
+    .area {
+      .map-block {
+        padding: 0 10vw;
       }
     }
   }
 }
 </style>
+
+    

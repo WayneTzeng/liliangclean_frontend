@@ -22,11 +22,11 @@
         <div class="info__icon">
           <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
         </div>
-        <div class="info__icon">
+        <!-- <div class="info__icon">
           <a href="https://instagram.com/liliangclean?igshid=OGQ5ZDc2ODk2ZA==">
             <img :src="IconIG"
           /></a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

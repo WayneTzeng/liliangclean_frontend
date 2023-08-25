@@ -1,23 +1,23 @@
-import axios from 'axios';
-import mock from './mock.js';
-import errorHandler from './errorHandler';
-import { ErrorCodes, Methods, CODE_TIMEOUT } from './const';
-import { setLoading } from '../helpers/loading';
+import axios from 'axios'
+import mock from './mock.js'
+import errorHandler from './errorHandler'
+import { ErrorCodes, Methods, CODE_TIMEOUT } from './const'
+import { setLoading } from '../helpers/loading'
 
-const MOCK_DELAY_TIME = 1500;
-const IS_USE_MOCK = process.env.VUE_APP_USE_MOCK === 'true';
-const API_URL = process.env.VUE_APP_BASE_API_URL;
+const MOCK_DELAY_TIME = 1500
+const IS_USE_MOCK = import.meta.env.VITE_VUE_APP_USE_MOCK === 'true'
+const API_URL = import.meta.env.VITE_VUE_APP_BASE_API_URL
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
-    this._axios = axios.create();
-    this._baseURL = API_URL;
-    this._timeout = timeout * 1000;
-    this._token = token;
-    this._recallOn = recallOn;
-    this._recallTimes = recallTimes;
+    this._axios = axios.create()
+    this._baseURL = API_URL
+    this._timeout = timeout * 1000
+    this._token = token
+    this._recallOn = recallOn
+    this._recallTimes = recallTimes
 
-    this._init();
+    this._init()
   }
 
   _init() {
@@ -27,30 +27,29 @@ export class Axios {
       headers: {
         Authorization: `Bearer ${this._token}`,
       },
-    });
+    })
   }
 
   async _api(apiMethod, url, params) {
     if (IS_USE_MOCK)
       return new Promise((resolve) => {
-        setLoading(true);
+        setLoading(true)
         setTimeout(() => {
-          resolve(mock[url]);
-          setLoading(false);
-        }, MOCK_DELAY_TIME);
-      });
+          resolve(mock[url])
+          setLoading(false)
+        }, MOCK_DELAY_TIME)
+      })
 
-    const isGet = apiMethod === Methods.GET;
-    const isPost = apiMethod === Methods.POST;
-    const typeError = { message: 'error: api method invalid' };
-    if (apiMethod !== Methods.GET && apiMethod !== Methods.POST)
-      throw typeError;
+    const isGet = apiMethod === Methods.GET
+    const isPost = apiMethod === Methods.POST
+    const typeError = { message: 'error: api method invalid' }
+    if (apiMethod !== Methods.GET && apiMethod !== Methods.POST) throw typeError
 
-    let response = null;
-    let requestTimes = 0;
-    const requestTimesLimit = this._recallOn ? this._recallTimes : 0;
+    let response = null
+    let requestTimes = 0
+    const requestTimesLimit = this._recallOn ? this._recallTimes : 0
 
-    let callAxios;
+    let callAxios
 
     while (
       (!response || response.code === CODE_TIMEOUT) &&
@@ -59,24 +58,24 @@ export class Axios {
       callAxios = isGet
         ? this._axios.get(url, { params })
         : isPost
-          ? this._axios.post(url, params)
-          : null;
+        ? this._axios.post(url, params)
+        : null
 
-      setLoading(true);
+      setLoading(true)
 
       response = await callAxios
         .then((res) => {
-          const resCode = res.data.code;
-          if (ErrorCodes.includes(resCode)) throw res;
-          return res.data;
+          const resCode = res.data.code
+          if (ErrorCodes.includes(resCode)) throw res
+          return res.data
         })
-        .catch((error) => errorHandler(error, requestTimes, requestTimesLimit));
+        .catch((error) => errorHandler(error, requestTimes, requestTimesLimit))
 
-      requestTimes++;
-      setLoading(false);
+      requestTimes++
+      setLoading(false)
     }
 
-    return response;
+    return response
   }
 
   /**
@@ -85,7 +84,7 @@ export class Axios {
    * @param params request params
    */
   get(url, params) {
-    return this._api(Methods.GET, url, params);
+    return this._api(Methods.GET, url, params)
   }
 
   /**
@@ -96,7 +95,7 @@ export class Axios {
    * @param recallTimes times of recall (default: 3)
    */
   post(url, params) {
-    return this._api(Methods.POST, url, params);
+    return this._api(Methods.POST, url, params)
   }
 
   /**
@@ -104,9 +103,9 @@ export class Axios {
    * @param token the new token to update
    */
   updateToken(token) {
-    this._token = token;
-    this._init();
+    this._token = token
+    this._init()
   }
 }
 
-export default new Axios();
+export default new Axios()

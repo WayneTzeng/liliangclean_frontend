@@ -2,10 +2,9 @@
   <Swiper
     id="swiper-box"
     :loop="true"
-    :auto-height="true"
+    :modules="modules"
     :autoplay="{
       delay: 4500,
-      disableOnInteraction: false,
     }"
     :follow-finger="false"
     @swiper="onSwiper"
@@ -25,12 +24,12 @@
 <script>
 import { defineComponent, onMounted, ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/swiper.scss'
+import { Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/grid'
+import 'swiper/css/pagination'
 import IconNext from '../assets/image/icon/icon-swiper-next.png'
 import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
-
-import SwiperCore, { Autoplay } from 'swiper/core'
-SwiperCore.use([Autoplay])
 
 export default defineComponent({
   name: 'ImageSwiperComponent',
@@ -89,6 +88,7 @@ export default defineComponent({
       swiperNext,
       IconNext,
       IconPrev,
+      modules: [Autoplay],
     }
   },
   computed: {},
@@ -111,6 +111,7 @@ export default defineComponent({
   height: 40px;
   position: absolute;
   z-index: 990;
+  cursor: pointer;
 
   img {
     width: 100%;

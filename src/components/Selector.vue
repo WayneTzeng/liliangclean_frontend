@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   name: 'SelectorComponent',
   components: {},
@@ -35,12 +37,6 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      option: this.specification[0],
-      isOpen: false,
-    }
-  },
   watch: {
     outerClose() {
       if (this.outerClose) {
@@ -48,17 +44,28 @@ export default {
       }
     },
   },
-  created() {},
-  mounted() {},
-  methods: {
-    onSelect(index) {
-      this.option = this.specification[index]
-      this.$emit('seleted', index)
-    },
-    openOption() {
-      this.isOpen = !this.isOpen
-    },
+  emits: ['update:index'],
+  setup(props, { emit }) {
+    const option = ref(props.specification[0])
+    const isOpen = ref(false)
+
+    const onSelect = (index) => {
+      console.log('index', index)
+      option.value = props.specification[index]
+      emit('update:index', index)
+    }
+    const openOption = () => {
+      isOpen.value = !isOpen.value
+    }
+
+    return {
+      option,
+      isOpen,
+      onSelect,
+      openOption,
+    }
   },
+  methods: {},
 }
 </script>
 

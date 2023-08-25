@@ -1,57 +1,57 @@
 <template>
   <div class="navigator">
-    <div class="logo__block" @click="goto('index')">
+    <div class="logo__block" @click="goto(PAGE.index)">
       <img :src="ImageLogo" />
     </div>
-    <div class="menu__block use-in-pc">
+    <div class="menu__block">
       <div
         class="menu__item"
-        :class="{ active: currenPage === page.service }"
-        @click="goto(page.service)"
+        :class="{ active: currenPage === PAGE.service }"
+        @click="goto(PAGE.service)"
       >
         服務內容
       </div>
       <div
         class="menu__item"
-        :class="{ active: currenPage === page.notice }"
-        @click="goto(page.notice)"
+        :class="{ active: currenPage === PAGE.notice }"
+        @click="goto(PAGE.notice)"
       >
-        客戶須知
+        常見問題
       </div>
-      <div
+      <!-- <div
         class="menu__item"
-        :class="{ active: currenPage === page.member }"
-        @click="goto(page.member)"
+        :class="{ active: currenPage === PAGE.member }"
+        @click="goto(PAGE.member)"
       >
         會員
-      </div>
+      </div> -->
     </div>
-    <div class="menu__block-mobile use-in-mobile">
+    <div class="menu__block-mobile">
       <img v-if="!isMenuOpen" :src="IconMenu" @click.capture="handleClick" />
       <img v-else :src="IconMenuCross" @click.capture="handleClick" />
     </div>
   </div>
-  <div v-if="isMenuOpen" class="menu__extend use-in-mobile">
-    <div
+  <div v-if="isMenuOpen" class="menu__extend use-in-mobile-760">
+    <!-- <div
       class="menu__item"
-      :class="{ active: currenPage === page.member }"
-      @click="goto(page.member)"
+      :class="{ active: currenPage === PAGE.member }"
+      @click="goto(PAGE.member)"
     >
       會員
-    </div>
+    </div> -->
     <div
       class="menu__item"
-      :class="{ active: currenPage === page.service }"
-      @click="goto(page.service)"
+      :class="{ active: currenPage === PAGE.service }"
+      @click="goto(PAGE.service)"
     >
       服務內容
     </div>
     <div
       class="menu__item"
-      :class="{ active: currenPage === page.notice }"
-      @click="goto(page.notice)"
+      :class="{ active: currenPage === PAGE.notice }"
+      @click="goto(PAGE.notice)"
     >
-      客戶須知
+      常見問題
     </div>
   </div>
 </template>
@@ -62,10 +62,12 @@ const PAGE = {
   service: 'Service',
   notice: 'Notice',
   member: 'Member',
+  login: 'Login',
 }
 
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import emitter from '../helpers/emitter'
 import ImageLogo from '../assets/image/image/image-logo.png'
 import IconMenu from '../assets/image/icon/icon-menu.svg'
 import IconMenuCross from '../assets/image/icon/icon-menu-cross.svg'
@@ -81,19 +83,32 @@ export default {
       isMenuOpen.value = !isMenuOpen.value
     }
 
-    const page = ref(PAGE)
     const currenPage = computed(() => {
       return route.name
     })
 
     const goto = (page) => {
-      isMenuOpen.value = !isMenuOpen.value
+      isMenuOpen.value = false
+
+      if (page === PAGE.member) {
+        // 加入登出頁
+        const token = JSON.parse(localStorage.getItem('memberToken'))
+        if (!token) {
+          emitter.emit('callLogin', true)
+          return
+        }
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
       router.push({ name: page })
     }
 
     return {
+      PAGE,
       isMenuOpen,
-      page,
       currenPage,
       handleClick,
       goto,
@@ -107,8 +122,8 @@ export default {
 
 <style lang="scss" scoped>
 .navigator {
-  width: calc(100vw); //calc(100vw - 60px)
-  padding: 5px 30px;
+  width: 100vw;
+  padding: 5px 90px 5px 30px;
   position: fixed;
   z-index: 99;
   display: flex;
@@ -116,6 +131,7 @@ export default {
   align-items: center;
   background-color: var(--beige);
   box-shadow: 0px 0px 8px 0px #888888;
+  top: 0;
 
   .logo__block {
     cursor: pointer;
@@ -124,6 +140,10 @@ export default {
     display: flex;
     justify-content: flex-start;
   }
+  .menu__block-mobile {
+    display: none;
+  }
+
   .menu__item {
     color: var(--brown);
     font-size: var(--font-l);
@@ -135,9 +155,57 @@ export default {
   }
 }
 
+@media (max-width: 530px) {
+  .navigator {
+    .logo__block {
+      width: 180px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .navigator {
+    .menu__block {
+      display: none !important;
+    }
+    .menu__block-mobile {
+      display: block !important;
+    }
+  }
+  .menu__extend {
+    width: 100%;
+    position: fixed;
+    top: 74px;
+    left: 0;
+    z-index: 40;
+    box-shadow: 0px 0px 8px 0px #888888;
+
+    .menu__item {
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--height-light);
+      font-size: var(--font-m);
+      background-color: var(--second);
+
+      &.active {
+        color: var(--brown);
+        background-color: var(--height-light);
+      }
+    }
+    .menu__item ~ .menu__item {
+      border-top: 1px solid var(--beige);
+    }
+  }
+}
+
 @media (max-width: 460px) {
   .navigator {
-    width: calc(100vw); // calc(100vw - 40px)
+    width: calc(100vw);
     padding: 10px 20px 10px 20px;
 
     .logo__block {
@@ -153,30 +221,7 @@ export default {
     }
   }
   .menu__extend {
-    width: 100%;
-    position: fixed;
     top: 46px;
-    left: 0;
-    z-index: 40;
-    box-shadow: 0px 0px 8px 0px #888888;
-
-    .menu__item {
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: var(--height-light);
-      font-size: var(--font-l);
-      background-color: var(--second);
-
-      &.active {
-        color: var(--brown);
-        background-color: var(--height-light);
-      }
-    }
-    .menu__item ~ .menu__item {
-      border-top: 1px solid var(--beige);
-    }
   }
 }
 </style>

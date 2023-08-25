@@ -1,9 +1,10 @@
 <template>
+  <div class="blank"></div>
   <ImageSwiper id="swiper-content" :list="bannerList" />
   <div class="reservation">
-    <ChapterTitle title="預約流程" />
+    <ChapterTitle idData="ct-h1" title="預約流程" />
     <div class="reservation__description">
-      歡迎加入官方@Line
+      歡迎加入官方LINE@
       <a href="https://lin.ee/8qurIGn"><img :src="IconLine" /></a>
       立即預約，將由專人為您服務
     </div>
@@ -19,7 +20,7 @@
     </div>
   </div>
   <div class="performance">
-    <ChapterTitle title="清潔實績" white />
+    <ChapterTitle idData="ct-h2" title="清潔實績" white />
     <div class="performance__items">
       <ImageCompareCard
         v-for="(imgData, idx) in performanceList"
@@ -50,7 +51,6 @@ export default {
     ImageCompareCard,
   },
   setup() {
-    console.log('homeData', homeData)
     const bannerList = ref(homeData.bannerList)
     const reservationIconList = ref(homeData.reservationIconList)
     const performanceList = ref(homeData.performanceList)
@@ -67,6 +67,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.blank {
+  width: 100%;
+  height: 74px;
+}
 .reservation {
   padding: 72px 0;
   background-color: var(--beige);
@@ -108,6 +112,10 @@ export default {
 }
 
 @media (max-width: 460px) {
+  .blank {
+    width: 100%;
+    height: 46px;
+  }
   .reservation {
     padding: 34px 0;
     .reservation__description {

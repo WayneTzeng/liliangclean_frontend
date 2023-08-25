@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs">
+  <div class="tabs" :class="{ 'common-type': commonType }">
     <div
       v-for="(tab, idx) in list"
       :key="idx"
@@ -7,7 +7,7 @@
       :class="{ active: index === idx }"
       @click="selectTab(idx)"
     >
-      {{ tab }}
+      {{ tab }}<span v-if="commonType && idx !== list.length - 1">|</span>
     </div>
   </div>
 </template>
@@ -15,6 +15,7 @@
 <script>
 export default {
   name: 'TabsComponent',
+  components: {},
   props: {
     list: {
       type: Array,
@@ -23,6 +24,10 @@ export default {
     index: {
       type: Number,
       default: 0,
+    },
+    commonType: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['update:index'],
@@ -43,7 +48,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
 
   .tab {
     padding: 10px 20px;
@@ -54,6 +58,7 @@ export default {
     background-color: var(--second);
     opacity: 0.6;
     font-size: var(--font-l);
+    text-wrap: nowrap;
     cursor: pointer;
 
     &.active {
@@ -64,6 +69,30 @@ export default {
   }
   .tab ~ .tab {
     margin-left: 20px;
+  }
+
+  &.common-type {
+    .tab {
+      color: var(--brown);
+      background-color: var(--beige);
+      border: none;
+      padding: 0;
+      margin: 0;
+      opacity: 0.6;
+      span {
+        color: var(--brown);
+        margin: 0 15px;
+      }
+      &.active {
+        opacity: 1;
+        color: var(--brown);
+        span {
+          opacity: 0.6;
+          color: var(--brown);
+          margin: 0 15px;
+        }
+      }
+    }
   }
 }
 
@@ -81,6 +110,14 @@ export default {
     }
     .tab ~ .tab {
       margin-left: 0;
+    }
+
+    &.common-type {
+      justify-content: center;
+      padding: 0;
+      .tab {
+        width: auto;
+      }
     }
   }
 }

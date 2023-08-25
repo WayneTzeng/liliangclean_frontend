@@ -1,14 +1,16 @@
 <template>
-  <Navigator />
-  <div class="router-view">
-    <RouterView id="routerview" />
+  <div :class="{ 'lock-scroll': showLogin || showRegister }">
+    <Login v-if="showLogin" />
+    <Register v-if="showRegister" />
+    <Navigator />
+    <RouterView class="router-view" />
+    <BottomInfo />
+    <SideMenu v-if="!showLogin && !showRegister" @click="goToTop" />
+    <Loading v-if="showLoading" />
+    <Popup v-model:show="showDialog" :action="dialogAction">
+      {{ dialogMessage }}
+    </Popup>
   </div>
-  <BottomInfo />
-  <GoToTop @click="goToTop" />
-  <Loading v-if="showLoading" />
-  <Popup v-model:show="showDialog" :action="dialogAction">
-    {{ dialogMessage }}
-  </Popup>
 </template>
 
 <script>
@@ -16,8 +18,10 @@ import emitter from './helpers/emitter'
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigator from './components/Navigator.vue'
+import Login from './components/login.vue'
+import Register from './components/Register.vue'
 import BottomInfo from './components/BottomInfo.vue'
-import GoToTop from './components/GoToTop.vue'
+import SideMenu from './components/SideMenu.vue'
 import Loading from './components/Loading.vue'
 import Popup from './components/Popup.vue'
 import { showLoading } from './helpers/loading.js'
@@ -26,8 +30,10 @@ export default {
   name: 'App',
   components: {
     Navigator,
+    Login,
+    Register,
     BottomInfo,
-    GoToTop,
+    SideMenu,
     RouterView,
     Loading,
     Popup,
@@ -45,6 +51,28 @@ export default {
       dialogAction.value = data.action
     }
 
+    emitter.on('callLogin', (data) => showLoginBlock(data))
+    const showLogin = ref(false)
+    const showLoginBlock = (status) => {
+      showRegister.value = !status
+      showLogin.value = status
+    }
+
+    emitter.on('callRegister', (data) => showRegisterBlock(data))
+    const showRegister = ref(false)
+    const showRegisterBlock = (status) => {
+      showLogin.value = !status
+      showRegister.value = status
+    }
+
+    emitter.on('closeLoginOrRegister', (data) =>
+      closeLoginOrRegisterBlock(data)
+    )
+    const closeLoginOrRegisterBlock = () => {
+      showLogin.value = false
+      showRegister.value = false
+    }
+
     const goToTop = () => {
       window.scrollTo({
         top: 0,
@@ -54,6 +82,8 @@ export default {
 
     return {
       showDialog,
+      showLogin,
+      showRegister,
       showLoading,
       dialogMessage,
       dialogAction,
@@ -75,7 +105,12 @@ export default {
 }
 .router-view {
   margin-top: 75px;
+  min-height: calc(100vh - 340px);
   background: #efe8e1;
+}
+.lock-scroll {
+  height: 100vh;
+  overflow: hidden;
 }
 
 @media (max-width: 460px) {
