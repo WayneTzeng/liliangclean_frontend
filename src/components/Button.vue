@@ -1,7 +1,7 @@
 <template>
   <button
     class="button"
-    :class="{ gray, outline, disable, full, half, rounded }"
+    :class="{ gray, outline, disable, full, half, rounded, primary }"
     :disabled="disable"
   >
     <div class="text">{{ text }}</div>
@@ -14,33 +14,37 @@ export default {
   props: {
     text: {
       type: String,
-      default: '按鈕'
+      default: '按鈕',
+    },
+    primary: {
+      type: Boolean,
+      default: false,
     },
     gray: {
       type: Boolean,
-      default: false
+      default: false,
     },
     outline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     disable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     full: {
       type: Boolean,
-      default: false
+      default: false,
     },
     half: {
       type: Boolean,
-      default: false
+      default: false,
     },
     rounded: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>
 
@@ -72,6 +76,9 @@ export default {
     align-items: center;
     color: var(--brown);
     font-family: 'Noto Sans TC', sans-serif;
+  }
+  &.primary {
+    background-color: var(--primary);
   }
 
   &.gray {

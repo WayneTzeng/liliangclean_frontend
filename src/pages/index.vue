@@ -48,7 +48,7 @@ export default {
     ImageSwiper,
     ChapterTitle,
     ReservationIcon,
-    ImageCompareCard
+    ImageCompareCard,
   },
   setup() {
     const bannerList = ref(homeData.bannerList)
@@ -60,9 +60,9 @@ export default {
       reservationIconList,
       performanceList,
       ImageLogo,
-      IconLine
+      IconLine,
     }
-  }
+  },
 }
 </script>
 
@@ -108,6 +108,9 @@ export default {
     display: flex;
     flex-wrap: wrap;
     padding: 0 10vw;
+    .performance__item {
+      flex: 0 0 calc((100% - 10vw) / 3);
+    }
   }
 }
 

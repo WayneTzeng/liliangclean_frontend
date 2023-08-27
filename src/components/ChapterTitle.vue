@@ -20,20 +20,20 @@ export default {
   props: {
     idData: {
       type: String,
-      default: ''
+      default: '',
     },
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     white: {
       type: Boolean,
-      default: false
+      default: false,
     },
     beige: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup(props) {
     const titleWidth = ref(0)
@@ -52,9 +52,9 @@ export default {
     }
 
     return {
-      titleWidth
+      titleWidth,
     }
-  }
+  },
 }
 </script>
 
@@ -74,17 +74,17 @@ export default {
 
   .left-line,
   .right-line {
-    width: calc(((60vw - var(--titleWidth) * 1px) - 72px) / 2);
+    width: calc(((80vw - var(--titleWidth) * 1px) - 72px) / 2);
     height: 2px;
     position: absolute;
     top: 10px;
     background-color: var(--brown);
   }
   .left-line {
-    left: 20vw;
+    left: 10vw;
   }
   .right-line {
-    right: 20vw;
+    right: 10vw;
   }
   &.white {
     .title {

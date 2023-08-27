@@ -1,55 +1,45 @@
 import {
   createRouter as _createRouter,
   createMemoryHistory,
-  createWebHistory
+  createWebHistory,
 } from 'vue-router'
 
 const routes = [
   {
     path: '/',
     name: 'Index',
-    component: () => import('@/pages/index.vue')
+    component: () => import('@/pages/index.vue'),
   },
   {
     path: '/service',
     name: 'Service',
-    component: () => import('@/pages/service/index.vue')
+    component: () => import('@/pages/service/index.vue'),
   },
   {
     path: '/notice',
     name: 'Notice',
-    component: () => import('@/pages/notice/index.vue')
+    component: () => import('@/pages/notice/index.vue'),
   },
   {
     path: '/member',
     name: 'Member',
-    component: () => import('@/pages/member/index.vue')
+    component: () => import('@/pages/member/index.vue'),
   },
-  // {
-  //   path: '/performance',
-  //   name: 'Performance',
-  //   component: () => import('@/pages/performance/index.vue')
-  // },
-  // {
-  //   path: '/performance/:id',
-  //   name: 'PerformanceList',
-  //   component: () => import('@/pages/performance/list.vue')
-  // },
-  // {
-  //   path: '/performance-detail/:id',
-  //   name: 'PerformanceDetail',
-  //   component: () => import('@/pages/performance/detail.vue')
-  // },
+  {
+    path: '/performance',
+    name: 'Performance',
+    component: () => import('@/pages/performance/index.vue'),
+  },
   {
     path: '/join',
     name: 'Join',
-    component: () => import('@/pages/join/index.vue')
-  }
+    component: () => import('@/pages/join/index.vue'),
+  },
 ]
 
 export function createRouter() {
   return _createRouter({
     history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
-    routes
+    routes,
   })
 }

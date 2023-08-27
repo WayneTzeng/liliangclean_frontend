@@ -36,7 +36,7 @@ export default {
     SideMenu,
     RouterView,
     Loading,
-    Popup
+    Popup,
   },
   setup() {
     emitter.on('callMessager', (data) => callMessager(data))
@@ -76,7 +76,7 @@ export default {
     const goToTop = () => {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: 'smooth',
       })
     }
 
@@ -87,9 +87,9 @@ export default {
       showLoading,
       dialogMessage,
       dialogAction,
-      goToTop
+      goToTop,
     }
-  }
+  },
 }
 </script>
 

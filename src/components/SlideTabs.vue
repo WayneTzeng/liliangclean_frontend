@@ -11,7 +11,7 @@
       :slidesPerView="slidesPerView"
       :scrollbar="{
         hide: false,
-        draggable: true
+        draggable: true,
       }"
       :spaceBetween="8"
       @swiper="onSwiper"
@@ -22,9 +22,9 @@
         class="tab"
         :class="{ active: index === idx }"
         style="text-wrap: nowrap"
-        @click="selectTab(idx)"
+        @click="selectTab(idx, tab.id)"
       >
-        {{ tab }}
+        {{ tab.name }}
       </swiper-slide>
     </swiper>
   </div>
@@ -45,23 +45,23 @@ export default {
   name: 'SwiperBrandIcon',
   components: {
     Swiper,
-    SwiperSlide
+    SwiperSlide,
   },
   props: {
     list: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     index: {
       type: Number,
-      default: 0
+      default: 0,
     },
     commonType: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
-  emits: ['update:index'],
+  emits: ['update:index', 'update:tabId'],
   setup(props, { emit }) {
     const swiper = ref(null)
     const onSwiper = (_swiper) => {
@@ -97,8 +97,9 @@ export default {
       }
     }
 
-    const selectTab = (index) => {
+    const selectTab = (index, id) => {
       emit('update:index', index)
+      emit('update:tabId', id)
     }
 
     return {
@@ -109,9 +110,9 @@ export default {
       selectTab,
       modules: [Scrollbar],
       IconNext,
-      IconPrev
+      IconPrev,
     }
-  }
+  },
 }
 </script>
 

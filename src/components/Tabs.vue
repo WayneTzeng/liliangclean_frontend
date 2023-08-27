@@ -19,16 +19,16 @@ export default {
   props: {
     list: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     index: {
       type: Number,
-      default: 0
+      default: 0,
     },
     commonType: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   emits: ['update:index'],
   setup(props, { emit }) {
@@ -37,9 +37,9 @@ export default {
     }
 
     return {
-      selectTab
+      selectTab,
     }
-  }
+  },
 }
 </script>
 

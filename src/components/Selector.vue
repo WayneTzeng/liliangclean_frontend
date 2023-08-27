@@ -30,19 +30,12 @@ export default {
   props: {
     specification: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     outerClose: {
       type: Boolean,
-      default: false
-    }
-  },
-  watch: {
-    outerClose() {
-      if (this.outerClose) {
-        this.isOpen = false
-      }
-    }
+      default: false,
+    },
   },
   emits: ['update:index'],
   setup(props, { emit }) {
@@ -62,10 +55,17 @@ export default {
       option,
       isOpen,
       onSelect,
-      openOption
+      openOption,
     }
   },
-  methods: {}
+  watch: {
+    outerClose() {
+      if (this.outerClose) {
+        this.isOpen = false
+      }
+    },
+  },
+  methods: {},
 }
 </script>
 
@@ -147,7 +147,7 @@ export default {
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 760px) {
   .pc-select {
     /* width: calc(100vw - 32px); */
     text-align: left;

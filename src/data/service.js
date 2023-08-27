@@ -19,13 +19,13 @@ export default {
           '地板清潔',
           '燈具表面擦拭',
           '雜物整理',
-          '垃圾打包'
+          '垃圾打包',
         ],
         cant: ['沙發深層污漬', '地毯深層污漬', '天花板層板清潔', '吊燈清潔'],
         estimatedTime: ['0.5hr', '1.5hr'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
-        image: service1
+        image: service1,
       },
       {
         title: '廚房清潔',
@@ -39,13 +39,13 @@ export default {
           '烤漆玻璃清潔',
           '流理臺',
           '垃圾打包',
-          '地板清潔'
+          '地板清潔',
         ],
         cant: ['排油煙機內機拆洗', '廚餘清理'],
         estimatedTime: ['1.5hr', '3hr'],
         desc: ['普通清潔', '重油汙、許久未清潔'],
         notice: '冰箱內部清潔、整理＋1-1.5小時',
-        image: service2
+        image: service2,
       },
       {
         title: '房間清潔',
@@ -58,13 +58,13 @@ export default {
           '床單換洗',
           '桌、櫃面擦拭',
           '垃圾打包',
-          '地板清潔'
+          '地板清潔',
         ],
         cant: ['移動大型家具或家電', '整理衣櫃內部衣服'],
         estimatedTime: ['0.5hr', '1hr'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
-        image: service3
+        image: service3,
       },
       {
         title: '浴室清潔',
@@ -78,13 +78,13 @@ export default {
           '抽風機濾網',
           '垃圾打包',
           '小範圍除黴',
-          '水垢、皂垢清除'
+          '水垢、皂垢清除',
         ],
         cant: ['櫃內清潔'],
         estimatedTime: ['0.5hr', '2.5hr'],
         desc: ['普通清潔', '垢重、許久未清潔'],
         notice: '全區除霉請洽客服人員',
-        image: service4
+        image: service4,
       },
       {
         title: '陽台清潔',
@@ -94,7 +94,7 @@ export default {
         estimatedTime: ['0.5hr', '1.5hr'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
-        image: service5
+        image: service5,
       },
       {
         title: '窗戶清潔',
@@ -104,7 +104,7 @@ export default {
         estimatedTime: ['0.5hr/扇', '0.75hr/扇'],
         desc: ['普通清潔', '窗戶大、許久未清潔'],
         notice: '',
-        image: service6
+        image: service6,
       },
       {
         title: '洗衣晾曬',
@@ -114,11 +114,10 @@ export default {
         estimatedTime: ['1hr', '2hr'],
         desc: ['普通清潔', '衣物多'],
         notice: '',
-        image: service7
-      }
-    ]
+        image: service7,
+      },
+    ],
   ],
-  tabList: ['居家清潔', '裝潢細清', '辦公室清潔', '定期清潔', '床墊沙發清洗'],
   serviceAreaList: [
     '中區',
     '北區',
@@ -132,6 +131,6 @@ export default {
     '太平區',
     '潭子區',
     '大雅區',
-    '烏日區'
-  ]
+    '烏日區',
+  ],
 }

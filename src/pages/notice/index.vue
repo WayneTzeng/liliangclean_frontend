@@ -75,10 +75,10 @@
       <div class="expend">
         <ExpendBlock
           v-for="(item, idx) in questionList"
-          @block-expend="showExpendBlock"
           :key="idx"
           :item="item"
           :index="idx"
+          @block-expend="showExpendBlock"
         />
       </div>
     </div>
@@ -98,7 +98,7 @@ export default {
   components: {
     ChapterTitle,
     IconDescription,
-    ExpendBlock
+    ExpendBlock,
   },
   setup() {
     const promiseList = ref(noticeData.promiseList)
@@ -119,9 +119,9 @@ export default {
       reassureList,
       questionList,
       showExpendBlock,
-      ImageBanner
+      ImageBanner,
     }
-  }
+  },
 }
 </script>
 

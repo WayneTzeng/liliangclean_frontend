@@ -4,9 +4,9 @@
       <ChapterTitle idData="ct-j1" title="團隊優勢" />
       <div class="advantage-cards">
         <div
-          class="advantage-card"
           v-for="(item, idx) in advantageList"
           :key="idx"
+          class="advantage-card"
         >
           <img :src="item.image" />
           <div>{{ item.title }}</div>
@@ -89,6 +89,9 @@
                 確定送出
               </v-btn>
             </v-col>
+            <v-alert v-if="showError" type="error" dense outlined>
+              {{ errorMessage }}
+            </v-alert>
           </v-row>
         </v-form>
       </v-container>
@@ -98,6 +101,7 @@
 
 <script>
 import { ref, reactive, defineAsyncComponent } from 'vue'
+import { getAdultDate, dateFormatter } from '@/helpers/tools'
 import { joinData } from '@/data/index'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 
@@ -107,43 +111,22 @@ export default {
   name: 'RegisterComponent',
   components: {
     ChapterTitle,
-    DatePicker
+    DatePicker,
   },
   setup() {
     const advantageList = joinData.advantageList
 
-    const getAdultDate = () => {
-      const now = new Date()
-
-      const _year = now.getFullYear()
-      const _month = `${now.getMonth() + 1}`
-      const _date = `${now.getDate()}`
-      const _hour = `${now.getHours()}`
-      const _min = `${now.getMinutes()}`
-      const _sec = `${now.getSeconds()}`
-
-      const adultDate = `${_year - 20}-${_month.padStart(
-        2,
-        '0'
-      )}-${_date.padStart(2, '0')}T${_hour.padStart(2, '0')}:${_min.padStart(
-        2,
-        '0'
-      )}:${_sec.padStart(2, '0')}+08:00`
-
-      return new Date(adultDate)
-    }
-
-    const formRef = ref(null)
     const selectedDate = ref(null)
     const formData = ref({
       name: '',
       gender: '',
       birthDate: getAdultDate(),
+      // birthDate: new Date('2023/8/8'),
       phone: '',
       address: '',
       profilePicture: null,
       cleaningExperience: '',
-      serviceExperience: ''
+      serviceExperience: '',
     })
 
     const genderOptions = reactive(['男', '女'])
@@ -152,7 +135,7 @@ export default {
       '是，經驗3年以上',
       '是，經驗小於3年',
       '無，平常會做家事',
-      '無，完全沒有經驗，但有興趣'
+      '無，完全沒有經驗，但有興趣',
     ])
 
     const serviceExperienceOptions = reactive(['是', '否'])
@@ -161,20 +144,51 @@ export default {
 
     const phoneRules = [
       (value) => !!value || '手機不能為空',
-      (value) => /^\d{10}$/.test(value) || '手機號碼格式不正確'
+      (value) => /^\d{10}$/.test(value) || '手機號碼格式不正確',
     ]
 
     const profilePictureRules = [
       (value) => !!value || '請上傳大頭照',
-      (value) => !value || value.size <= 1048576 || '檔案大小不能超過 1MB'
+      (value) => console.log('value', value[0].size),
+      (value) => !value || value[0].size <= 1048576 || '檔案大小不能超過 1MB',
     ]
 
     const submitForm = () => {
-      if (formRef.value.validate()) {
-        console.log('表單提交成功', formData.value)
+      if (validateFields()) {
+        console.log('表單提交成功')
+        console.log(dateFormatter(formData.value.birthDate, 'yyyy/mm/dd'))
+
         // 彈窗 感謝您的填寫！若有適合您的職缺，我們將盡快與您聯繫。
       }
     }
+
+    const showError = ref(false)
+    const errorMessage = ref('')
+    const validateFields = () => {
+      if (
+        !formData.value.name ||
+        !formData.value.gender ||
+        !formData.value.birthDate ||
+        !formData.value.phone ||
+        !formData.value.address ||
+        !formData.value.profilePicture ||
+        !formData.value.cleaningExperience ||
+        !formData.value.serviceExperience
+      ) {
+        showError.value = true
+        errorMessage.value = '所有欄位不可空白'
+        return false
+      }
+
+      if (!/^\d{10}$/.test(formData.value.phone)) {
+        showError.value = true
+        errorMessage.value = '手機號碼格式不正確'
+        return false
+      }
+
+      return true
+    }
+
     return {
       advantageList,
       formData,
@@ -185,9 +199,11 @@ export default {
       commonRules,
       phoneRules,
       profilePictureRules,
-      submitForm
+      showError,
+      errorMessage,
+      submitForm,
     }
-  }
+  },
 }
 </script>
 

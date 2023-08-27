@@ -11,13 +11,13 @@
       >
         服務項目
       </div>
-      <!-- <div
+      <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.performance }"
         @click="goto(PAGE.performance)"
       >
         清潔實績
-      </div> -->
+      </div>
       <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.notice }"
@@ -25,13 +25,13 @@
       >
         常見問題
       </div>
-      <!-- <div
+      <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.member }"
         @click="goto(PAGE.member)"
       >
         會員
-      </div> -->
+      </div>
     </div>
     <div class="menu__block-mobile">
       <img v-if="!isMenuOpen" :src="IconMenu" @click.capture="handleClick" />
@@ -39,13 +39,13 @@
     </div>
   </div>
   <div v-if="isMenuOpen" class="menu__extend use-in-mobile-760">
-    <!-- <div
+    <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.member }"
       @click="goto(PAGE.member)"
     >
       會員
-    </div> -->
+    </div>
     <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.service }"
@@ -53,13 +53,13 @@
     >
       服務項目
     </div>
-    <!-- <div
+    <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.performance }"
       @click="goto(PAGE.performance)"
     >
       清潔實績
-    </div> -->
+    </div>
     <div
       class="menu__item"
       :class="{ active: currenPage === PAGE.notice }"

@@ -2,9 +2,14 @@
   <div class="service" @click="closeSelect">
     <div class="content">
       <ChapterTitle idData="ct-s1" title="服務類型" />
-      <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" />
+      <Tabs
+        v-model:index="tabIndex"
+        v-model:tabId="tabId"
+        class="tabs"
+        :list="tabList"
+      />
       <ChapterTitle idData="ct-s2" title="服務內容" />
-      <template v-if="tabIndex === 0">
+      <template v-if="tabId === ID.atHome">
         <div class="service-cards-content">
           「單次預約」<br />
           <span> 1人服務 $1,800元起<br />2人服務 $3,390元起<br /> </span>
@@ -19,54 +24,8 @@
           />
         </div>
       </template>
-
-      <div v-if="tabIndex !== 0" class="service-desc">
-        <template v-if="tabIndex === 1">
-          「裝潢細清」與「居家清潔」的差異<br /><br />
-          「裝潢細清」針對施工過程留下來的大量粉塵，進行細部清潔，由上到下、由內到外，包含天花板、間接照明、牆壁、櫃體表面、櫃內以及所有碰觸到的物體表面以及櫃內間隔零件，清潔後可安心入住。
-          <br /><br />
-          「居家清潔」針對日常因居住所留下的髒污、較難去除的污垢做清潔，或是針對較常使用的區域做定期的維持。
-          <br /><br />
-          裝潢細清除了需事先完成『粗清』外，粗清後需間隔3天以上再進行細清，效果更佳。<br />
-          收費方式採鐘點費計價，基本預約為2人1組，週一至週五費用為6780元起(週末另計)。
-        </template>
-        <template v-if="tabIndex === 4">
-          <div class="image-block">
-            <div class="image-box">
-              <img :src="ImageOffice1" />
-              <span>精油</span>
-            </div>
-            <div class="image-box">
-              <img :src="ImageOffice2" />
-              <span>酵素</span>
-            </div>
-            <div class="image-box">
-              <img :src="ImageOffice3" />
-              <span>真空抽洗</span>
-            </div>
-          </div>
-          <div class="image-block-content">
-            除塵蟎 <img :src="IconArrow" /> 活性酵素靜敷
-            <img :src="IconArrow" /> 嚴選刷具刷洗
-            <img :src="IconArrow" /> 精油殺菌去除異味
-            <img :src="IconArrow" /> 多道嘖抽回收污垢髒水<br />
-            <br />
-            專業處理讓織物中殘留的血漬、尿垢、嘔吐、污漬等，達到一定的清潔效果
-          </div>
-        </template>
-        <div v-if="tabIndex === 2" class="office-service">
-          <ol>
-            <li>● 平面清潔</li>
-            <li>● 地板清潔</li>
-            <li>● 廁所清潔</li>
-          </ol>
-          <ol>
-            <li>● 茶水間清潔</li>
-            <li>● 垃圾整理</li>
-            <li>● 玻璃清潔</li>
-          </ol>
-        </div>
-        <div v-if="tabIndex === 3" class="charge-desc">
+      <div v-if="tabId === ID.periodical" class="service-desc">
+        <div class="charge-desc">
           <div class="option">
             <div class="select-2">
               「定期服務」<br /><br />
@@ -99,10 +58,6 @@
           </div>
         </div>
         <div class="customer-connect">
-          <template v-if="tabIndex === 2">
-            <div>由於辦公室規格多樣化</div>
-            <div>目前尚未提供官網評估、預約</div>
-          </template>
           <div>
             請加入官方 LINE 洽詢客服<br />
             由專人為您服務
@@ -110,6 +65,16 @@
             立即諮詢
           </div>
         </div>
+      </div>
+      <div class="html-data" v-html="htmlData?.depiction"></div>
+      <div class="button-block">
+        <CustomButton
+          class="button"
+          primary
+          full
+          text="更多案例"
+          @click="goToPerformance"
+        />
       </div>
     </div>
     <div class="area">
@@ -146,7 +111,14 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+const ID = {
+  periodical: '631e550c-50b6-9410-80be-70c9e2ea1ac0',
+  atHome: 'a5566c0b-d33e-4acb-a778-8f9cfdc52779',
+}
+
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import api from '@/api/index'
 import emitter from '@/helpers/emitter'
 import { serviceData } from '@/data/index'
 import ChapterTitle from '@/components/ChapterTitle.vue'
@@ -154,6 +126,7 @@ import Selector from '@/components/Selector.vue'
 import Tabs from '@/components/SlideTabs.vue'
 import ServiceCard from '@/components/ServiceCard.vue'
 import MapTaichung from '@/components/MapTaichung.vue'
+import CustomButton from '@/components/Button.vue'
 import ImageOffice1 from '@/assets/image/image/image-service-office1.jpeg'
 import ImageOffice2 from '@/assets/image/image/image-service-office2.jpeg'
 import ImageOffice3 from '@/assets/image/image/image-service-office3.jpeg'
@@ -169,16 +142,35 @@ export default {
     Selector,
     Tabs,
     ServiceCard,
-    MapTaichung
+    MapTaichung,
+    CustomButton,
   },
   setup() {
+    const router = useRouter()
+
     const tabIndex = ref(0)
+    const tabId = ref('')
     const selectorIndex = ref(0)
     const contentList = computed(() => serviceData.contentList[tabIndex.value])
 
-    const tabList = ref(serviceData.tabList)
-    const serviceAreaList = ref(serviceData.serviceAreaList)
+    const tabList = ref([])
+    onMounted(() => {
+      api
+        .getCategory()
+        .then((res) => {
+          tabList.value = res
+          tabId.value = res[0].id
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    })
 
+    const htmlData = computed(() => {
+      return tabList.value.filter((item) => item.id === tabId.value)[0]
+    })
+
+    const serviceAreaList = ref(serviceData.serviceAreaList)
     const selectZipIndex = ref(-1)
     const selectZip = (zip, idx) => {
       selectZipIndex.value = idx
@@ -193,62 +185,38 @@ export default {
       }, 50)
     }
 
-    const serviceCardIndex = ref(0)
-    const isFadeOut = ref(false)
-    const handlePrev = () => {
-      isFadeOut.value = true
-
-      setTimeout(() => {
-        isFadeOut.value = false
-        serviceCardIndex.value =
-          serviceCardIndex.value - 1 < 0
-            ? contentList.value.length - 1
-            : serviceCardIndex.value - 1
-      }, 500)
-    }
-    const handleNext = () => {
-      isFadeOut.value = true
-      setTimeout(() => {
-        isFadeOut.value = false
-        serviceCardIndex.value =
-          serviceCardIndex.value + 1 > contentList.value.length - 1
-            ? 0
-            : serviceCardIndex.value + 1
-      }, 500)
+    const goToPerformance = () => {
+      router.push({ name: 'Performance' })
     }
 
     return {
+      ID,
       outerCloseSelect,
       tabIndex,
+      tabId,
       selectorIndex,
       contentList,
       tabList,
+      htmlData,
       serviceAreaList,
       selectZipIndex,
-      serviceCardIndex,
-      isFadeOut,
       closeSelect,
       selectZip,
-      handlePrev,
-      handleNext,
+      goToPerformance,
       IconLine,
       IconNext,
       IconPrev,
       ImageOffice1,
       ImageOffice2,
       ImageOffice3,
-      IconArrow
+      IconArrow,
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .service {
-  /* .charge {
-    background-color: var(--beige);
-    padding: 72px 0;
-  } */
   .content {
     background-color: var(--white);
     padding: 72px 0;
@@ -274,59 +242,11 @@ export default {
         flex: 0 0 calc((100% - 60px) / 3);
       }
     }
-    /* .service-cards.use-in-mobile {
-      position: relative;
-      padding: 30px 5vw;
-
-      .service-card-prev,
-      .service-card-next {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        overflow: hidden;
-        background-color: #ffffff;
-        top: 23%;
-        border-radius: 50%;
-        box-shadow: 0px 2px 4px 0px #666666;
-      }
-
-      .service-card-prev {
-        left: 5px;
-      }
-      .service-card-next {
-        right: 5px;
-      }
-    } */
     .service-desc {
       width: 100%;
       padding: 40px 20vw 0 20vw;
       line-height: 24px;
       font-size: var(--font-l);
-      .image-block {
-        padding-bottom: 50px;
-        display: flex;
-        justify-content: center;
-        .image-box {
-          width: calc((100vw - 48px) / 3);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          img {
-            border-radius: 16px;
-            width: 100%;
-          }
-        }
-        .image-box ~ .image-box {
-          margin-left: 24px;
-        }
-      }
-      .image-block-content {
-        text-align: center;
-        img {
-          width: 20px;
-          margin: 0 4px;
-        }
-      }
       .customer-connect {
         margin-top: 40px;
         width: 100%;
@@ -349,10 +269,6 @@ export default {
           margin: 0 4px;
         }
       }
-      .office-service {
-        display: flex;
-        justify-content: center;
-      }
       .charge-desc {
         display: flex;
         flex-direction: column;
@@ -367,6 +283,16 @@ export default {
           }
         }
       }
+    }
+    .html-data {
+      width: 80vw;
+      padding: 24px;
+      margin: 36px auto;
+    }
+    .button-block {
+      width: 50vw;
+      max-width: 320px;
+      margin: 0 auto;
     }
   }
   .area {
@@ -452,11 +378,6 @@ export default {
 }
 @media (max-width: 460px) {
   .service {
-    /* .charge {
-      .charge-desc {
-        padding: 0 5vw;
-      }
-    } */
     .content {
       .service-desc {
         padding: 40px 10vw 0 10vw;
@@ -467,19 +388,6 @@ export default {
           .image-box {
             width: 80vw;
             height: calc(80vw * 0.7);
-          }
-        }
-
-        .image-box ~ .image-box {
-          margin-left: 0 !important;
-          margin-top: 32px;
-        }
-        .office-service {
-          justify-content: flex-start;
-          flex-direction: column;
-          ol {
-            width: 120px;
-            margin: 0 auto;
           }
         }
       }

@@ -6,7 +6,7 @@
       </div>
       <img :src="IconArrowDown" />
     </div>
-    <div v-html="item.answer" class="content"></div>
+    <div class="content" v-html="item.answer"></div>
   </div>
 </template>
 
@@ -18,27 +18,27 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     index: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   emits: ['block-expend'],
   setup(props, { emit }) {
     const handleClick = () => {
       emit('block-expend', {
         isExpend: !props.item.isExpend,
-        index: props.index
+        index: props.index,
       })
     }
 
     return {
       handleClick,
-      IconArrowDown
+      IconArrowDown,
     }
-  }
+  },
 }
 </script>
 

@@ -1,12 +1,17 @@
 <template>
-  <div class="image-compare-card" :class="{ 'is-first': isFirst }">
+  <div class="image-compare-card">
     <component :is="dynamicComponent" v-if="dynamicComponent">
       <!-- eslint-disable -->
       <img slot="first" style="width: 100%" :src="imgData.beforeImage" />
       <img slot="second" style="width: 100%" :src="imgData.afterImage" />
       <!-- eslint-enable -->
     </component>
-    <CustomButton class="button" full :text="imgData.btnText" />
+    <CustomButton
+      v-if="!hideButton"
+      class="button"
+      full
+      :text="imgData.btnText"
+    />
   </div>
 </template>
 
@@ -17,17 +22,17 @@ import CustomButton from './Button.vue'
 export default {
   name: 'ImageCompareCardComponent',
   components: {
-    CustomButton
+    CustomButton,
   },
   props: {
     imgData: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
-    isFirst: {
+    hideButton: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup() {
     const dynamicComponent = ref(null)
@@ -37,13 +42,13 @@ export default {
       dynamicComponent.value = componentAModule.ImgComparisonSlider
     })
     return { dynamicComponent }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .image-compare-card {
-  width: calc((100% - 10vw) / 3);
+  width: 100%;
   border-radius: 10px;
   overflow: hidden;
   position: relative;

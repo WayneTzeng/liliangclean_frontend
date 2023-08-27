@@ -38,8 +38,8 @@ export class Axios {
       baseURL: this._baseURL,
       timeout: this._timeout,
       headers: {
-        Authorization: `Bearer ${this._token}`
-      }
+        Authorization: `Bearer ${this._token}`,
+      },
     })
   }
 

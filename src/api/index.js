@@ -13,7 +13,7 @@ export default {
     return new Promise((resolve, reject) => {
       const params = {
         username,
-        password
+        password,
       }
       axios
         .post('auth/login', params)
@@ -37,7 +37,7 @@ export default {
         userHomePhone,
         userMail,
         userPwd,
-        userAddress
+        userAddress,
       }
       axios
         .post('member/register', params)
@@ -86,5 +86,5 @@ export default {
           reject(error)
         })
     })
-  }
+  },
 }

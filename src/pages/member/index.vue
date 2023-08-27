@@ -1,6 +1,6 @@
 <template>
   <div class="member">
-    <Tabs class="tabs" v-model:index="tabIndex" :list="tabList" commonType />
+    <Tabs v-model:index="tabIndex" class="tabs" :list="tabList" commonType />
 
     <v-container v-show="tabIndex === 0">
       <v-row justify="center">
@@ -9,10 +9,10 @@
             <v-card-actions>
               <v-spacer />
               <v-btn
+                v-if="!editing"
                 color="primary"
                 variant="outlined"
                 @click="startEditing"
-                v-if="!editing"
               >
                 編輯
               </v-btn>
@@ -68,8 +68,8 @@
                     <v-btn
                       color="primary"
                       block
-                      @click="save"
                       :disabled="!editing"
+                      @click="save"
                       >儲存</v-btn
                     >
                   </v-col>
@@ -77,8 +77,8 @@
                     <v-btn
                       color="red"
                       block
-                      @click="cancel"
                       :disabled="!editing"
+                      @click="cancel"
                       >取消</v-btn
                     >
                   </v-col>
@@ -176,7 +176,7 @@ export default {
   name: 'MemberPage',
   components: {
     Tabs,
-    OrderDetailCard
+    OrderDetailCard,
   },
   setup() {
     const router = useRouter()
@@ -198,13 +198,13 @@ export default {
 
     const phoneRules = [
       (value) => !!value || '請輸入手機號碼',
-      (value) => /^\d{10}$/.test(value) || '手機號碼必須是10位數字'
+      (value) => /^\d{10}$/.test(value) || '手機號碼必須是10位數字',
     ]
 
     const emailRules = [
       (value) => !!value || '請輸入電子郵件',
       (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || '電子郵件格式不正確'
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || '電子郵件格式不正確',
     ]
 
     const startEditing = () => {
@@ -262,7 +262,7 @@ export default {
       '訂購日期',
       '訂單金額',
       '訂單狀態',
-      '備註'
+      '備註',
     ])
 
     // from api
@@ -274,7 +274,7 @@ export default {
         orderDate: '2023-07-28',
         payment: '1000',
         orderStatus: '已完成',
-        notice: '備註內容1'
+        notice: '備註內容1',
       },
       {
         orderNo: '0002',
@@ -283,7 +283,7 @@ export default {
         orderDate: '2023-07-29',
         payment: '1500',
         orderStatus: '處理中',
-        notice: '備註內容2'
+        notice: '備註內容2',
       },
       {
         orderNo: '0002',
@@ -292,7 +292,7 @@ export default {
         orderDate: '2023-07-29',
         payment: '1500',
         orderStatus: '處理中',
-        notice: '備註內容2'
+        notice: '備註內容2',
       },
       {
         orderNo: '0002',
@@ -301,8 +301,8 @@ export default {
         orderDate: '2023-07-29',
         payment: '1500',
         orderStatus: '處理中',
-        notice: '備註內容2'
-      }
+        notice: '備註內容2',
+      },
     ])
 
     const getRowColorClass = (index) => {
@@ -335,9 +335,9 @@ export default {
       startEditing,
       cancel,
       save,
-      openOrderCard
+      openOrderCard,
     }
-  }
+  },
 }
 </script>
 
