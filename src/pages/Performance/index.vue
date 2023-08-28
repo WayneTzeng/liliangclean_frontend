@@ -5,13 +5,13 @@
       <img :src="ImageBanner" />
     </div>
     <div class="performance-category">
-      <PerformanceArticleCard />
       <ChapterTitle idData="ct-p1" title="案例項目" />
       <div class="category-block">
         <PerformanceCategoryItem
           v-for="(category, idx) in categoryList"
           :key="idx"
           :category="category"
+          @click="goTo(category.id)"
         />
       </div>
     </div>
@@ -20,10 +20,10 @@
 
 <script>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import api from '@/api/index'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 import PerformanceCategoryItem from '@/components/PerformanceCategoryItem.vue'
-import PerformanceArticleCard from '../../components/PerformanceArticleCard.vue' //remove
 import ImageBanner from '@/assets/image/image/image-performance-banner.png'
 
 export default {
@@ -31,24 +31,29 @@ export default {
   components: {
     ChapterTitle,
     PerformanceCategoryItem,
-    PerformanceArticleCard, //remove
   },
   setup() {
+    const router = useRouter()
+
     const categoryList = ref([])
     onMounted(() => {
       api
         .getCategory()
         .then((res) => {
           categoryList.value = res
-          console.log(categoryList.value)
         })
         .catch((error) => {
           console.error(error)
         })
     })
 
+    const goTo = (id) => {
+      router.push({ name: 'ArticleList', params: { id } })
+    }
+
     return {
       categoryList,
+      goTo,
       ImageBanner,
     }
   },
@@ -111,13 +116,9 @@ export default {
         font-size: var(--font-xl);
       }
     }
-    .performance-category {
-      .category-block {
-        .performance-category-item {
-          flex: 0 0 100%;
-        }
-      }
-    }
+  }
+  .performance-category {
+    padding: 36px 0;
   }
 }
 </style>

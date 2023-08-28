@@ -1,8 +1,8 @@
 <template>
   <div
     class="chapter-title"
-    :class="{ white, beige }"
-    :style="{ '--titleWidth': titleWidth }"
+    :class="{ short, white, beige }"
+    :style="{ '--titleWidth': innerWidth }"
   >
     <div class="left-line"></div>
     <div :id="idData" class="title">
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 export default {
   name: 'ChapterTitleComponent',
@@ -34,6 +34,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    short: {
+      type: Boolean,
+      default: false,
+    },
+    outerWidth: {
+      type: Number,
+      default: 88,
+    },
   },
   setup(props) {
     const titleWidth = ref(0)
@@ -45,6 +53,10 @@ export default {
       calcWidth()
     })
 
+    const innerWidth = computed(() =>
+      props.outerWidth ? props.outerWidth : titleWidth
+    )
+
     if (!import.meta.env.SSR) {
       window.onresize = () => {
         calcWidth()
@@ -53,6 +65,7 @@ export default {
 
     return {
       titleWidth,
+      innerWidth,
     }
   },
 }
@@ -85,6 +98,19 @@ export default {
   }
   .right-line {
     right: 10vw;
+  }
+  &.short {
+    width: calc(100% - 5vw);
+    .left-line,
+    .right-line {
+      width: calc(((70vw - var(--titleWidth) * 1px) - 272px) / 2);
+    }
+    .left-line {
+      left: 0;
+    }
+    .right-line {
+      right: 0;
+    }
   }
   &.white {
     .title {

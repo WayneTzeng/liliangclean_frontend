@@ -70,11 +70,28 @@ export default {
         })
     })
   },
-  getCategoryDetail(category_id) {
+  getArticleCategory(category_id) {
     const _params = { category_id }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/detail', _params)
+        .get('category/articleCategory', _params)
+        .then((res) => {
+          if (res.code === Code.Success) {
+            resolve(res.data)
+          } else {
+            throw res
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  getArticleList(articleList_id) {
+    const _params = { articleList_id }
+    return new Promise((resolve, reject) => {
+      axios
+        .get('category/articleList', _params)
         .then((res) => {
           if (res.code === Code.Success) {
             resolve(res.data)

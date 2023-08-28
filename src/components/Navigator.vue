@@ -26,6 +26,7 @@
         常見問題
       </div>
       <div
+        v-if="!IS_PRD"
         class="menu__item"
         :class="{ active: currenPage === PAGE.member }"
         @click="goto(PAGE.member)"
@@ -40,6 +41,7 @@
   </div>
   <div v-if="isMenuOpen" class="menu__extend use-in-mobile-760">
     <div
+      v-if="!IS_PRD"
       class="menu__item"
       :class="{ active: currenPage === PAGE.member }"
       @click="goto(PAGE.member)"
@@ -79,6 +81,8 @@ const PAGE = {
   login: 'Login',
   performance: 'Performance',
 }
+
+const IS_PRD = import.meta.env.VITE_ENV_TYPE === 'prd'
 
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
@@ -126,6 +130,7 @@ export default {
 
     return {
       PAGE,
+      IS_PRD,
       isMenuOpen,
       currenPage,
       handleClick,

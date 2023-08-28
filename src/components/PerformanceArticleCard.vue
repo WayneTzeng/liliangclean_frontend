@@ -3,13 +3,13 @@
     <ImageCompareCard :imgData="imgData" hideButton />
     <div class="content">
       <div class="title">
-        這是標題這是標題這是標題這是標題這是標題這是標題這是標題這是標題這是標題這是標題
+        {{ item.title }}
       </div>
-      <div class="description">
-        這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文這是內文
+      <div class="subTitle">
+        {{ item.subTitle }}
       </div>
       <div class="more">Read More></div>
-      <div class="date">2023/11/13</div>
+      <div class="date">{{ item.date }}</div>
     </div>
   </div>
 </template>
@@ -23,11 +23,16 @@ export default {
   components: {
     ImageCompareCard,
   },
-  props: {},
-  setup() {
+  props: {
+    item: {
+      type: Object,
+      default: () => {},
+    },
+  },
+  setup(props) {
     const imgData = ref({
-      beforeImage: 'https://picsum.photos/360/300?random=1',
-      afterImage: 'https://picsum.photos/360/300?random=2',
+      beforeImage: props.item.beforeImage,
+      afterImage: props.item.afterImage,
     })
     return {
       imgData,
@@ -39,12 +44,12 @@ export default {
 <style lang="scss" scoped>
 .performance-article-card {
   width: 360px;
-  height: 600px;
+  /* height: 600px; */
   position: relative;
   .content {
-    width: 360px;
-    position: absolute;
-    top: 290px;
+    width: 100%;
+    position: relative;
+    top: -10px;
     left: 0;
     padding: 20px 36px 48px 36px;
     background-color: var(--white);
@@ -63,7 +68,7 @@ export default {
       line-height: 24px;
       text-align: justify;
     }
-    .description {
+    .subTitle {
       margin-top: 36px;
       width: 100%;
       height: 60px;

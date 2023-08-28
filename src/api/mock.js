@@ -47,25 +47,96 @@ export default {
       },
     ],
   },
-  'category/detail': {
+  'category/articleCategory': {
     code: 200,
     message: '成功',
     data: [
       {
-        id: 'f96e0fdb-6a70-4b5b-a038-90eb68a686c9',
+        id: 'b1',
         name: '客廳清潔',
-        image: '',
       },
       {
-        id: 'c2ad4047-2eef-493b-8512-10b47613071a',
+        id: 'b2',
         name: '廚房清潔',
-        image: '',
       },
       {
-        id: '52f194a7-a510-4ac5-9dd1-892abc70772d',
+        id: 'b3',
         name: '房間清潔',
-        image: '',
+      },
+      {
+        id: 'b4',
+        name: '房間清潔',
+      },
+      {
+        id: 'b5',
+        name: '房間清潔',
+      },
+      {
+        id: 'b6',
+        name: '房間清潔房間清潔房間清潔',
       },
     ],
+  },
+  'category/articleList': {
+    code: 200,
+    message: '成功',
+    data: [
+      {
+        id: 'c1',
+        beforeImage: 'https://picsum.photos/360/300?random=1',
+        afterImage: 'https://picsum.photos/360/300?random=2',
+        date: '2023/08/08',
+        title: '這是文章標題一',
+        subTitle:
+          '這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述',
+      },
+      {
+        id: 'c2',
+        beforeImage: 'https://picsum.photos/360/300?random=1',
+        afterImage: 'https://picsum.photos/360/300?random=2',
+        date: '2023/08/08',
+        title:
+          '這是非常長的文章標題這是非常長的文章標題這是非常長的文章標題這是非常長的文章標題這是非常長的文章標題',
+        subTitle:
+          '這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述',
+      },
+      {
+        id: 'c3',
+        beforeImage: 'https://picsum.photos/360/300?random=1',
+        afterImage: 'https://picsum.photos/360/300?random=2',
+        date: '2023/08/08',
+        title: '這是文章標題三',
+        subTitle:
+          '這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述',
+      },
+      {
+        id: 'c4',
+        beforeImage: 'https://picsum.photos/360/300?random=1',
+        afterImage: 'https://picsum.photos/360/300?random=2',
+        date: '2023/08/08',
+        title: '這是文章標題三',
+        subTitle:
+          '這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述',
+      },
+      {
+        id: 'c5',
+        beforeImage: 'https://picsum.photos/360/300?random=1',
+        afterImage: 'https://picsum.photos/360/300?random=2',
+        date: '2023/08/08',
+        title: '這是文章標題三',
+        subTitle:
+          '這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述這是簡述',
+      },
+    ],
+  },
+  'category/article': {
+    code: 200,
+    message: '成功',
+    data: {
+      nextId: 'd1-1',
+      prevId: 'd1-3',
+      title: '',
+      description: '',
+    },
   },
 }
