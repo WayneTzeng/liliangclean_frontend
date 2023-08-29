@@ -103,7 +103,7 @@ export default {
     width: calc(100% - 5vw);
     .left-line,
     .right-line {
-      width: calc(((70vw - var(--titleWidth) * 1px) - 272px) / 2);
+      width: calc(((70vw - var(--titleWidth) * 1px) - 172px - 5vw) / 2);
     }
     .left-line {
       left: 0;
@@ -129,6 +129,18 @@ export default {
     .left-line,
     .right-line {
       background-color: var(--beige);
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .chapter-title {
+    &.short {
+      width: calc(100% - 5vw);
+      .left-line,
+      .right-line {
+        width: calc(((80vw - var(--titleWidth) * 1px) - 172px - 5vw) / 2);
+      }
     }
   }
 }

@@ -104,4 +104,21 @@ export default {
         })
     })
   },
+  getArticle(article_id) {
+    const _params = { article_id }
+    return new Promise((resolve, reject) => {
+      axios
+        .get('category/article', _params)
+        .then((res) => {
+          if (res.code === Code.Success) {
+            resolve(res.data)
+          } else {
+            throw res
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
 }

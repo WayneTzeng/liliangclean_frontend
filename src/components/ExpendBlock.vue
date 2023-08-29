@@ -1,5 +1,5 @@
 <template>
-  <div class="expend-block" :class="{ active: item.isExpend }">
+  <div class="expand-block" :class="{ active: item.isExpand }">
     <div class="title" @click="handleClick">
       <div>
         {{ item.question }}
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import IconArrowDown from '../assets/image/icon/icon-arrow-down.svg'
+import IconArrowDown from '@/assets/image/icon/icon-arrow-down.svg'
 
 export default {
   name: 'ExpendBlock',
@@ -25,11 +25,11 @@ export default {
       default: 0,
     },
   },
-  emits: ['block-expend'],
+  emits: ['block-expand'],
   setup(props, { emit }) {
     const handleClick = () => {
-      emit('block-expend', {
-        isExpend: !props.item.isExpend,
+      emit('block-expand', {
+        isExpand: !props.item.isExpand,
         index: props.index,
       })
     }
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.expend-block {
+.expand-block {
   width: 80vw;
   margin: 0 10vw;
   color: var(--brown);
@@ -83,11 +83,11 @@ export default {
   }
 }
 
-.expend-block ~ .expend-block {
+.expand-block ~ .expand-block {
   margin-top: 30px;
 }
 @media (max-width: 500px) {
-  .expend-block {
+  .expand-block {
     width: 90vw;
     margin: 0 5vw;
     &.active {

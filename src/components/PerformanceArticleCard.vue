@@ -1,7 +1,7 @@
 <template>
   <div class="performance-article-card">
     <ImageCompareCard :imgData="imgData" hideButton />
-    <div class="content">
+    <div class="content" @click="clickAction">
       <div class="title">
         {{ item.title }}
       </div>
@@ -28,6 +28,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    clickAction: {
+      type: Function,
+      default: () => {},
+    },
   },
   setup(props) {
     const imgData = ref({
@@ -44,17 +48,20 @@ export default {
 <style lang="scss" scoped>
 .performance-article-card {
   width: 360px;
-  /* height: 600px; */
   position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px 0px #888888;
+  background-color: var(--white);
   .content {
     width: 100%;
     position: relative;
     top: -10px;
     left: 0;
-    padding: 20px 36px 48px 36px;
+    padding: 24px;
     background-color: var(--white);
-    border-radius: 10px;
 
+    cursor: pointer;
     .title {
       width: 100%;
       height: 48px;
@@ -69,7 +76,7 @@ export default {
       text-align: justify;
     }
     .subTitle {
-      margin-top: 36px;
+      margin-top: 24px;
       width: 100%;
       height: 60px;
       overflow: hidden;
@@ -87,16 +94,11 @@ export default {
       color: #ef5a5a;
     }
     .date {
-      margin-top: 40px;
+      margin-top: 20px;
       font-size: 10px;
       color: var(--brown);
       text-align: right;
     }
-  }
-}
-
-@media (max-width: 460px) {
-  .performance-article-card {
   }
 }
 </style>

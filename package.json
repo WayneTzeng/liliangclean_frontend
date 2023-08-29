@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node start-server",
-    "start-mock": "cross-env VITE_ENV_TYPE=mock node start-server",
+    "start-mock": "cross-env VITE_ENV_TYPE=mock npx nodemon start-server",
     "start-uat": "cross-env VITE_ENV_TYPE=uat node start-server",
     "build": "cross-env yarn build:client && yarn run build:server",
     "build:client": "cross-env VITE_ENV_TYPE=prd vite build --ssrManifest --outDir dist/client",

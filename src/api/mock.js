@@ -135,8 +135,11 @@ export default {
     data: {
       nextId: 'd1-1',
       prevId: 'd1-3',
-      title: '',
-      description: '',
+      title: '這是文章標題',
+      description: '這是<br />後端來的<br />資料',
+      date: '2023/08/08',
+      categoryName: '定期清潔', // 大項名稱
+      articleListName: '客廳清潔', // 中項名稱
     },
   },
 }

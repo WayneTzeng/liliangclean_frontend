@@ -1,19 +1,28 @@
 <template>
   <div class="category-menu">
     <div class="title">案例項目</div>
-    <div
-      v-for="(item, idx) in category"
-      :key="idx"
-      class="option"
-      :class="{ active: articleListId === item.id }"
-      @click="handleClick(item.id)"
-    >
-      {{ item.name }}
+    <div class="option-block" :class="{ 'is-expand': isExpand }">
+      <div class="selected-option" @click="expand">
+        {{ selectedCategory }}
+        <img :src="IconArrowDown" />
+      </div>
+      <div
+        v-for="(item, idx) in category"
+        :key="idx"
+        class="option"
+        :class="{ active: articleListId === item.id }"
+        @click="handleClick(item.id)"
+      >
+        {{ item.name }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue'
+import IconArrowDown from '@/assets/image/icon/icon-arrow-down.svg'
+
 export default {
   name: 'CategoryMenuComponent',
   components: {},
@@ -26,15 +35,28 @@ export default {
       type: String,
       default: '',
     },
+    selectedCategory: {
+      type: String,
+      default: '',
+    },
   },
   emits: ['update:articleListId', 'selectArticleList'],
   setup(props, { emit }) {
+    const isExpand = ref(true)
+
     const handleClick = (id) => {
       emit('update:articleListId', id)
       emit('selectArticleList')
     }
+
+    const expand = () => {
+      isExpand.value = !isExpand.value
+    }
     return {
+      isExpand,
       handleClick,
+      expand,
+      IconArrowDown,
     }
   },
 }
@@ -47,7 +69,8 @@ export default {
   overflow: hidden;
 
   .title,
-  .option {
+  .option-block .option,
+  .option-block .selected-option {
     height: 48px;
     font-size: var(--font-m);
     overflow: hidden;
@@ -65,29 +88,61 @@ export default {
     color: var(--white);
     background-color: var(--brown);
   }
-  .option {
-    color: var(--brown);
-    background-color: var(--height-light);
-    &:hover {
+
+  .option-block {
+    .option {
+      color: var(--brown);
+      background-color: var(--height-light);
+      position: relative;
+      &:hover {
+        background-color: var(--primary);
+      }
+      &.active {
+        background-color: var(--primary);
+      }
+      &:last-child {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        overflow: hidden;
+      }
+    }
+    .option ~ .option {
+      cursor: pointer;
+      border-top: solid 1px var(--brown);
+    }
+    .selected-option {
+      display: none;
       background-color: var(--primary);
+      border-bottom: solid 1px var(--brown);
+      position: relative;
+      img {
+        position: absolute;
+        right: 16px;
+        top: 13px;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease-in-out;
+      }
     }
-    &.active {
-      background-color: var(--primary);
-    }
-    &:last-child {
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      overflow: hidden;
-    }
-  }
-  .option ~ .option {
-    cursor: pointer;
-    border-top: solid 1px var(--brown);
   }
 }
 
 @media (max-width: 460px) {
   .category-menu {
+    .option-block {
+      height: 47px;
+      overflow: scroll;
+      overflow: inherit;
+      transition: height 0.3s ease-in-out;
+      .selected-option {
+        display: block;
+      }
+      &.is-expand {
+        height: 240px;
+        img {
+          transform: rotate(180deg);
+        }
+      }
+    }
   }
 }
 </style>

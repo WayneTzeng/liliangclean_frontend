@@ -72,13 +72,13 @@
     </template>
     <div class="question">
       <ChapterTitle idData="ct-n3" title="常見問題" white />
-      <div class="expend">
+      <div class="expand">
         <ExpendBlock
           v-for="(item, idx) in questionList"
           :key="idx"
           :item="item"
           :index="idx"
-          @block-expend="showExpendBlock"
+          @block-expand="showExpendBlock"
         />
       </div>
     </div>
@@ -107,10 +107,10 @@ export default {
 
     const showExpendBlock = (params) => {
       questionList.value.forEach((item) => {
-        item.isExpend = false
+        item.isExpand = false
       })
       setTimeout(() => {
-        questionList.value[params.index].isExpend = params.isExpend
+        questionList.value[params.index].isExpand = params.isExpand
       }, 300)
     }
 
@@ -176,7 +176,7 @@ export default {
   .question {
     padding: 72px 0;
     background-color: var(--primary);
-    .expend {
+    .expand {
       margin-top: 48px;
     }
   }

@@ -43,7 +43,6 @@ export default {
     const isOpen = ref(false)
 
     const onSelect = (index) => {
-      console.log('index', index)
       option.value = props.specification[index]
       emit('update:index', index)
     }

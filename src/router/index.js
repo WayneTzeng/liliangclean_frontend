@@ -36,6 +36,11 @@ const routes = [
     component: () => import('@/pages/performance/articleList.vue'),
   },
   {
+    path: '/performance/:id/:articleId',
+    name: 'Article',
+    component: () => import('@/pages/performance/article.vue'),
+  },
+  {
     path: '/join',
     name: 'Join',
     component: () => import('@/pages/join/index.vue'),

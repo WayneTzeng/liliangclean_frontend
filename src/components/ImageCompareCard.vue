@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, markRaw } from 'vue'
 import CustomButton from './Button.vue'
 
 export default {
@@ -39,7 +39,7 @@ export default {
 
     onMounted(async () => {
       const componentAModule = await import('@img-comparison-slider/vue')
-      dynamicComponent.value = componentAModule.ImgComparisonSlider
+      dynamicComponent.value = markRaw(componentAModule.ImgComparisonSlider)
     })
     return { dynamicComponent }
   },
