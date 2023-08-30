@@ -121,7 +121,6 @@ export default {
       name: '',
       gender: '',
       birthDate: getAdultDate(),
-      // birthDate: new Date('2023/8/8'),
       phone: '',
       address: '',
       profilePicture: null,
@@ -153,13 +152,30 @@ export default {
       (value) => !value || value[0].size <= 1048576 || '檔案大小不能超過 1MB',
     ]
 
-    const submitForm = () => {
+    const submitForm = async () => {
+      let uploadBase64Image = ''
+      if (formData.value.profilePicture) {
+        const file = formData.value.profilePicture[0]
+        uploadBase64Image = await readFileAsBase64(file)
+      }
+
       if (validateFields()) {
         console.log('表單提交成功')
+        console.log('base64', uploadBase64Image)
         console.log(dateFormatter(formData.value.birthDate, 'yyyy/mm/dd'))
 
         // 彈窗 感謝您的填寫！若有適合您的職缺，我們將盡快與您聯繫。
       }
+    }
+
+    const readFileAsBase64 = (file) => {
+      return new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.onload = (event) => {
+          resolve(event.target.result)
+        }
+        reader.readAsDataURL(file)
+      })
     }
 
     const showError = ref(false)
