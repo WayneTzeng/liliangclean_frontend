@@ -111,7 +111,6 @@ export default {
     const paginationList = computed(() => {
       const array = []
       const pages = Math.ceil(articleList.value.length / CARDS_PER_PAGE)
-      console.log('pages')
       for (let i = 1; i < pages + 1; i++) {
         array.push(i)
       }

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import IconArrowDown from '@/assets/image/icon/icon-arrow-down.svg'
 
 export default {
@@ -43,6 +43,14 @@ export default {
   emits: ['update:articleListId', 'selectArticleList'],
   setup(props, { emit }) {
     const isExpand = ref(true)
+
+    const expandForWindowSize = () => {
+      isExpand.value = window.innerWidth > 460
+    }
+
+    onMounted(() => {
+      expandForWindowSize()
+    })
 
     const handleClick = (id) => {
       emit('update:articleListId', id)
@@ -115,6 +123,7 @@ export default {
       background-color: var(--primary);
       border-bottom: solid 1px var(--brown);
       position: relative;
+      cursor: pointer;
       img {
         position: absolute;
         right: 16px;
