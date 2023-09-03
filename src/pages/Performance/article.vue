@@ -12,6 +12,20 @@
       <div class="date">{{ articleData.date }}</div>
       <div class="description" v-html="articleData.description"></div>
     </div>
+    <div class="pagination">
+      <img
+        :src="IconArrowDown"
+        alt="icon-prev-page"
+        class="prev-page"
+        @click="goToPage(0)"
+      />
+      <img
+        :src="IconArrowDown"
+        alt="icon-next-page"
+        class="next-page"
+        @click="goToPage(1)"
+      />
+    </div>
   </div>
 </template>
 
@@ -19,6 +33,7 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import api from '@/api/index'
+import IconArrowDown from '@/assets/image/icon/icon-arrow-down.svg'
 
 export default {
   name: 'ArticlePage',
@@ -28,16 +43,21 @@ export default {
     const router = useRouter()
 
     const articleListId = route.params.id
+    const articleId = route.params.articleId
 
     const articleData = ref({})
-    api
-      .getArticle()
-      .then((res) => {
-        articleData.value = res
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+
+    const getArticle = (id) => {
+      api
+        .getArticle(id)
+        .then((res) => {
+          articleData.value = res
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+    getArticle(articleId)
 
     const goToCategory = () => {
       router.push({ name: 'Performance' })
@@ -52,10 +72,18 @@ export default {
       })
     }
 
+    const goToPage = (isNext) => {
+      const id = isNext ? articleData.value.nextId : articleData.value.prevId
+      getArticle(id)
+      history.replaceState(null, null, `/performance/${articleListId}/${id}`)
+    }
+
     return {
       articleData,
       goToCategory,
       goToArticleList,
+      goToPage,
+      IconArrowDown,
     }
   },
 }
@@ -90,6 +118,26 @@ export default {
     }
     .description {
       margin-top: 24px;
+    }
+  }
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw;
+    box-sizing: border-box;
+    .prev-page,
+    .next-page {
+      cursor: pointer;
+    }
+
+    .prev-page {
+      transform: rotate(90deg);
+    }
+    .next-page {
+      margin-left: 5vw;
+      transform: rotate(-90deg);
     }
   }
 }
