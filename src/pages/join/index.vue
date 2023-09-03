@@ -161,12 +161,9 @@ export default {
       }
 
       if (validateFields()) {
-        console.log('表單提交成功')
-<<<<<<< HEAD
-        console.log(formData)
-=======
-        console.log('base64', uploadBase64Image)
->>>>>>> 68508c19117e6d4023143c14b19ac0cc200510c4
+        // console.log('表單提交成功')
+        // console.log(formData)
+        // console.log('base64', uploadBase64Image)
         console.log(dateFormatter(formData.value.birthDate, 'yyyy/mm/dd'))
         // 彈窗 感謝您的填寫！若有適合您的職缺，我們將盡快與您聯繫。
       }
