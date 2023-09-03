@@ -154,10 +154,10 @@ export default {
     ]
 
     const submitForm = async () => {
-      let uploadBase64Image = ''
+      //let uploadBase64Image = ''
       if (formData.value.profilePicture) {
-        const file = formData.value.profilePicture[0]
-        uploadBase64Image = await readFileAsBase64(file)
+        //const file = formData.value.profilePicture[0]
+        //uploadBase64Image = await readFileAsBase64(file)
       }
 
       if (validateFields()) {
@@ -169,15 +169,15 @@ export default {
       }
     }
 
-    const readFileAsBase64 = (file) => {
-      return new Promise((resolve) => {
-        const reader = new FileReader()
-        reader.onload = (event) => {
-          resolve(event.target.result)
-        }
-        reader.readAsDataURL(file)
-      })
-    }
+    // const readFileAsBase64 = (file) => {
+    //   return new Promise((resolve) => {
+    //     const reader = new FileReader()
+    //     reader.onload = (event) => {
+    //       resolve(event.target.result)
+    //     }
+    //     reader.readAsDataURL(file)
+    //   })
+    // }
 
     const showError = ref(false)
     const errorMessage = ref('')
