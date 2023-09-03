@@ -24,7 +24,7 @@
         style="text-wrap: nowrap"
         @click="selectTab(idx, tab.id)"
       >
-        {{ tab.name }}
+        {{ tab.categoryName }}
       </swiper-slide>
     </swiper>
   </div>

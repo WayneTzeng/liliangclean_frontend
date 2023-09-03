@@ -42,6 +42,7 @@ export default {
       axios
         .post('member/register', params)
         .then((res) => {
+          resolve(res.data)
           if (res.code === Code.Success) {
             resolve(res.data)
           } else {
@@ -57,13 +58,18 @@ export default {
     const _params = {}
     return new Promise((resolve, reject) => {
       axios
-        .get('category', _params)
-        .then((res) => {
-          if (res.code === Code.Success) {
-            resolve(res.data)
-          } else {
-            throw res
+        .get('category', _params, {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
           }
+        })
+        .then((res) => {
+          resolve(res.data)
+          // if (res.code === Code.Success) {
+          //   resolve(res.data)
+          // } else {
+          //   throw res
+          // }
         })
         .catch((error) => {
           reject(error)
@@ -93,6 +99,7 @@ export default {
       axios
         .get('category/articleList', _params)
         .then((res) => {
+          resolve(res.data)
           if (res.code === Code.Success) {
             resolve(res.data)
           } else {
@@ -110,6 +117,39 @@ export default {
       axios
         .get('category/article', _params)
         .then((res) => {
+          resolve(res.data)
+          if (res.code === Code.Success) {
+            resolve(res.data)
+          } else {
+            throw res
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+
+  joinUs(fromData) {
+    return new Promise((resolve, reject) => {
+      const params = {
+        "name": fromData.value.name,
+        "birthday": fromData.value.birthday,
+        "phone": fromData.value.phone,
+        "address": fromData.value.address,
+        "profilePicture": fromData.value.profilePicture,
+        "pictureName": fromData.value.pictureName,
+        "cleaningExperience": fromData.value.cleaningExperience,
+        "cleaningSeniority": fromData.value.cleaningSeniority,
+        "serviceExperience": fromData.value.serviceExperience,
+        "serviceSeniority": fromData.value.serviceSeniority,
+        "gender": fromData.value.gender,
+      }
+      // const params = fromData
+      axios
+        .post('liliangclean-api/joinus/', params)
+        .then((res) => {
+          resolve(res.data)
           if (res.code === Code.Success) {
             resolve(res.data)
           } else {

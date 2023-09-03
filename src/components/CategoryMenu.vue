@@ -13,7 +13,7 @@
         :class="{ active: articleListId === item.id }"
         @click="handleClick(item.id)"
       >
-        {{ item.name }}
+        {{ item.categoryName }}
       </div>
     </div>
   </div>

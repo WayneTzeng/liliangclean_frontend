@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <div class="html-data" v-html="htmlData?.depiction"></div>
+      <div class="html-data" v-html="htmlData?.categoryDepiction"></div>
       <div class="button-block">
         <CustomButton
           class="button"
@@ -158,8 +158,9 @@ export default {
       api
         .getCategory()
         .then((res) => {
+          console.log(res)
           tabList.value = res
-          tabId.value = res[0].id
+          tabId.value = res
         })
         .catch((error) => {
           console.error(error)

@@ -104,6 +104,7 @@ import { ref, reactive, defineAsyncComponent } from 'vue'
 import { getAdultDate, dateFormatter } from '@/helpers/tools'
 import { joinData } from '@/data/index'
 import ChapterTitle from '@/components/ChapterTitle.vue'
+import api from '@/api/index'
 
 const DatePicker = defineAsyncComponent(() => import('vue3-datepicker'))
 
@@ -156,8 +157,8 @@ export default {
     const submitForm = () => {
       if (validateFields()) {
         console.log('表單提交成功')
+        console.log(formData)
         console.log(dateFormatter(formData.value.birthDate, 'yyyy/mm/dd'))
-
         // 彈窗 感謝您的填寫！若有適合您的職缺，我們將盡快與您聯繫。
       }
     }
@@ -185,7 +186,7 @@ export default {
         errorMessage.value = '手機號碼格式不正確'
         return false
       }
-
+      api.joinUs(formData)
       return true
     }
 

@@ -1,13 +1,13 @@
 <template>
   <div class="service-card">
     <div class="image">
-      <img :src="service.image" />
+      <img :src="service.before" />
     </div>
     <div class="content">
       <div class="title">{{ service.title }}</div>
-      <div v-if="service.subTitle.length" class="sub-title">
-        <div v-for="(subTitle, idx) in service.subTitle" :key="idx">
-          {{ subTitle }}
+      <div v-if="service.subtitle.length" class="sub-title">
+        <div v-for="(subtitle, idx) in service.subtitle" :key="idx">
+          {{ subtitle }}
         </div>
       </div>
       <div class="can-do__box">
@@ -60,14 +60,14 @@ export default {
   props: {
     service: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   setup() {
     return {
-      IconClock
+      IconClock,
     }
-  }
+  },
 }
 </script>
 
