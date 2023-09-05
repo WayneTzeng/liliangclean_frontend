@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import viteEslint from 'vite-plugin-eslint'
-import path from 'path'
+const { resolve } = require('path')
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,8 +13,10 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': resolve(__dirname, 'src')
     },
     extensions: ['.ts', '.js']
   }
 })
+
+
