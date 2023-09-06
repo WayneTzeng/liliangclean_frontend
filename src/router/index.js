@@ -28,17 +28,17 @@ const routes = [
   {
     path: '/performance',
     name: 'Performance',
-    component: () => import('@/pages/performance/index.vue'),
+    component: () => import('@/pages/Performance/index.vue'),
   },
   {
     path: '/performance/:id',
     name: 'ArticleList',
-    component: () => import('@/pages/performance/articleList.vue'),
+    component: () => import('@/pages/Performance/articleList.vue'),
   },
   {
     path: '/performance/:id/:articleId',
     name: 'Article',
-    component: () => import('@/pages/performance/article.vue'),
+    component: () => import('@/pages/Performance/article.vue'),
   },
   {
     path: '/join',
