@@ -4,11 +4,11 @@ import errorHandler from './errorHandler'
 import { ErrorCodes, Methods, CODE_TIMEOUT } from './const'
 import { setLoading } from '../helpers/loading'
 
-const MOCK_DELAY_TIME = 1500
+const MOCK_DELAY_TIME = 500
 const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
 // const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
 // const isPRD = import.meta.env.VITE_ENV_TYPE === 'prd'
-const API_URL = "https://liliangclean-backend.onrender.com/liliangclean-api/"
+const API_URL = 'https://liliangclean-backend.onrender.com/liliangclean-api/'
 // ? 'https://localhost:8085/liliangclean-api/'
 // : isPRD
 //   ? 'https://localhost:8085/liliangclean-api/'
@@ -72,8 +72,8 @@ export class Axios {
       callAxios = isGet
         ? this._axios.get(url, { params })
         : isPost
-          ? this._axios.post(url, params)
-          : null
+        ? this._axios.post(url, params)
+        : null
 
       setLoading(true)
 

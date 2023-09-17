@@ -226,7 +226,7 @@ export default {
 
 <style lang="scss" scoped>
 .advantage {
-  padding: 72px 0;
+  padding: 72px 10vw;
   background-color: var(--white);
   .advantage-cards {
     width: 480px;
@@ -263,7 +263,7 @@ export default {
 }
 
 .join-us {
-  padding: 72px 0;
+  padding: 72px 10vw;
   background-color: var(--beige);
 }
 
@@ -299,11 +299,12 @@ export default {
 
 @media (max-width: 460px) {
   .advantage {
+    padding: 72px 15vw;
     .advantage-cards {
       width: 100vw !important;
-      padding: 0 10vw;
+      padding: 0;
       .advantage-card {
-        width: 80vw;
+        width: 70vw;
       }
 
       .advantage-card:nth-child(2) {
@@ -314,6 +315,9 @@ export default {
         margin-left: 0;
       }
     }
+  }
+  .join-us {
+    padding: 72px 15vw;
   }
 }
 </style>

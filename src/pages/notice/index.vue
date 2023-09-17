@@ -25,7 +25,7 @@
         />
       </div>
     </div>
-    <template v-if="true">
+    <div class="our-right-block">
       <ChapterTitle idData="ct-n2" title="不服務的內容" />
       <div class="our-right">
         <span
@@ -69,7 +69,7 @@
           立亮居家家飾清潔保有最終修改變更解釋之權利，如有任何變更內容將公佈於本網，恕不另行通知。
         </div>
       </div>
-    </template>
+    </div>
     <div class="question">
       <ChapterTitle idData="ct-n3" title="常見問題" white />
       <div class="expand">
@@ -142,7 +142,7 @@ export default {
     }
   }
   .why-us {
-    padding: 72px 0;
+    padding: 72px 10vw;
     /* background-color: var(--white); */
     .button-title {
       width: 200px;
@@ -161,18 +161,22 @@ export default {
     }
   }
 
-  .our-right {
-    padding: 72px 15vw;
-    color: var(--brown);
-    font-size: var(--font-m);
-    span {
-      line-height: 24px;
-    }
-    div {
-      margin-top: 24px;
-      color: var(--second);
+  .our-right-block {
+    padding: 72px 10vw;
+    .our-right {
+      margin-top: 72px;
+      color: var(--brown);
+      font-size: var(--font-m);
+      span {
+        line-height: 24px;
+      }
+      div {
+        margin-top: 24px;
+        color: var(--second);
+      }
     }
   }
+
   .question {
     padding: 72px 0;
     background-color: var(--primary);
@@ -206,9 +210,13 @@ export default {
         align-items: center;
       }
     }
-    .our-right {
-      font-size: var(--mobile-font-m);
-      padding: 40px 15vw 72px 15vw;
+    .our-right-block {
+      padding: 36px 15vw;
+      .our-right {
+        margin-top: 36px;
+        font-size: var(--mobile-font-m);
+        padding: 0 0 36px 0;
+      }
     }
   }
 }

@@ -72,18 +72,15 @@ export default {
   height: 74px;
 }
 .reservation {
-  padding: 72px 0;
+  padding: 72px 15vw;
   background-color: var(--beige);
   .reservation__description {
     margin-top: 40px;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: var(--brown);
     font-size: var(--font-l);
     font-weight: 600;
-
+    text-align: center;
     img {
       width: 20px;
       margin: 0 4px;
@@ -100,7 +97,7 @@ export default {
 }
 
 .performance {
-  padding: 72px 0;
+  padding: 72px 10vw;
   background-color: var(--primary);
 
   .performance__items {
@@ -120,7 +117,7 @@ export default {
     height: 46px;
   }
   .reservation {
-    padding: 34px 0;
+    padding: 34px 15vw;
     .reservation__description {
       margin-top: 18px;
       font-size: var(--mobile-font-l);
@@ -128,7 +125,7 @@ export default {
     .reservation__icons {
       display: flex;
       flex-wrap: wrap;
-      padding: 0 10vw;
+      padding: 0;
       .reservation__icon {
         flex: 0 0 100%;
       }
@@ -136,9 +133,10 @@ export default {
   }
 
   .performance {
-    padding: 34px 0 74px 0;
+    padding: 34px 15vw 74px 15vw;
     .performance__items {
       margin-top: 34px;
+      padding: 0;
       .performance__item {
         flex: 0 0 100%;
       }

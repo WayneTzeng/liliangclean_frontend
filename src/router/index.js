@@ -45,6 +45,11 @@ const routes = [
     name: 'Join',
     component: () => import('@/pages/join/index.vue'),
   },
+  {
+    path: '/reserve',
+    name: 'Reserve',
+    component: () => import('@/pages/reserve/index.vue'),
+  },
 ]
 
 export function createRouter() {

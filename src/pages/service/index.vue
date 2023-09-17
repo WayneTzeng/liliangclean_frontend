@@ -1,5 +1,5 @@
 <template>
-  <div class="service" @click="closeSelect">
+  <div class="service" @click.capture="closeSelect">
     <div class="content">
       <ChapterTitle idData="ct-s1" title="服務類型" />
       <Tabs
@@ -126,7 +126,7 @@ import Selector from '@/components/Selector.vue'
 import Tabs from '@/components/SlideTabs.vue'
 import ServiceCard from '@/components/ServiceCard.vue'
 import MapTaichung from '@/components/MapTaichung.vue'
-import CustomButton from '@/components/Button.vue'
+import CustomButton from '@/components/CustomButton.vue'
 import ImageOffice1 from '@/assets/image/image/image-service-office1.jpeg'
 import ImageOffice2 from '@/assets/image/image/image-service-office2.jpeg'
 import ImageOffice3 from '@/assets/image/image/image-service-office3.jpeg'
@@ -220,7 +220,7 @@ export default {
 .service {
   .content {
     background-color: var(--white);
-    padding: 72px 0;
+    padding: 72px 10vw;
     .tabs {
       margin: 35px auto;
     }
@@ -298,7 +298,7 @@ export default {
   }
   .area {
     background-color: var(--beige);
-    padding: 72px 0;
+    padding: 72px 10vw;
     .map-block {
       margin-top: 30px;
       display: flex;
@@ -309,7 +309,7 @@ export default {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        padding: 0 5vw;
+        padding: 0;
         .zip {
           cursor: pointer;
           margin-left: 20px;
@@ -380,8 +380,8 @@ export default {
 @media (max-width: 460px) {
   .service {
     .content {
+      padding: 40px 10vw;
       .service-desc {
-        padding: 40px 10vw 0 10vw;
         .image-block {
           flex-direction: column;
           align-items: center;
@@ -394,7 +394,7 @@ export default {
       }
       .service-cards-content {
         font-size: 18px;
-        F span {
+        span {
           font-size: 18px;
           line-height: 24px;
         }
@@ -402,7 +402,7 @@ export default {
     }
     .area {
       .map-block {
-        padding: 0 10vw;
+        padding: 0;
       }
     }
   }

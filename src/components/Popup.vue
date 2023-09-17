@@ -18,35 +18,35 @@
 
 <script>
 import iconCross from '../assets/image/icon/icon-cross.svg'
-import CustomButton from './Button.vue'
+import CustomButton from './CustomButton.vue'
 import { computed } from 'vue'
 
 export default {
   name: 'PopupComponent',
   components: {
-    CustomButton
+    CustomButton,
   },
   props: {
     show: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: {
       type: String,
-      default: '提醒'
+      default: '提醒',
     },
     confirmText: {
       type: String,
-      default: '確定'
+      default: '確定',
     },
     action: {
       type: Function,
-      default: () => {}
+      default: () => {},
     },
     hideOverlay: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   emits: ['update:show'],
   setup(props, { emit }) {
@@ -64,9 +64,9 @@ export default {
       innerShow,
       doAction,
       closeDialog,
-      iconCross
+      iconCross,
     }
-  }
+  },
 }
 </script>
 

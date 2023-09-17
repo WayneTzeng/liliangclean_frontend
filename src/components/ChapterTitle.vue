@@ -94,10 +94,10 @@ export default {
     background-color: var(--brown);
   }
   .left-line {
-    left: 10vw;
+    left: 0;
   }
   .right-line {
-    right: 10vw;
+    right: 0;
   }
   &.short {
     width: calc(100% - 5vw);
@@ -157,10 +157,10 @@ export default {
       top: 8px;
     }
     .left-line {
-      left: 15vw;
+      left: 0;
     }
     .right-line {
-      right: 15vw;
+      right: 0;
     }
   }
 }

@@ -143,6 +143,7 @@
             v-for="(value, key) in tableData"
             :key="key"
             class="order-card"
+            @click="openOrderCard"
           >
             <v-card-text>
               <div><strong>訂單編號:</strong> {{ value.orderNo }}</div>

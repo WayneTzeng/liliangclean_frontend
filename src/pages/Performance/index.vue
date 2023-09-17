@@ -77,9 +77,9 @@ export default {
     }
   }
   .performance-category {
-    padding: 72px 0;
+    padding: 72px 10vw;
     .category-block {
-      padding: 72px 10vw 0 10vw;
+      padding: 72px 0 0 0;
       display: flex;
       justify-content: flex-start;
       flex-wrap: wrap;
@@ -118,7 +118,7 @@ export default {
     }
   }
   .performance-category {
-    padding: 36px 0;
+    padding: 36px 15vw;
   }
 }
 </style>

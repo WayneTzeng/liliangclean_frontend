@@ -17,7 +17,7 @@
 
 <script>
 import { ref, onMounted, markRaw } from 'vue'
-import CustomButton from './Button.vue'
+import CustomButton from './CustomButton.vue'
 
 export default {
   name: 'ImageCompareCardComponent',

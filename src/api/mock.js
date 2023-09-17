@@ -142,4 +142,42 @@ export default {
       articleListName: '客廳清潔', // 中項名稱
     },
   },
+  'category/reserve': {
+    code: 200,
+    message: '成功',
+    data: {
+      componentList: [
+        {
+          name: '項目一',
+          type: 'selector',
+          id: 'select-1',
+          option: ['2人18小時', '2人24小時', '2人48小時'],
+        },
+        {
+          name: '項目二',
+          type: 'selector',
+          id: 'selectTest-1',
+          option: ['2人18小時', '2人24小時', '2人48小時'],
+        },
+        {
+          name: '項目三',
+          type: 'counter',
+          id: 'counter-1',
+          option: [],
+        },
+        {
+          name: '項目四',
+          type: 'checkbox',
+          id: 'checkbox-1',
+          option: [],
+        },
+        {
+          name: '項目五',
+          type: 'input',
+          id: 'input-1',
+          option: [],
+        },
+      ],
+    },
+  },
 }
