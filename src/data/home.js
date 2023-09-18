@@ -3,6 +3,8 @@ import ImageBanner2 from '../assets/image/image/image-banner-2.png'
 import ImageBanner3 from '../assets/image/image/image-banner-3.png'
 import ImageBanner4 from '../assets/image/image/image-banner-4.png'
 
+
+
 import Icon1 from '../assets/image/icon/icon-1.svg'
 import Icon2 from '../assets/image/icon/icon-2.svg'
 import Icon3 from '../assets/image/icon/icon-3.svg'
@@ -28,6 +30,8 @@ import ImagePerformanceBefore8 from '../assets/image/image/image-performance-8.p
 import ImagePerformanceAfter8 from '../assets/image/image/image-performance-1.png'
 import ImagePerformanceBefore9 from '../assets/image/image/image-performance-9.png'
 import ImagePerformanceAfter9 from '../assets/image/image/image-performance-1.png'
+
+import ImageGood1 from '../assets/image/image/image-good-1.gif'
 
 export default {
   bannerList: [
@@ -116,5 +120,11 @@ export default {
       afterImage: ImagePerformanceAfter9,
       btnText: '裝潢細清系統櫃',
     },
+  ],
+  goodList: [
+    {
+      url: ImageGood1,
+    },
+
   ],
 }

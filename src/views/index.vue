@@ -30,6 +30,7 @@
       />
     </div>
   </div>
+  <ImageSwiper id="swiper-content" :list="goodList" />
 </template>
 
 <script>
@@ -54,6 +55,7 @@ export default {
     const bannerList = ref(homeData.bannerList)
     const reservationIconList = ref(homeData.reservationIconList)
     const performanceList = ref(homeData.performanceList)
+    const goodList = ref(homeData.goodList)
 
     return {
       bannerList,
@@ -61,6 +63,7 @@ export default {
       performanceList,
       ImageLogo,
       IconLine,
+      goodList,
     }
   },
 }
