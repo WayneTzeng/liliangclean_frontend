@@ -154,32 +154,37 @@ export default {
           type: 'selector',
           id: 'select-1',
           option: ['2人18小時', '2人24小時', '2人48小時'],
+          basicTime: 0.3
         },
         {
           name: '項目二',
           type: 'selector',
           id: 'selectTest-1',
           option: ['2人18小時', '2人24小時', '2人48小時'],
+          basicTime: 0.3
         },
         {
           name: '項目三',
           type: 'counter',
           id: 'counter-1',
           option: [],
+          basicTime: 3
         },
         {
           name: '項目四',
           type: 'checkbox',
           id: 'checkbox-1',
           option: [],
+          basicTime: 6
         },
         {
           name: '項目五',
           type: 'input',
           id: 'input-1',
           option: [],
+          basicTime: 0.7
         },
       ],
     },
-  },
+  }
 }
