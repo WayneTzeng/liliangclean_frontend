@@ -146,6 +146,8 @@ export default {
     code: 200,
     message: '成功',
     data: {
+      serviceType: 0,
+      serviceName: "居家清潔",
       componentList: [
         {
           name: '項目一',
