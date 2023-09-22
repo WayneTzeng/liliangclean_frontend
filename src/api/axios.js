@@ -8,7 +8,7 @@ const MOCK_DELAY_TIME = 500
 const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
 // const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
 // const isPRD = import.meta.env.VITE_ENV_TYPE === 'prd'
-const API_URL = 'https://liliangclean-backend.onrender.com/liliangclean-api/'
+const API_URL = 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/FrontEnd/'
 // ? 'https://localhost:8085/liliangclean-api/'
 // : isPRD
 //   ? 'https://localhost:8085/liliangclean-api/'

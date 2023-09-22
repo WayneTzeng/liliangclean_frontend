@@ -58,13 +58,13 @@ export default {
     const _params = {}
     return new Promise((resolve, reject) => {
       axios
-        .get('category', _params, {
+        .get('Category/all_category', _params, {
           headers: {
             'Access-Control-Allow-Origin': '*',
           },
         })
         .then((res) => {
-          resolve(res.data)
+          resolve(res)
           // if (res.code === Code.Success) {
           //   resolve(res.data)
           // } else {
@@ -80,13 +80,13 @@ export default {
     const _params = { category_id }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/articleCategory', _params)
+        .get('Category/get_v1_category', _params)
         .then((res) => {
-          if (res.code === Code.Success) {
-            resolve(res.data)
-          } else {
-            throw res
-          }
+          // if (res.code === Code.Success) {
+          resolve(res)
+          // } else {
+          //   throw res
+          // }
         })
         .catch((error) => {
           reject(error)
@@ -97,14 +97,13 @@ export default {
     const _params = { articleList_id }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/articleList', _params)
+        .get('Article/articleList', _params)
         .then((res) => {
-          resolve(res.data)
-          if (res.code === Code.Success) {
-            resolve(res.data)
-          } else {
-            throw res
-          }
+          // if (res.code === Code.Success) {
+          resolve(res)
+          // } else {
+          //   throw res
+          // }
         })
         .catch((error) => {
           reject(error)
@@ -115,14 +114,14 @@ export default {
     const _params = { article_id }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/article', _params)
+        .get('Article/article', _params)
         .then((res) => {
-          resolve(res.data)
-          if (res.code === Code.Success) {
-            resolve(res.data)
-          } else {
-            throw res
-          }
+          // resolve(res.data)
+          // if (res.code === Code.Success) {
+          resolve(res.detail)
+          // } else {
+          //   throw res
+          // }
         })
         .catch((error) => {
           reject(error)
