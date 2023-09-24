@@ -31,7 +31,13 @@ import ImagePerformanceAfter8 from '../assets/image/image/image-performance-1.pn
 import ImagePerformanceBefore9 from '../assets/image/image/image-performance-9.png'
 import ImagePerformanceAfter9 from '../assets/image/image/image-performance-1.png'
 
-import ImageGood1 from '../assets/image/image/image-good-1.gif'
+import ImageGood1 from '../assets/image/image/image-good-1.png'
+import ImageGood2 from '../assets/image/image/image-good-2.png'
+import ImageGood3 from '../assets/image/image/image-good-3.png'
+import ImageGood4 from '../assets/image/image/image-good-4.png'
+import ImageGood5 from '../assets/image/image/image-good-5.png'
+import ImageGood6 from '../assets/image/image/image-good-6.png'
+import ImageGood7 from '../assets/image/image/image-good-7.png'
 
 export default {
   bannerList: [
@@ -124,6 +130,18 @@ export default {
   goodList: [
     {
       url: ImageGood1,
+    }, {
+      url: ImageGood2,
+    }, {
+      url: ImageGood3,
+    }, {
+      url: ImageGood4,
+    }, {
+      url: ImageGood5,
+    }, {
+      url: ImageGood6,
+    }, {
+      url: ImageGood7,
     },
 
   ],
