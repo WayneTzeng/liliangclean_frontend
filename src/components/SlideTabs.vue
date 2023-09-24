@@ -32,13 +32,10 @@
 
 <script>
 import { ref, onMounted } from 'vue'
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Scrollbar } from 'swiper/modules'
 import IconNext from '../assets/image/icon/icon-swiper-next.png'
 import IconPrev from '../assets/image/icon/icon-swiper-prev.png'
-
-// Import Swiper styles
 import 'swiper/css'
 
 export default {
@@ -77,11 +74,9 @@ export default {
 
     const slidesPerView = ref(1)
     const calcSlidesPerView = () => {
-      const dom = document.querySelector('.tabs')
-      if (dom.clientWidth * 0.8 < 720) {
+      if (window.innerWidth < 720 && window.innerWidth >= 500) {
         slidesPerView.value = 3
-      }
-      if (dom.clientWidth * 0.8 < 500) {
+      } else if (window.innerWidth < 500) {
         slidesPerView.value = 2
       } else {
         slidesPerView.value = 4
@@ -137,20 +132,15 @@ export default {
 .swiper-prev {
   left: -40px;
 }
-
 .tabs {
   width: 80vw;
 }
 
-// tab
 :deep(.swiper-slide) {
-  /* width: 180px !important; */
   width: calc((80vw - 32px) / 4) !important;
   height: 40px !important;
-  /* padding: 10px 0; */
   border-radius: 16px;
   border: 1px solid var(--second);
-  /* color: var(--second); */
   color: var(--beige);
   background-color: var(--second);
   opacity: 0.6;
@@ -166,9 +156,6 @@ export default {
     background-color: var(--second);
   }
 }
-:deep(.swiper-scrollbar) {
-  /* display: none; */
-}
 
 @media (max-width: 720px) {
   :deep(.swiper-slide) {
@@ -177,7 +164,7 @@ export default {
 }
 @media (max-width: 500px) {
   :deep(.swiper-slide) {
-    width: calc((80vw - 16px) / 2) !important;
+    width: calc((80vw - 12px) / 2) !important;
   }
 }
 </style>

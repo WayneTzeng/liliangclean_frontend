@@ -65,10 +65,9 @@ export default {
     const router = useRouter()
 
     const articleCategory = ref([])
-    const articleListId = ref('')
+    const articleListId = ref(route.params.id)
     const articleList = ref([])
     const outerWidth = ref(0)
-    const categoryId = route.params.id
 
     const selectArticleList = () => {
       api
@@ -83,14 +82,14 @@ export default {
 
     onMounted(async () => {
       await api
-        .getArticleCategory(categoryId)
+        .getArticleCategory(articleListId.value)
         .then((res) => {
           articleCategory.value = res
         })
         .catch((error) => {
           console.error(error)
         })
-      articleListId.value = articleCategory.value[0].id
+
       const dom = document.getElementById('ct-al1')
       setTimeout(() => {
         outerWidth.value = dom.clientWidth
@@ -103,8 +102,7 @@ export default {
       const array = articleCategory.value.filter(
         (item) => item.id === articleListId.value
       )
-
-      return array[0]?.name
+      return array[0]?.category_name
     })
 
     const selectedPage = ref(1)
@@ -136,7 +134,7 @@ export default {
       router.push({
         name: 'Article',
         params: {
-          id: categoryId,
+          id: articleListId.value,
           articleId,
         },
       })

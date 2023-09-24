@@ -1,11 +1,15 @@
 <template>
   <div class="category-menu">
     <div class="title">案例項目</div>
+    <div
+      class="selected-option"
+      :class="{ 'is-expand': isExpand }"
+      @click="expand"
+    >
+      {{ selectedCategory }}
+      <img :src="IconArrowDown" />
+    </div>
     <div class="option-block" :class="{ 'is-expand': isExpand }">
-      <div class="selected-option" @click="expand">
-        {{ selectedCategory }}
-        <img :src="IconArrowDown" />
-      </div>
       <div
         v-for="(item, idx) in category"
         :key="idx"
@@ -78,7 +82,7 @@ export default {
 
   .title,
   .option-block .option,
-  .option-block .selected-option {
+  .selected-option {
     height: 48px;
     font-size: var(--font-m);
     overflow: hidden;
@@ -96,12 +100,31 @@ export default {
     color: var(--white);
     background-color: var(--brown);
   }
-
+  .selected-option {
+    display: none;
+    background-color: var(--primary);
+    border-bottom: solid 1px var(--brown);
+    position: relative;
+    cursor: pointer;
+    img {
+      position: absolute;
+      right: 16px;
+      top: 13px;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease-in-out;
+    }
+    &.is-expand {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
   .option-block {
     .option {
       color: var(--brown);
       background-color: var(--height-light);
       position: relative;
+      cursor: pointer;
       &:hover {
         background-color: var(--primary);
       }
@@ -118,20 +141,6 @@ export default {
       cursor: pointer;
       border-top: solid 1px var(--brown);
     }
-    .selected-option {
-      display: none;
-      background-color: var(--primary);
-      border-bottom: solid 1px var(--brown);
-      position: relative;
-      cursor: pointer;
-      img {
-        position: absolute;
-        right: 16px;
-        top: 13px;
-        transform: rotate(0deg);
-        transition: transform 0.3s ease-in-out;
-      }
-    }
   }
 }
 
@@ -142,15 +151,16 @@ export default {
       overflow: scroll;
       overflow: inherit;
       transition: height 0.3s ease-in-out;
-      .selected-option {
-        display: block;
-      }
       &.is-expand {
         height: 240px;
+        overflow-y: scroll;
         img {
           transform: rotate(180deg);
         }
       }
+    }
+    .selected-option {
+      display: block;
     }
   }
 }

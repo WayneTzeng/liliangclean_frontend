@@ -1,15 +1,15 @@
 <template>
   <div class="article">
     <div class="bread-crumbs">
-      <span @click="goToCategory">{{ articleData.categoryName }}</span>
-      &nbsp;&gt;&nbsp;
-      <span @click="goToArticleList">{{ articleData.articleListName }}</span>
+      <!-- <span @click="goToCategory">{{ articleData.main_category }}</span>
+      &nbsp;&gt;&nbsp; -->
+      <span @click="goToArticleList">{{ articleData.main_category }}</span>
       &nbsp;&gt;&nbsp;
       <span>{{ articleData.title }}</span>
     </div>
     <div class="content">
       <div class="title">{{ articleData.title }}</div>
-      <div class="date">{{ articleData.date }}</div>
+      <div class="date">{{ articleData.modify_time }}</div>
       <div class="description" v-html="articleData.description"></div>
     </div>
     <div class="pagination">
@@ -73,7 +73,7 @@ export default {
     }
 
     const goToPage = (isNext) => {
-      const id = isNext ? articleData.value.nextId : articleData.value.prevId
+      const id = isNext ? articleData.value.next_id : articleData.value.prev_id
       getArticle(id)
       history.replaceState(null, null, `/performance/${articleListId}/${id}`)
     }

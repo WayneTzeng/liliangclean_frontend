@@ -20,6 +20,7 @@ export default {
 <style lang="scss" scoped>
 .performance-category-item {
   width: 200px;
+  cursor: pointer;
   img {
     width: 100%;
   }

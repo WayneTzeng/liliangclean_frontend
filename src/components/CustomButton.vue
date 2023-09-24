@@ -51,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 .button {
   background-color: #f0daae;
-  height: 70px;
+  height: 40px;
   box-sizing: border-box;
   outline: none;
   box-shadow: none;

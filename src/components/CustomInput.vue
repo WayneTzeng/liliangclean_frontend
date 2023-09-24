@@ -19,7 +19,6 @@ export default {
     const inputValue = ref('')
 
     const onInput = () => {
-      console.log('input')
       emit('update:inputValue', inputValue.value)
     }
 

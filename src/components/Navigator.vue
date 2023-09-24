@@ -13,7 +13,12 @@
       </div>
       <div
         class="menu__item"
-        :class="{ active: currenPage === PAGE.performance }"
+        :class="{
+          active:
+            currenPage === PAGE.performance ||
+            currenPage === PAGE.articleList ||
+            currenPage === PAGE.article,
+        }"
         @click="goto(PAGE.performance)"
       >
         清潔實績
@@ -57,7 +62,12 @@
     </div>
     <div
       class="menu__item"
-      :class="{ active: currenPage === PAGE.performance }"
+      :class="{
+        active:
+          currenPage === PAGE.performance ||
+          currenPage === PAGE.articleList ||
+          currenPage === PAGE.article,
+      }"
       @click="goto(PAGE.performance)"
     >
       清潔實績
@@ -80,6 +90,8 @@ const PAGE = {
   member: 'Member',
   login: 'Login',
   performance: 'Performance',
+  articleList: 'ArticleList',
+  article: 'Article',
 }
 
 const IS_PRD = import.meta.env.VITE_ENV_TYPE === 'prd'

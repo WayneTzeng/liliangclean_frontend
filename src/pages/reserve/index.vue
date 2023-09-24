@@ -63,7 +63,6 @@ export default {
       api
         .getReserve()
         .then((res) => {
-          console.log(res)
           reserveList.value = res.componentList
           reserveList.value.forEach((component) => {
             if (component.type === 'selector') component.openSelect = false
@@ -75,7 +74,6 @@ export default {
     })
 
     const handleClick = (id) => {
-      console.log('handleClick', id)
       reserveList.value.forEach((component) => {
         if (component.type === 'selector' && component.id !== id) {
           component.openSelect = true

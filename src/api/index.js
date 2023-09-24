@@ -58,18 +58,9 @@ export default {
     const _params = {}
     return new Promise((resolve, reject) => {
       axios
-        .get('category/', _params, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
-        })
+        .get('category', _params)
         .then((res) => {
           resolve(res)
-          // if (res.code === Code.Success) {
-          //   resolve(res.data)
-          // } else {
-          //   throw res
-          // }
         })
         .catch((error) => {
           reject(error)
@@ -82,11 +73,7 @@ export default {
       axios
         .get('category/articlesSitbarCategory', _params)
         .then((res) => {
-          // if (res.code === Code.Success) {
           resolve(res)
-          // } else {
-          //   throw res
-          // }
         })
         .catch((error) => {
           reject(error)
@@ -99,11 +86,7 @@ export default {
       axios
         .get('category/articleList', _params)
         .then((res) => {
-          // if (res.code === Code.Success) {
           resolve(res)
-          // } else {
-          //   throw res
-          // }
         })
         .catch((error) => {
           reject(error)
@@ -116,12 +99,7 @@ export default {
       axios
         .get('category/article', _params)
         .then((res) => {
-          // resolve(res.data)
-          // if (res.code === Code.Success) {
-          resolve(res.detail)
-          // } else {
-          //   throw res
-          // }
+          resolve(res.data)
         })
         .catch((error) => {
           reject(error)

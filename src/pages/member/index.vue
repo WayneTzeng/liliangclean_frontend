@@ -158,7 +158,6 @@
       v-if="orderCardShow"
       @closeOrderCard="
         () => {
-          console.log
           orderCardShow = false
         }
       "

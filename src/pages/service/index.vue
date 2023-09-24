@@ -2,7 +2,7 @@
   <div class="service" @click.capture="closeSelect">
     <div class="content">
       <ChapterTitle idData="ct-s1" title="服務類型" />
-      <Tabs
+      <SlideTabs
         v-model:index="tabIndex"
         v-model:tabId="tabId"
         class="tabs"
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <div class="html-data" v-html="htmlData?.categoryDepiction"></div>
+      <div class="html-data" v-html="htmlData?.category_depiction"></div>
       <div class="button-block">
         <CustomButton
           class="button"
@@ -123,7 +123,7 @@ import emitter from '@/helpers/emitter'
 import { serviceData } from '@/data/index'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 import Selector from '@/components/Selector.vue'
-import Tabs from '@/components/SlideTabs.vue'
+import SlideTabs from '@/components/SlideTabs.vue'
 import ServiceCard from '@/components/ServiceCard.vue'
 import MapTaichung from '@/components/MapTaichung.vue'
 import CustomButton from '@/components/CustomButton.vue'
@@ -140,7 +140,7 @@ export default {
   components: {
     ChapterTitle,
     Selector,
-    Tabs,
+    SlideTabs,
     ServiceCard,
     MapTaichung,
     CustomButton,
@@ -158,9 +158,8 @@ export default {
       api
         .getCategory()
         .then((res) => {
-          console.log(res)
           tabList.value = res
-          tabId.value = res
+          tabId.value = res[0].id
         })
         .catch((error) => {
           console.error(error)
@@ -245,7 +244,7 @@ export default {
     }
     .service-desc {
       width: 100%;
-      padding: 40px 20vw 0 20vw;
+      padding-top: 40px;
       line-height: 24px;
       font-size: var(--font-l);
       .customer-connect {
