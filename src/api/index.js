@@ -60,7 +60,7 @@ export default {
       axios
         .get('category', _params)
         .then((res) => {
-          resolve(res)
+          resolve(res.data)
         })
         .catch((error) => {
           reject(error)
@@ -73,7 +73,7 @@ export default {
       axios
         .get('category/articlesSitbarCategory', _params)
         .then((res) => {
-          resolve(res)
+          resolve(res.data)
         })
         .catch((error) => {
           reject(error)
@@ -86,7 +86,7 @@ export default {
       axios
         .get('category/articleList', _params)
         .then((res) => {
-          resolve(res)
+          resolve(res.data)
         })
         .catch((error) => {
           reject(error)

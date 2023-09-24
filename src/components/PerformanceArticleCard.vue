@@ -6,7 +6,7 @@
         {{ item.title }}
       </div>
       <div class="subTitle">
-        {{ item.subtitle }}
+        {{ item.subTitle }}
       </div>
       <div class="more">Read More></div>
       <div class="date">{{ item.date }}</div>
@@ -35,8 +35,8 @@ export default {
   },
   setup(props) {
     const imgData = ref({
-      beforeImage: props.item.before,
-      afterImage: props.item.after,
+      beforeImage: props.item.beforeImage,
+      afterImage: props.item.afterImage,
     })
     return {
       imgData,

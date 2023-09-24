@@ -38,7 +38,7 @@ export default {
     const categoryList = ref([])
     onMounted(() => {
       api
-        .getCategory()
+        .getArticleCategory()
         .then((res) => {
           categoryList.value = res
         })
