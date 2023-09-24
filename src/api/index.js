@@ -58,7 +58,7 @@ export default {
     const _params = {}
     return new Promise((resolve, reject) => {
       axios
-        .get('Category/all_category', _params, {
+        .get('category/', _params, {
           headers: {
             'Access-Control-Allow-Origin': '*',
           },
@@ -80,7 +80,7 @@ export default {
     const _params = { category_id }
     return new Promise((resolve, reject) => {
       axios
-        .get('Category/get_v1_category', _params)
+        .get('category/articlesSitbarCategory', _params)
         .then((res) => {
           // if (res.code === Code.Success) {
           resolve(res)
@@ -93,11 +93,11 @@ export default {
         })
     })
   },
-  getArticleList(articleList_id) {
-    const _params = { articleList_id }
+  getArticleList(categoryid) {
+    const _params = { categoryid }
     return new Promise((resolve, reject) => {
       axios
-        .get('Article/articleList', _params)
+        .get('category/articleList', _params)
         .then((res) => {
           // if (res.code === Code.Success) {
           resolve(res)
@@ -110,11 +110,11 @@ export default {
         })
     })
   },
-  getArticle(article_id) {
-    const _params = { article_id }
+  getArticle(id) {
+    const _params = { id }
     return new Promise((resolve, reject) => {
       axios
-        .get('Article/article', _params)
+        .get('category/article', _params)
         .then((res) => {
           // resolve(res.data)
           // if (res.code === Code.Success) {

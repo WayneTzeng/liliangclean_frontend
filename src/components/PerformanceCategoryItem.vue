@@ -1,7 +1,7 @@
 <template>
   <div class="performance-category-item">
-    <img :src="category.categoryImge" alt="" />
-    <div class="title">{{ category.categoryName }}</div>
+    <img :src="category.category_imge" alt="" />
+    <div class="title">{{ category.category_name }}</div>
   </div>
 </template>
 
