@@ -4,9 +4,10 @@ import errorHandler from './errorHandler'
 import { ErrorCodes, Methods, CODE_TIMEOUT } from './const'
 import { setLoading } from '../helpers/loading'
 
-const MOCK_DELAY_TIME = 1500
-const IS_USE_MOCK = import.meta.env.VITE_VUE_APP_USE_MOCK === 'true'
-const API_URL = import.meta.env.VITE_VUE_APP_BASE_API_URL
+const MOCK_DELAY_TIME = 500
+const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
+
+const API_URL = 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/'
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
@@ -25,7 +26,8 @@ export class Axios {
       baseURL: this._baseURL,
       timeout: this._timeout,
       headers: {
-        Authorization: `Bearer ${this._token}`,
+        'access-control-allow-origin': '*',
+        'x-csrf-token': this._token,
       },
     })
   }
@@ -83,10 +85,17 @@ export class Axios {
    * @param url target path
    * @param params request params
    */
-  get(url, params) {
+  async get(url, params, needToken = false) {
+    needToken &&
+      (await this._axios
+        .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
+        .then((res) => {
+          this.updateToken(res.data.cft)
+          this._init()
+        }))
+
     return this._api(Methods.GET, url, params)
   }
-
   /**
    * Post data to server
    * @param url target path
@@ -94,7 +103,14 @@ export class Axios {
    * @param recallOn enable recall (default: true)
    * @param recallTimes times of recall (default: 3)
    */
-  post(url, params) {
+  async post(url, params, needToken = false) {
+    needToken &&
+      (await this._axios
+        .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
+        .then((res) => {
+          this.updateToken(res.data.cft)
+        }))
+
     return this._api(Methods.POST, url, params)
   }
 
