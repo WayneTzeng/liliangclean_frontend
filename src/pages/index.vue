@@ -30,6 +30,7 @@
       />
     </div>
   </div>
+  <ImageSwiper id="swiper-content" :list="goodList" />
 </template>
 
 <script>
@@ -54,11 +55,13 @@ export default {
     const bannerList = ref(homeData.bannerList)
     const reservationIconList = ref(homeData.reservationIconList)
     const performanceList = ref(homeData.performanceList)
+    const goodList = ref(homeData.goodList)
 
     return {
       bannerList,
       reservationIconList,
       performanceList,
+      goodList,
       ImageLogo,
       IconLine,
     }
@@ -72,7 +75,7 @@ export default {
   height: 74px;
 }
 .reservation {
-  padding: 72px 15vw;
+  padding: 72px 10vw;
   background-color: var(--beige);
   .reservation__description {
     margin-top: 40px;
@@ -89,7 +92,7 @@ export default {
   .reservation__icons {
     display: flex;
     flex-wrap: wrap;
-    padding: 0 10vw;
+    padding: 0;
     .reservation__icon {
       flex: 0 0 33%;
     }
@@ -104,7 +107,7 @@ export default {
     margin-top: 64px;
     display: flex;
     flex-wrap: wrap;
-    padding: 0 10vw;
+    padding: 0;
     .performance__item {
       flex: 0 0 calc((100% - 10vw) / 3);
     }

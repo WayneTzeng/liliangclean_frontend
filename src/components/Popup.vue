@@ -106,6 +106,7 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 85vw;
+    max-width: 300px;
     height: fit-content;
     box-sizing: border-box;
     background: #ffffff;

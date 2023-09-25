@@ -2,13 +2,21 @@ import axios from './axios'
 import { ApiResponseCode as Code } from './const'
 
 export default {
-  /**
-   * 更新 API Token
-   * @param token 新的 token
-   */
   updateToken(token) {
     axios.updateToken(token)
   },
+  // getToken() {
+  //   return new Promise((resolve, reject) => {
+  //     axios
+  //       .post('YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1')
+  //       .then((res) => {
+  //         this.updateToken(res.cft)
+  //       })
+  //       .catch((error) => {
+  //         reject(error)
+  //       })
+  //   })
+  // },
   login(username, password) {
     return new Promise((resolve, reject) => {
       const params = {
@@ -16,7 +24,7 @@ export default {
         password,
       }
       axios
-        .post('auth/login', params)
+        .post('api/auth/login', params)
         .then((res) => {
           if (res.code === Code.Success) {
             resolve(res.data)
@@ -40,7 +48,7 @@ export default {
         userAddress,
       }
       axios
-        .post('member/register', params)
+        .post('api/member/register', params)
         .then((res) => {
           resolve(res.data)
           if (res.code === Code.Success) {
@@ -58,7 +66,7 @@ export default {
     const _params = {}
     return new Promise((resolve, reject) => {
       axios
-        .get('category', _params)
+        .get('api/category', _params)
         .then((res) => {
           resolve(res.data)
         })
@@ -71,7 +79,7 @@ export default {
     const _params = { category_id }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/articlesSitbarCategory', _params)
+        .get('api/category/articlesSitbarCategory', _params)
         .then((res) => {
           resolve(res.data)
         })
@@ -84,7 +92,7 @@ export default {
     const _params = { categoryid }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/articleList', _params)
+        .get('api/category/articleList', _params)
         .then((res) => {
           resolve(res.data)
         })
@@ -97,7 +105,7 @@ export default {
     const _params = { id }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/article', _params)
+        .get('api/category/article', _params)
         .then((res) => {
           resolve(res.data)
         })
@@ -123,14 +131,9 @@ export default {
       }
 
       axios
-        .post('liliangclean-api/joinus/', _params)
+        .post('api/staff/joinus/', _params)
         .then((res) => {
           resolve(res.data)
-          if (res.code === Code.Success) {
-            resolve(res.data)
-          } else {
-            throw res
-          }
         })
         .catch((error) => {
           reject(error)
@@ -141,14 +144,9 @@ export default {
     const _params = { reserveType }
     return new Promise((resolve, reject) => {
       axios
-        .get('category/reserve', _params)
+        .get('/api/order/getreserveitem', _params, true)
         .then((res) => {
           resolve(res.data)
-          if (res.code === Code.Success) {
-            resolve(res.data)
-          } else {
-            throw res
-          }
         })
         .catch((error) => {
           reject(error)

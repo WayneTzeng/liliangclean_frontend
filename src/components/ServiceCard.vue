@@ -5,9 +5,9 @@
     </div>
     <div class="content">
       <div class="title">{{ service.title }}</div>
-      <div v-if="service.subtitle.length" class="sub-title">
-        <div v-for="(subtitle, idx) in service.subtitle" :key="idx">
-          {{ subtitle }}
+      <div v-if="service.subTitle.length" class="sub-title">
+        <div v-for="(subtitle, idx) in service.subTitle" :key="idx">
+          {{ subTitle }}
         </div>
       </div>
       <div class="can-do__box">

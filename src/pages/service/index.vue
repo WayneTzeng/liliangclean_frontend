@@ -236,7 +236,7 @@ export default {
     .service-cards {
       display: flex;
       justify-content: flex-start;
-      padding: 30px 5vw;
+      padding: 30px 0;
       flex-wrap: wrap;
       .service-card {
         flex: 0 0 calc((100% - 60px) / 3);
@@ -407,6 +407,3 @@ export default {
   }
 }
 </style>
-
-
-

@@ -53,6 +53,10 @@ export default {
   overflow: hidden;
   position: relative;
 
+  :deep(.rendered) {
+    width: 100%;
+  }
+
   img {
     width: 100%;
   }

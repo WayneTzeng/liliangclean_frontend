@@ -6,13 +6,11 @@ import { setLoading } from '../helpers/loading'
 
 const MOCK_DELAY_TIME = 500
 const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
-// const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
-// const isPRD = import.meta.env.VITE_ENV_TYPE === 'prd'
-const API_URL = 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/api/'
-// ? 'https://localhost:8085/liliangclean-api/'
-// : isPRD
-//   ? 'https://localhost:8085/liliangclean-api/'
-//   : ''
+const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
+
+const API_URL = isUAT
+  ? 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/'
+  : 'https://localhost:8085/liliangclean-api/'
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
@@ -22,24 +20,17 @@ export class Axios {
     this._token = token
     this._recallOn = recallOn
     this._recallTimes = recallTimes
+
+    this._init()
   }
 
-  _setOption(option) {
-    if (option.baseURL) this._baseURL = option.baseURL
-    if (option.timeout) this._timeout = option.timeout
-    if (option.recallOn === false) this._timeout = option.timeout
-    if (option.recallTimes) this._recallTimes = option.recallTimes
-  }
-
-  _init(option) {
-    this._setOption(option)
-
+  _init() {
     this._axios = axios.create({
       baseURL: this._baseURL,
       timeout: this._timeout,
       headers: {
-        Authorization: `Bearer ${this._token}`,
-        'Access-Control-Allow-Origin': '*',
+        'access-control-allow-origin': '*',
+        'x-csrf-token': this._token,
       },
     })
   }
@@ -72,8 +63,8 @@ export class Axios {
       callAxios = isGet
         ? this._axios.get(url, { params })
         : isPost
-          ? this._axios.post(url, params)
-          : null
+        ? this._axios.post(url, params)
+        : null
 
       setLoading(true)
 
@@ -97,11 +88,17 @@ export class Axios {
    * @param url target path
    * @param params request params
    */
-  get(url, params, option = {}) {
-    this._init(option)
+  async get(url, params, needToken = false) {
+    needToken &&
+      (await this._axios
+        .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
+        .then((res) => {
+          this.updateToken(res.data.cft)
+          this._init()
+        }))
+
     return this._api(Methods.GET, url, params)
   }
-
   /**
    * Post data to server
    * @param url target path
@@ -109,8 +106,14 @@ export class Axios {
    * @param recallOn enable recall (default: true)
    * @param recallTimes times of recall (default: 3)
    */
-  post(url, params, option = {}) {
-    this._init(option)
+  async post(url, params, needToken = false) {
+    needToken &&
+      (await this._axios
+        .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
+        .then((res) => {
+          this.updateToken(res.data.cft)
+        }))
+
     return this._api(Methods.POST, url, params)
   }
 
