@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { computed } from 'vue'
 import ImageCompareCard from './ImageCompareCard.vue'
 
 export default {
@@ -34,9 +34,11 @@ export default {
     },
   },
   setup(props) {
-    const imgData = ref({
-      beforeImage: props.item.beforeImage,
-      afterImage: props.item.afterImage,
+    const imgData = computed(() => {
+      return {
+        beforeImage: props.item.beforeImage,
+        afterImage: props.item.afterImage,
+      }
     })
     return {
       imgData,

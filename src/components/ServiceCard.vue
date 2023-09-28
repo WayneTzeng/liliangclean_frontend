@@ -1,7 +1,7 @@
 <template>
   <div class="service-card">
     <div class="image">
-      <img :src="service.before" />
+      <img :src="service.image" />
     </div>
     <div class="content">
       <div class="title">{{ service.title }}</div>

@@ -2,8 +2,8 @@
   <div class="image-compare-card">
     <component :is="dynamicComponent" v-if="dynamicComponent">
       <!-- eslint-disable -->
-      <img slot="first" style="width: 100%" :src="imgData.beforeImage" />
-      <img slot="second" style="width: 100%" :src="imgData.afterImage" />
+      <img slot="first" style="width: 100%" :src="beforeImage" />
+      <img slot="second" style="width: 100%" :src="afterImage" />
       <!-- eslint-enable -->
     </component>
     <CustomButton
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref, onMounted, markRaw } from 'vue'
+import { ref, onMounted, computed, markRaw } from 'vue'
 import CustomButton from './CustomButton.vue'
 
 export default {
@@ -34,14 +34,17 @@ export default {
       default: false,
     },
   },
-  setup() {
+  setup(props) {
     const dynamicComponent = ref(null)
+
+    const beforeImage = computed(() => props.imgData.beforeImage)
+    const afterImage = computed(() => props.imgData.afterImage)
 
     onMounted(async () => {
       const componentAModule = await import('@img-comparison-slider/vue')
       dynamicComponent.value = markRaw(componentAModule.ImgComparisonSlider)
     })
-    return { dynamicComponent }
+    return { dynamicComponent, beforeImage, afterImage }
   },
 }
 </script>
