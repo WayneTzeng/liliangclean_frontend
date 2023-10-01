@@ -56,7 +56,9 @@ export default {
     const reservationIconList = ref(homeData.reservationIconList)
     const performanceList = ref(homeData.performanceList)
     const goodList = ref(homeData.goodList)
+    let s = location.pathname
 
+    console.log(s)
     return {
       bannerList,
       reservationIconList,
