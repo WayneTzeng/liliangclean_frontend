@@ -23,5 +23,6 @@ ENV PATH="$PATH:/root/.yarn/bin"
 COPY . .
 
 # 啟動
-CMD cd /app && yarn start
+CMD yarn serve 
+
 
