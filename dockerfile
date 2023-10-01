@@ -1,5 +1,5 @@
 # 使用官方 Node.js image 作為基礎 image
-FROM node:18
+FROM node:18-slim
 
 # 設置工作目錄
 WORKDIR /app
