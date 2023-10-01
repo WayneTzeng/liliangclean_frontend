@@ -10,7 +10,7 @@ const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
 
 const API_URL = isUAT
   ? 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/'
-  : 'https://localhost:8085/liliangclean-api/'
+  : 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/' // todo: modify when prd
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
