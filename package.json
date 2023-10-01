@@ -1,0 +1,66 @@
+{
+  "name": "vue-ssr",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=18 <20"
+  },
+  "scripts": {
+    "start": "cross-env VITE_ENV_TYPE=uat node start-server",
+    "start-mock": "cross-env VITE_ENV_TYPE=mock node start-server",
+    "start-uat": "cross-env VITE_ENV_TYPE=uat node start-server",
+    "build-uat": "cross-env yarn build-uat:client && yarn run build-uat:server",
+    "serve-uat": "cross-env NODE_ENV=production VITE_ENV_TYPE=uat node start-server",
+    "build-uat:client": "cross-env VITE_ENV_TYPE=uat vite build --ssrManifest --outDir dist/client",
+    "build-uat:server": "cross-env VITE_ENV_TYPE=uat vite build --ssr src/entry-server.js --outDir dist/server",
+    "build": "cross-env yarn build:client && yarn run build:server",
+    "build:client": "cross-env VITE_ENV_TYPE=prd vite build --ssrManifest --outDir dist/client",
+    "build:server": "cross-env VITE_ENV_TYPE=prd vite build --ssr src/entry-server.js --outDir dist/server",
+    "serve": "cross-env NODE_ENV=production VITE_ENV_TYPE=prd node start-server",
+    "test": "vitest",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@img-comparison-slider/vue": "^8.0.0",
+    "axios": "^1.4.0",
+    "compression": "^1.7.4",
+    "core-js": "^3.31.1",
+    "cross-env": "^7.0.3",
+    "express": "^4.18.1",
+    "mitt": "^3.0.1",
+    "pinia": "^2.0.20",
+    "serve-static": "^1.15.0",
+    "swiper": "^10.0.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.2",
+    "vue3-datepicker": "^0.4.0",
+    "vuetify": "^3.3.9"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@types/express": "^4.17.13",
+    "@types/node": "^18.7.13",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.9.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3",
+    "sass": "^1.56.2",
+    "sass-loader": "10",
+    "vite": "^3.0.7",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.27.2",
+    "vue-eslint-parser": "^9.1.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,tsx,ts}": [
+      "npm run lint"
+    ]
+  }
+}

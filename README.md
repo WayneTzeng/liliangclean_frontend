@@ -1,0 +1,133 @@
+# Cosmos Stamp
+
+立亮居家家飾清潔
+
+## Tech Stack
+
+- [Vue3](https://v3.vuejs.org/)
+- [Yarn](https://classic.yarnpkg.com/zh-Hant/)
+
+## Documents
+
+- UI 設計圖: [Figma](https://drive.google.com/file/d/1bQfM71ctj7wxDc_0w7zkkZDEr521942z/view?usp=sharing)
+- [API 文件]()
+
+## Installation
+
+安裝 [Yarn](https://classic.yarnpkg.com/zh-Hant/)
+
+```bash
+curl -o- -L https://yarnpkg.com/install.sh | bash
+```
+
+安裝 [Serve](https://github.com/vercel/serve)
+
+```bash
+yarn global add serve
+```
+
+## Workflow
+
+- 開發流程採 [Git Flow](https://gitbook.tw/chapters/gitflow/why-need-git-flow.html)
+- 正式環境主分支為 `master`
+- 開發環境主分支為 `develop`
+- UAT 測試環境分支為 `release-uat`
+- 欲開發新功能時，請一律以 `develop` 分支為基準，另開一個新的分支，並依照下列規則命名分支：
+  1. `feature`: 開發新功能, ex: `feature-add_dialog`
+  2. `bugfix`: 修復尚未發佈上線的錯誤, ex: `bugfix-homepage_css`
+  3. `hotfix`: 修復線上版本的錯誤, ex: `hotfix-member_login_failure`
+  4. `release`: 發佈一個新版本, ex: `release-uat` or `release-1.3.5`
+
+範例：
+如欲開發一個首頁頁面，請參照下列指令建立一個 feature 分支。
+
+```bash
+git checkout develop
+git checkout -b feature-add_dialog
+```
+
+- Commit message 請依照 [約定式提交](https://www.conventionalcommits.org/zh-hant/v1.0.0-beta.4/#%e8%a6%8f%e7%af%84)
+
+- 可使用的 Commit message 類型如下，包括但不限於：
+
+  1. `feat`: 新增, 修改功能(或套件)，對應到 `feature/*` 分支
+  2. `fix`: 修復錯誤，對應到 `bugfix/*` 及 `hotfix/*` 分支
+  3. `chore`: 不影響功能面的事項，如修改 eslint 設定、修改 coding style、修改 README 等等
+  4. `refactor`: 不是新增功能，也不是修復錯誤的改動 (重寫某個 function)
+
+- Commit message 範例如下：
+
+```bash
+git commit -m "feat: add a new dialog component"
+git commit -m "fix: color issue of shops bar in the homepage"
+git commit -m "chore: add semi requirement of prettier"
+git commit -m "refactor: rewrite get user function for better reading"
+```
+
+## Coding style
+
+- Linter: [ESLint](https://eslint.org/docs/rules/)
+- Formatter: [Prettier](https://prettier.io/)
+- 預設存檔時自動進行 linting 及 formatting (設定於 `.vscode/settings.json`)
+
+```bash
+#.vscode/settings.json
+
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file"
+}
+```
+
+# SSR
+
+## SSR building based on Vue3 + Vite3
+
+🛠 Tech Stack: **Vite3** + **Vue3** + **Pinia** + **VueRouter4** + **Express**  
+📝 Document：[Vue3+Vite3 SSR 基本搭建](https://lhrun.github.io/2022/08/27/Vue3-Vite3-SSR%E5%9F%BA%E6%9C%AC%E6%90%AD%E5%BB%BA/)
+
+## Build Setup
+
+```bash
+# 啟動開發用伺服器
+$ yarn
+$ yarn start
+
+# 正式環境
+$ yarn
+$ yarn build
+$ yarn serve
+```
+
+### File list
+
+```js
+├─ src
+│  ├─ hooks
+│  ├─ pages
+│  ├─ router // VueRouter
+│  ├─ store // Pinia
+│  ├─ types
+│  ├─ App.vue
+│  ├─ entry-client.ts // mount dom && replace data
+│  ├─ entry-server.js // replace html strings and static resources
+│  └─ main.ts // create app
+│
+├─ __tests__
+│  ├─ test-server // test server startup file
+│  └─ vuessr.spec.ts // vue ssr test
+│
+├─ server.js // server file
+├─ start-server.js // server startup file
+├─ vite.config.ts
+// ...
+```
