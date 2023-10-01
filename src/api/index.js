@@ -140,11 +140,11 @@ export default {
         })
     })
   },
-  getReserve(reserveType) {
-    const _params = { reserveType }
+  getReserve(formtype) {
+    const _params = { formtype }
     return new Promise((resolve, reject) => {
       axios
-        .get('/api/order/getreserveitem', _params, true)
+        .get('/api/order/getreserveitem', _params, false)
         .then((res) => {
           resolve(res.data)
         })

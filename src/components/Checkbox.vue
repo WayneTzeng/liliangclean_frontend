@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss" scoped>
 .checkbox {
-  width: 200px;
+  width: 120px;
   height: 32px;
   display: flex;
   justify-content: center;

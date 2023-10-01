@@ -46,6 +46,7 @@ export default {
 
     const onSelect = (index) => {
       option.value = props.specification[index]
+      isOpen.value = !isOpen.value
       emit('update:index', index)
     }
     const openOption = () => {
@@ -72,11 +73,11 @@ export default {
 
 <style lang="scss" scoped>
 .selector {
+  width: 120px;
+  height: 34px;
   display: inline-block;
 }
 .pc-select {
-  width: 200px;
-  height: 32px;
   background: #ffffff;
   font-size: 14px;
   line-height: 20px;
@@ -99,7 +100,7 @@ export default {
 }
 .options {
   box-sizing: border-box;
-  width: 200px;
+  width: 120px;
   height: 0px;
   margin-top: 8px;
   background: #ffffff;
@@ -141,7 +142,6 @@ export default {
     text-align: left;
   }
   .options {
-    width: 100%;
   }
 }
 </style>

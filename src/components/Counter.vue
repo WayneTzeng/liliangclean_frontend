@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .counter {
-  width: 200px;
+  width: 120px;
   height: 32px;
   display: flex;
   align-items: center;

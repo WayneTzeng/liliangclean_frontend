@@ -1,7 +1,7 @@
 <template>
   <div class="custom-input">
     <div class="block">
-      <input v-model="inputValue" @input="onInput" />
+      <input v-model="inputValue" type="tel" @input="onInput" />
       <div class="checked"></div>
     </div>
   </div>
@@ -19,6 +19,8 @@ export default {
     const inputValue = ref('')
 
     const onInput = () => {
+      inputValue.value = inputValue.value.replace(/[^\d]/g, '')
+      if (!/^[0-9]*$/.test(inputValue.value)) return
       emit('update:inputValue', inputValue.value)
     }
 
@@ -32,9 +34,11 @@ export default {
 
 <style lang="scss" scoped>
 .custom-input {
+  width: 120px;
   .block {
+    width: 100%;
     input {
-      width: 200px;
+      width: 100%;
       height: 28px;
       outline: solid 2px var(--second);
       border-radius: 5px;
