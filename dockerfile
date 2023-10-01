@@ -10,7 +10,6 @@ RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 # 複製 package.json 和 yarn.lock 到工作目錄
 COPY package.json yarn.lock ./
 
-EXPOSE 8080
 
 # 安裝專案依賴
 RUN yarn install
