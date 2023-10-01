@@ -23,6 +23,6 @@ ENV PATH="$PATH:/root/.yarn/bin"
 COPY . .
 
 # 啟動
-CMD cd /app && cross-env NODE_ENV=production VITE_ENV_TYPE=prd node start-server
+CMD cd /app && NODE_ENV=production VITE_ENV_TYPE=prd node start-server
 
 
