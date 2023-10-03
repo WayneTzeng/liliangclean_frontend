@@ -58,6 +58,7 @@ export default {
   border: none;
   padding: 25px 0;
   border-radius: 10px;
+  cursor: pointer;
 
   &:active,
   &:focus {

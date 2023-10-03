@@ -29,17 +29,28 @@
         :img-data="imgData"
       />
     </div>
+    <div class="button-block">
+      <CustomButton
+        class="button"
+        second
+        full
+        text="更多案例"
+        @click="goToPerformance"
+      />
+    </div>
   </div>
   <ImageSwiper id="swiper-content" :list="goodList" />
 </template>
 
 <script>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { homeData } from '@/data/index'
 import ImageSwiper from '@/components/ImageSwiper.vue'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 import ReservationIcon from '@/components/ReservationIcon.vue'
 import ImageCompareCard from '@/components/ImageCompareCard.vue'
+import CustomButton from '@/components/CustomButton.vue'
 import ImageLogo from '@/assets/image/image/image-logo.png'
 import IconLine from '@/assets/image/icon/icon-line.png'
 
@@ -50,18 +61,26 @@ export default {
     ChapterTitle,
     ReservationIcon,
     ImageCompareCard,
+    CustomButton,
   },
   setup() {
+    const router = useRouter()
+
     const bannerList = ref(homeData.bannerList)
     const reservationIconList = ref(homeData.reservationIconList)
     const performanceList = ref(homeData.performanceList)
     const goodList = ref(homeData.goodList)
+
+    const goToPerformance = () => {
+      router.push({ name: 'Performance' })
+    }
 
     return {
       bannerList,
       reservationIconList,
       performanceList,
       goodList,
+      goToPerformance,
       ImageLogo,
       IconLine,
     }
@@ -98,7 +117,6 @@ export default {
     }
   }
 }
-
 .performance {
   padding: 72px 10vw;
   background-color: var(--primary);
@@ -111,6 +129,11 @@ export default {
     .performance__item {
       flex: 0 0 calc((100% - 10vw) / 3);
     }
+  }
+  .button-block {
+    width: 50vw;
+    max-width: 320px;
+    margin: 10vw auto 5vw auto;
   }
 }
 
