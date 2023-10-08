@@ -8,9 +8,11 @@ const MOCK_DELAY_TIME = 500
 const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
 const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
 
+// UAT : https://liliangclean-backend-uat-ueate2jz3q-de.a.run.app
+// Prd : https://liliangclean-backend-ueate2jz3q-de.a.run.app/
 const API_URL = isUAT
-  ? 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/'
-  : 'https://liliangclean-backend-ueate2jz3q-de.a.run.app/' // todo: modify when prd
+  ? 'https://liliangclean-backend-uat-ueate2jz3q-de.a.run.app'
+  : 'https://liliangclean-backend-uat-ueate2jz3q-de.a.run.app' // todo: modify when prd
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
@@ -63,8 +65,8 @@ export class Axios {
       callAxios = isGet
         ? this._axios.get(url, { params })
         : isPost
-        ? this._axios.post(url, params)
-        : null
+          ? this._axios.post(url, params)
+          : null
 
       setLoading(true)
 

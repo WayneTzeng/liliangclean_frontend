@@ -68,11 +68,12 @@ import emitter from '../helpers/emitter'
 import Overlay from './Overlay.vue'
 import ImageLogo from '../assets/image/image/image-logo.png'
 import IconMenuCross from '../assets/image/icon/icon-menu-cross.svg'
+import { Base64 } from 'js-base64'
 
 export default {
   name: 'LoginComponent',
   components: {
-    Overlay
+    Overlay,
   },
   setup() {
     const router = useRouter()
@@ -92,21 +93,22 @@ export default {
           phoneRegex.test(value) ||
           '請輸入正確手機號碼或電子信箱'
         )
-      }
+      },
     ]
 
     const passwordRules = [
       (value) => !!value || '此欄位不可空白',
-      (value) => (value.length >= 6 && value.length <= 12) || '請輸入正確的密碼'
+      (value) =>
+        (value.length >= 6 && value.length <= 12) || '請輸入正確的密碼',
     ]
 
     const login = () => {
       if (isForgetPW.value) {
-        // api
-        //   .gorgetPW() // request: email.value
-        //   .then(()=> {
-        //     // 彈窗通知寄出密碼
-        //   })
+        api
+          .login(email.value, Base64.encode(password.value)) // request: email.value
+          .then(() => {
+            // 彈窗通知寄出密碼
+          })
         console.log('send forget pw')
       }
       if (validateFields()) {
@@ -115,7 +117,7 @@ export default {
         // todo
         closeLogin()
         api
-          .login()
+          .login(email.value, Base64.encode(password.value))
           .then((res) => {
             localStorage.setItem('memberToken', JSON.stringify(res.token))
             router.push({ name: 'Member' })
@@ -176,9 +178,9 @@ export default {
       closeLogin,
       goToRegister,
       ImageLogo,
-      IconMenuCross
+      IconMenuCross,
     }
-  }
+  },
 }
 </script>
 

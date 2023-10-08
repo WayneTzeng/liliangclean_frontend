@@ -91,11 +91,13 @@ import { ref } from 'vue'
 import emitter from '../helpers/emitter'
 import Overlay from './Overlay.vue'
 import ImageLogo from '../assets/image/image/image-logo.png'
+import api from '../api/index.js'
+import { Base64 } from 'js-base64'
 
 export default {
   name: 'RegisterComponent',
   components: {
-    Overlay
+    Overlay,
   },
   setup() {
     const name = ref('')
@@ -113,31 +115,39 @@ export default {
 
     const phoneRules = [
       (value) => !!value || 'Phone is required',
-      (value) => /^\d{10}$/.test(value) || 'Phone must be 10 digits'
+      (value) => /^\d{10}$/.test(value) || 'Phone must be 10 digits',
     ]
 
     const emailRules = [
       (value) => !!value || 'Email is required',
       (value) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || 'Email must be valid'
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || 'Email must be valid',
     ]
 
     const passwordRules = [
       (value) => !!value || 'Password is required',
-      (value) => value.length >= 6 || 'Password must be at least 6 characters'
+      (value) => value.length >= 6 || 'Password must be at least 6 characters',
     ]
 
     const confirmPasswordRules = [
       (value) => !!value || 'Confirm Password is required',
-      (value) => value === password.value || 'Passwords do not match'
+      (value) => value === password.value || 'Passwords do not match',
     ]
 
     const register = () => {
       if (validateFields()) {
         // 在这里执行注册逻辑
-        // api.register().then(() => {
-        //   // 註冊後重新登入
-        // })
+        api
+          .register(
+            name.value,
+            gender.value,
+            phone.value,
+            email.value,
+            Base64.encode(password.value)
+          )
+          .then(() => {
+            // 註冊後重新登入
+          })
         console.log('注册成功, 請重新登入  <--- 彈窗')
       }
     }
@@ -227,9 +237,9 @@ export default {
       register,
       closeLogin,
       goToLogin,
-      ImageLogo
+      ImageLogo,
     }
-  }
+  },
 }
 </script>
 

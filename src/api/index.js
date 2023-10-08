@@ -17,14 +17,20 @@ export default {
   //       })
   //   })
   // },
-  login(username, password) {
+  login(email, word) {
     return new Promise((resolve, reject) => {
       const params = {
-        username,
-        password,
+        email,
+        word,
       }
+      console.log(params)
+      const config = {
+        Headers: {
+          "x-csrf-token": "YrwEUIcc",
+        }
+      };
       axios
-        .post('api/auth/login', params)
+        .post('api/member/login', params, config)
         .then((res) => {
           if (res.code === Code.Success) {
             resolve(res.data)
@@ -37,18 +43,23 @@ export default {
         })
     })
   },
-  register(username, userPhone, userHomePhone, userMail, userPwd, userAddress) {
+  register(name, sex, phone, email, word) {
     return new Promise((resolve, reject) => {
       const params = {
-        username,
-        userPhone,
-        userHomePhone,
-        userMail,
-        userPwd,
-        userAddress,
+        name,
+        sex,
+        phone,
+        email,
+        word,
       }
+      const config = {
+        Headers: {
+          "x-csrf-token": "YrwEUIcc",
+        }
+      };
+      console.log(params)
       axios
-        .post('api/member/register', params)
+        .post('api/member/signin', params, config)
         .then((res) => {
           resolve(res.data)
           if (res.code === Code.Success) {
