@@ -47,7 +47,7 @@ export default {
     const onSelect = (index) => {
       option.value = props.specification[index]
       isOpen.value = !isOpen.value
-      emit('update:index', index)
+      emit('update:index', props.specification[index])
     }
     const openOption = () => {
       isOpen.value = !isOpen.value

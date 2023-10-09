@@ -39,17 +39,88 @@
             v-model:inputValue="params[`${component.form_parameter_id}`]"
             class="input"
           />
-          <div class="qty">
-            {{
-              params[`${component.form_parameter_id}`]
-                ? component.form_type
-                  ? params[`${component.form_parameter_id}`]
-                  : params[`${component.form_parameter_id}`] * component.unit
-                : 0
-            }}
+          <MultiCheckbox
+            v-if="component.display_style === 'multiCheckbox'"
+            v-model:checked="params[`${component.form_parameter_id}`]"
+            :specification="component.form_parameter"
+            class="multiCheckbox"
+          />
+          <!--               component.display_style !== 'select' && -->
+          <div v-if="component.unit" class="qty">
+            {{ params[`${component.form_parameter_id}`] ?? 0 }}
+            {{ component.unit }}
           </div>
         </div>
       </div>
+      <hr class="content-line" />
+      <v-card-text>
+        <v-form>
+          <v-row justify="center">
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="name"
+                :rules="[requireRules]"
+                label="姓名"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="phone"
+                :rules="phoneRules"
+                label="手機號碼"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                label="電子郵件"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="sns"
+                :rules="[requireRules]"
+                label="Line 帳號"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12" sm="3">
+              <v-text-field label="台中市" disabled />
+            </v-col>
+            <v-col cols="12" sm="3">
+              <v-select
+                label="區域"
+                variant="outlined"
+                :items="serviceAreaList"
+              ></v-select>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="sns"
+                :rules="[requireRules]"
+                label="地址"
+                variant="outlined"
+              />
+            </v-col>
+            <v-col cols="12" sm="3">
+              <v-btn
+                color="primary"
+                class="text-surface"
+                size="large"
+                block
+                :disabled="processing"
+                @click="payment"
+              >
+                確認送出
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
+      </v-card-text>
     </div>
 
     {{ params }}
@@ -58,12 +129,15 @@
 
 <script>
 import { ref, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import api from '@/api/index'
+import { serviceData } from '@/data/index'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 import Selector from '@/components/Selector.vue'
 import Counter from '@/components/Counter.vue'
 import Checkbox from '@/components/Checkbox.vue'
 import CustomInput from '@/components/CustomInput.vue'
+import MultiCheckbox from '@/components/MultiCheckbox.vue'
 
 export default {
   name: 'ReservePage',
@@ -73,24 +147,101 @@ export default {
     Counter,
     Checkbox,
     CustomInput,
+    MultiCheckbox,
   },
   setup() {
+    const route = useRoute()
+    const router = useRouter()
+
     const params = ref({})
     const reserveList = ref([])
+    const serviceAreaList = ref(serviceData.serviceAreaList)
+
+    const name = ref('')
+    const phone = ref('')
+    const email = ref('')
+    const sns = ref('')
+    const area = ref('')
+    const address = ref('')
+    const formtype = route.query.formtype
+
+    const processing = ref(false)
 
     onMounted(() => {
       api
-        .getReserve(1)
+        .getReserve(formtype)
         .then((res) => {
-          reserveList.value = res
-          reserveList.value.forEach((component) => {
-            if (component.type === 'select') component.openSelect = false
+          reserveList.value = res.map((component) => component)
+
+          // test data del
+          reserveList.value.push({
+            base_cost: 0,
+            base_number: 0,
+            column_name: '想整理的區域?',
+            display_style: 'multiCheckbox',
+            form_parameter: ['房間', '客廳', '廚房', '書房', '儲藏室'],
+            form_parameter_id: 'multiCheckbox444',
+            form_type: 'd',
+            id: 8,
+            unit: 0,
+            weighted_base_cost: 0,
+            weighted_base_number: 0,
           })
+          // del
         })
         .catch((error) => {
           console.error(error)
         })
     })
+
+    const payment = () => {
+      console.log('validateFields', validateFields())
+      console.log('params', params.value)
+      const requestData = reserveList.value.map((component) => {
+        const form_parameter =
+          component.display_style === 'checkbox'
+            ? [component.column_name]
+            : component.display_style === 'input'
+            ? [Number(params.value[component.form_parameter_id])]
+            : component.display_style === 'multiCheckbox'
+            ? params.value[component.form_parameter_id]
+            : [params.value[component.form_parameter_id]]
+
+        return {
+          base_cost: component.base_cost,
+          base_number: component.base_number,
+          column_name: component.column_name,
+          display_style: component.display_style,
+          form_parameter: form_parameter || [],
+          form_parameter_id: component.form_parameter_id,
+          form_type: component.form_type,
+          id: component.id,
+          unit: component.unit,
+          weighted_base_cost: component.weighted_base_cost,
+          weighted_base_number: component.weighted_base_number,
+        }
+      })
+
+      const _params = {
+        formtype,
+        requestData,
+      }
+
+      if (validateFields()) {
+        processing.value = true
+        api
+          .payment(_params)
+          .then((res) => {
+            console.log(res)
+            router.push({
+              name: 'member',
+            })
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      }
+    }
 
     const handleClick = (id) => {
       reserveList.value.forEach((component) => {
@@ -125,11 +276,63 @@ export default {
       }, 50)
     }
 
+    const emailRules = [
+      (value) => requireRules(value),
+      (value) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        const phoneRegex = /^\d{10}$/
+        return (
+          emailRegex.test(value) ||
+          phoneRegex.test(value) ||
+          '請輸入正確手機號碼或電子信箱'
+        )
+      },
+    ]
+
+    const phoneRules = [
+      (value) => requireRules(value),
+      (value) => /^\d{10}$/.test(value) || 'Phone must be 10 digits',
+    ]
+
+    const requireRules = (value) => !!value || '此欄位不可空白'
+
+    const validateFields = () => {
+      if (
+        !name.value ||
+        !phone.value ||
+        !email.value ||
+        !sns.value ||
+        !area.value ||
+        !address.value
+      )
+        return false
+
+      if (!phoneRules.every((rule) => rule(phone.value) === true)) {
+        return false
+      }
+
+      if (!emailRules.every((rule) => rule(email.value) === true)) {
+        return false
+      }
+    }
+
     return {
+      name,
+      phone,
+      email,
+      sns,
+      area,
+      address,
       params,
       reserveList,
+      serviceAreaList,
+      processing,
+      payment,
       handleClick,
       closeSelectorAll,
+      requireRules,
+      emailRules,
+      phoneRules,
     }
   },
 }
@@ -235,6 +438,9 @@ export default {
           .checkbox,
           .input {
             width: 80px;
+          }
+          .multiCheckbox {
+            width: 65%;
           }
           .qty {
             width: 40px;

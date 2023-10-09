@@ -26,9 +26,9 @@ export default {
       console.log(params)
       const config = {
         Headers: {
-          "x-csrf-token": "YrwEUIcc",
-        }
-      };
+          'x-csrf-token': 'YrwEUIcc',
+        },
+      }
       axios
         .post('api/member/login', params, config)
         .then((res) => {
@@ -54,9 +54,9 @@ export default {
       }
       const config = {
         Headers: {
-          "x-csrf-token": "YrwEUIcc",
-        }
-      };
+          'x-csrf-token': 'YrwEUIcc',
+        },
+      }
       console.log(params)
       axios
         .post('api/member/signin', params, config)
@@ -156,6 +156,58 @@ export default {
     return new Promise((resolve, reject) => {
       axios
         .get('/api/order/getreserveitem', _params, false)
+        .then((res) => {
+          resolve(res.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  getPublicTime(formtype) {
+    const _params = { formtype }
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/api/order/publicTime', _params, false)
+        .then((res) => {
+          resolve(res.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  getOrderList(formtype) {
+    const _params = { formtype }
+    return new Promise((resolve, reject) => {
+      axios
+        .get('/api/order/orderList', _params, false)
+        .then((res) => {
+          resolve(res.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  getOrder(formtype) {
+    const _params = { formtype }
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/api/order/order', _params, false)
+        .then((res) => {
+          resolve(res.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  payment(formtype) {
+    const _params = { formtype }
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/api/order/payment', _params, false)
         .then((res) => {
           resolve(res.data)
         })

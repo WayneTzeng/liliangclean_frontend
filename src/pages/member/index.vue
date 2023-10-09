@@ -27,7 +27,7 @@
                       label="姓名"
                       variant="outlined"
                       :disabled="!editing"
-                    ></v-text-field>
+                    />
                   </v-col>
                   <v-col cols="12" sm="6">
                     <v-radio-group
@@ -37,8 +37,8 @@
                       inline
                       :disabled="!editing"
                     >
-                      <v-radio label="男性" value="male"></v-radio>
-                      <v-radio label="女性" value="female"></v-radio>
+                      <v-radio label="男性" value="male" />
+                      <v-radio label="女性" value="female" />
                     </v-radio-group>
                   </v-col>
                   <v-col cols="12" sm="6">
@@ -48,7 +48,7 @@
                       label="手機號碼"
                       variant="outlined"
                       :disabled="!editing"
-                    ></v-text-field>
+                    />
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
@@ -57,7 +57,7 @@
                       label="電子郵件"
                       variant="outlined"
                       :disabled="!editing"
-                    ></v-text-field>
+                    />
                   </v-col>
                 </v-row>
                 <v-alert v-if="showError" type="error" dense outlined>
