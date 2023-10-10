@@ -24,13 +24,8 @@ export default {
         word,
       }
       console.log(params)
-      const config = {
-        Headers: {
-          'x-csrf-token': 'YrwEUIcc',
-        },
-      }
       axios
-        .post('api/member/login', params, config)
+        .post('api/member/login', params)
         .then((res) => {
           if (res.code === Code.Success) {
             resolve(res.data)
@@ -52,14 +47,9 @@ export default {
         email,
         word,
       }
-      const config = {
-        Headers: {
-          'x-csrf-token': 'YrwEUIcc',
-        },
-      }
       console.log(params)
       axios
-        .post('api/member/signin', params, config)
+        .post('api/member/signin', params)
         .then((res) => {
           resolve(res.data)
           if (res.code === Code.Success) {
@@ -208,6 +198,20 @@ export default {
     return new Promise((resolve, reject) => {
       axios
         .post('/api/order/payment', _params, false)
+        .then((res) => {
+          resolve(res.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  getMemberInfo(t) {
+    const _params = { t }
+    console.log("打API前" + _params.t)
+    return new Promise((resolve, reject) => {
+      axios
+        .post('/api/member/getmemberInfo', _params, false)
         .then((res) => {
           resolve(res.data)
         })

@@ -166,11 +166,12 @@
 </template>
 
 <script>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { memberData } from '@/data/index'
 import Tabs from '@/components/Tabs.vue'
 import OrderDetailCard from '@/components/OrderDetailCard.vue'
+import api from '@/api/index'
 
 export default {
   name: 'MemberPage',
@@ -184,10 +185,10 @@ export default {
     const tabIndex = ref(0)
     const tabList = ref(memberData.tabList)
 
-    const name = ref('測試測試') // 串 api 取會員資料
-    const gender = ref('male') // 串 api 取會員資料 male or female
-    const phone = ref('0912345678') // 串 api 取會員資料
-    const email = ref('aa@bb.cc') // 串 api 取會員資料
+    const name = ref('') // 串 api 取會員資料
+    const gender = ref('') // 串 api 取會員資料 male or female
+    const phone = ref('') // 串 api 取會員資料
+    const email = ref('') // 串 api 取會員資料
     const editing = ref(false)
     const showError = ref(false)
     const errorMessage = ref('')
@@ -313,6 +314,22 @@ export default {
     const openOrderCard = () => {
       orderCardShow.value = true
     }
+
+    onMounted(() => {
+      var token = String(localStorage.getItem('memberToken')).replace(/"/g, '')
+      console.log('token : ' + token)
+      api
+        .getMemberInfo(token)
+        .then((res) => {
+          name.value = res.name
+          phone.value = res.phone_no
+          email.value = res.email
+          gender.value = 'male'
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    })
 
     return {
       tabIndex,
