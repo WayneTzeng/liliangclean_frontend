@@ -28,9 +28,9 @@
                       type="password"
                       class="mt-6"
                     />
-                    <v-alert v-if="showError" type="error" dense outlined>{{
-                      errorMessage
-                    }}</v-alert>
+                    <v-alert v-if="showError" type="error" dense outlined>
+                      {{ errorMessage }}
+                    </v-alert>
                     <v-btn
                       color="primary"
                       class="text-surface"

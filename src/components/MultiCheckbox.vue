@@ -28,7 +28,6 @@ export default {
       } else {
         array.push(item)
       }
-      console.log('m-array', array)
       emit('update:checked', array)
     }
 

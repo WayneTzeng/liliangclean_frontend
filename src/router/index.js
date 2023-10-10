@@ -50,6 +50,11 @@ const routes = [
     name: 'Reserve',
     component: () => import('@/pages/reserve/index.vue'),
   },
+  {
+    path: '/reserve-pay',
+    name: 'ReservePay',
+    component: () => import('@/pages/reserve/payment.vue'),
+  },
 ]
 
 export function createRouter() {

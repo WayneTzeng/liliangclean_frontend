@@ -31,7 +31,21 @@
         常見問題
       </div>
       <div
-        v-if="!IS_PRD"
+        class="menu__item"
+        :class="{
+          active: currenPage === PAGE.reserve || currenPage === PAGE.reservePay,
+        }"
+      >
+        預約
+        <div class="menu__sub-item">
+          <div @click="goToReserve(0)">居家清潔</div>
+          <div @click="goToReserve(1)">裝潢細清跟空屋清潔</div>
+          <div @click="goToReserve(2)">水洗沙發、床墊</div>
+          <div @click="goToReserve(3)">辦公室清潔</div>
+          <div @click="goToReserve(4)">收納</div>
+        </div>
+      </div>
+      <div
         class="menu__item"
         :class="{ active: currenPage === PAGE.member }"
         @click="goto(PAGE.member)"
@@ -74,6 +88,22 @@
     </div>
     <div
       class="menu__item"
+      :class="{
+        active: currenPage === PAGE.reserve || currenPage === PAGE.reservePay,
+      }"
+      @click="handleItemClick"
+    >
+      預約
+    </div>
+    <div class="menu__sub-item" :class="{ active: isSubitemOpen }">
+      <div @click="goToReserve(0)">居家清潔</div>
+      <div @click="goToReserve(1)">裝潢細清跟空屋清潔</div>
+      <div @click="goToReserve(2)">水洗沙發、床墊</div>
+      <div @click="goToReserve(3)">辦公室清潔</div>
+      <div @click="goToReserve(4)">收納</div>
+    </div>
+    <div
+      class="menu__item"
       :class="{ active: currenPage === PAGE.notice }"
       @click="goto(PAGE.notice)"
     >
@@ -92,6 +122,8 @@ const PAGE = {
   performance: 'Performance',
   articleList: 'ArticleList',
   article: 'Article',
+  reserve: 'Reserve',
+  reservePay: 'ReservePay',
 }
 
 const IS_PRD = import.meta.env.VITE_ENV_TYPE === 'prd'
@@ -112,6 +144,10 @@ export default {
     const isMenuOpen = ref(false)
     const handleClick = () => {
       isMenuOpen.value = !isMenuOpen.value
+    }
+    const isSubitemOpen = ref(false)
+    const handleItemClick = () => {
+      isSubitemOpen.value = !isSubitemOpen.value
     }
 
     const currenPage = computed(() => {
@@ -140,13 +176,37 @@ export default {
       router.push({ name: page })
     }
 
+    const goToReserve = (formtype) => {
+      if (!import.meta.env.SSR) {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })
+      }
+
+      const name = formtype ? 'Reserve' : 'ReservePay'
+      router.push({
+        name,
+        query: {
+          formtype,
+        },
+      })
+
+      setTimeout(() => {
+        location.reload()
+      }, 200)
+    }
+
     return {
       PAGE,
       IS_PRD,
       isMenuOpen,
+      isSubitemOpen,
       currenPage,
       handleClick,
+      handleItemClick,
       goto,
+      goToReserve,
       ImageLogo,
       IconMenu,
       IconMenuCross,
@@ -184,6 +244,27 @@ export default {
     font-size: var(--font-l);
     font-weight: 600;
     cursor: pointer;
+
+    .menu__sub-item {
+      display: none;
+      position: relative;
+    }
+  }
+  .menu__item:hover {
+    .menu__sub-item {
+      padding: 16px;
+      display: block;
+      width: 180px;
+      min-height: 100px;
+      background-color: var(--beige);
+      font-size: var(--font-m);
+      font-weight: 200;
+      line-height: 30px;
+      position: absolute;
+      top: 50px;
+      left: 75%;
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
   }
   .menu__item ~ .menu__item {
     margin-left: 20px;
@@ -219,17 +300,30 @@ export default {
     box-shadow: 0px 0px 8px 0px #888888;
 
     .menu__item {
-      height: 60px;
+      min-height: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
       color: var(--height-light);
       font-size: var(--font-m);
       background-color: var(--second);
-
       &.active {
         color: var(--brown);
         background-color: var(--height-light);
+      }
+    }
+    .menu__sub-item {
+      background-color: var(--white);
+      div {
+        height: 0;
+        overflow: hidden;
+      }
+      &.active {
+        div {
+          height: 32px;
+          line-height: 32px;
+          text-align: center;
+        }
       }
     }
     .menu__item ~ .menu__item {
