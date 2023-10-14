@@ -65,7 +65,7 @@ export default {
         estimatedTime: ['0.5hr', '1hr'],
         desc: ['普通清潔', '空間大、許久未清潔'],
         notice: '',
-        image: service3 ,
+        image: service3,
       },
       {
         title: '浴室清潔',
@@ -74,7 +74,7 @@ export default {
           '乾濕玻璃',
           '浴缸清潔',
           '馬桶刷洗',
-          '流理臺整裡',
+          '流理臺整理',
           '鏡面清潔',
           '抽風機濾網',
           '垃圾打包',
@@ -85,7 +85,7 @@ export default {
         estimatedTime: ['0.5hr', '2.5hr'],
         desc: ['普通清潔', '垢重、許久未清潔'],
         notice: '全區除霉請洽客服人員',
-        image: service4 ,
+        image: service4,
       },
       {
         title: '陽台清潔',
@@ -100,7 +100,7 @@ export default {
       {
         title: '窗戶清潔',
         subTitle: [],
-        can: ['窗框','','窗溝','','紗窗','','窗戶玻璃'],
+        can: ['窗框', '', '窗溝', '', '紗窗', '', '窗戶玻璃'],
         cant: [
           '拆卸窗戶',
           '',
@@ -111,12 +111,12 @@ export default {
         estimatedTime: ['0.5hr/扇', '0.75hr/扇'],
         desc: ['普通清潔', '窗戶大、許久未清潔'],
         notice: '',
-        image: service6 ,
+        image: service6,
       },
       {
         title: '洗衣晾曬',
         subTitle: [],
-        can: ['衣物清洗','','衣物晾曬','','需備有洗衣機'],
+        can: ['衣物清洗', '', '衣物晾曬', '', '需備有洗衣機'],
         cant: [
           '手洗衣物',
           '',
@@ -131,7 +131,7 @@ export default {
       },
     ],
   ],
-  tabList: ['居家清潔', '裝潢細清', '辦公室清潔',  '定期清潔','床墊沙發清洗',],
+  tabList: ['居家清潔', '裝潢細清', '辦公室清潔', '定期清潔', '床墊沙發清洗',],
   serviceAreaList: [
     '中區',
     '北區',

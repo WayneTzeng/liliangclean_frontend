@@ -51,7 +51,6 @@ export default {
     ImageCompareCard,
   },
   setup() {
-    console.log('homeData', homeData)
     const bannerList = ref(homeData.bannerList)
     const reservationIconList = ref(homeData.reservationIconList)
     const performanceList = ref(homeData.performanceList)

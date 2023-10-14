@@ -8,7 +8,7 @@
         <div class="service-cards-content">
           「單次預約」<br />
           <span> 1人服務 $1,800元起<br />2人服務 $3,390元起<br /> </span>
-          （以上皆為平日一～五收費標準）
+          （以上為平日一到五收費，附發票）
         </div>
         <div class="service-cards">
           <ServiceCard
@@ -497,8 +497,13 @@ export default {
         }
       }
       .service-cards-content {
+<<<<<<< HEAD
           font-size: 18px;
 F        span {
+=======
+        font-size: 18px;
+        F span {
+>>>>>>> 2872097fa211b28f7c3345af05175908bef0d014
           font-size: 18px;
           line-height: 24px;
         }
