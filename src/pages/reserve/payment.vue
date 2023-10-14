@@ -52,6 +52,12 @@
         </div>
       </div>
       <hr class="content-line" />
+      <div class="content-title">
+        <div>預估金額</div>
+        <div>{{ payAmount }}</div>
+        <div>元</div>
+      </div>
+      <hr class="content-line" />
       <v-card-text>
         <v-form>
           <v-row justify="center">
@@ -129,10 +135,12 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+// import { useRoute } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 import api from '@/api/index'
 import { serviceData } from '@/data/index'
+import { formatNumberWithCommas } from '@/helpers/tools'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 import Selector from '@/components/Selector.vue'
 import Counter from '@/components/Counter.vue'
@@ -171,27 +179,42 @@ export default {
       api
         .getReserve(formtype)
         .then((res) => {
-          reserveList.value = res.map((component) => component)
+          reserveList.value = res.map((component) => ({
+            ...component,
+            tempValue: 0,
+          }))
 
           // test data del
-          // reserveList.value.push({
-          //   base_cost: 0,
-          //   base_number: 0,
-          //   column_name: '想整理的區域?',
-          //   display_style: 'multiCheckbox',
-          //   form_parameter: ['房間', '客廳', '廚房', '書房', '儲藏室'],
-          //   form_parameter_id: 'multiCheckbox444',
-          //   form_type: 'd',
-          //   id: 8,
-          //   unit: null,
-          //   weighted_base_cost: 0,
-          //   weighted_base_number: 0,
-          // })
+          reserveList.value.push({
+            base_cost: 2000,
+            base_number: 0,
+            column_name: '除蟎?',
+            display_style: 'checkbox',
+            form_parameter: [],
+            form_parameter_id: 'multiCheckbox444',
+            form_type: 'd',
+            id: 8,
+            unit: null,
+            weighted_base_cost: 0,
+            weighted_base_number: 0,
+          })
           // del
         })
         .catch((error) => {
           console.error(error)
         })
+    })
+
+    const payAmount = computed(() => {
+      return formatNumberWithCommas(
+        reserveList.value.reduce((accumulator, currentValue) => {
+          return accumulator +
+            (currentValue.display_style === 'input' ||
+              currentValue.display_style === 'count')
+            ? currentValue.base_cost
+            : currentValue.tempValue * currentValue.base_cost
+        }, 0) || 0
+      )
     })
 
     const payment = () => {
@@ -202,8 +225,10 @@ export default {
             : component.display_style === 'input'
             ? [Number(component.tempValue)]
             : component.display_style === 'multiCheckbox'
-            ? component.tempValue
-            : [component.tempValue]
+            ? component.tempValue ?? []
+            : component.tempValue
+            ? [component.tempValue]
+            : []
 
         return {
           base_cost: component.base_cost,
@@ -235,21 +260,23 @@ export default {
         userInfo,
       }
 
-      if (validateFields()) {
-        console.log('request_params', _params)
-        processing.value = true
-        api
-          .payment(_params)
-          .then((res) => {
-            console.log(res)
-            router.push({
-              name: 'member',
-            })
+      console.log('request_params', _params)
+
+      // if (validateFields()) {
+      console.log('request_params', _params, validateFields)
+      processing.value = true
+      api
+        .payment(_params)
+        .then((res) => {
+          console.log(res)
+          router.push({
+            name: 'member',
           })
-          .catch((error) => {
-            console.error(error)
-          })
-      }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+      // }
     }
 
     const handleClick = (id) => {
@@ -338,14 +365,15 @@ export default {
     }
 
     return {
+      reserveList,
+      serviceAreaList,
+      payAmount,
       name,
       phone,
       email,
       sns,
       area,
       address,
-      reserveList,
-      serviceAreaList,
       processing,
       showError,
       errorMessage,

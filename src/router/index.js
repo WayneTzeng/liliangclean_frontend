@@ -55,6 +55,11 @@ const routes = [
     name: 'ReservePay',
     component: () => import('@/pages/reserve/payment.vue'),
   },
+  {
+    path: '/sitemap.xml',
+    name: 'Sitemap',
+    component: () => import('@/pages/static/sitemap.vue'),
+  },
 ]
 
 export function createRouter() {

@@ -202,8 +202,10 @@ export default {
             : component.display_style === 'input'
             ? [Number(component.tempValue)]
             : component.display_style === 'multiCheckbox'
-            ? component.tempValue
-            : [component.tempValue]
+            ? component.tempValue ?? []
+            : component.tempValue
+            ? [component.tempValue]
+            : []
 
         return {
           base_cost: component.base_cost,
