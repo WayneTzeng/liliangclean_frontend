@@ -262,7 +262,7 @@ export default {
       line-height: 30px;
       position: absolute;
       top: 50px;
-      left: 75%;
+      right: 15px;
       box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     }
   }

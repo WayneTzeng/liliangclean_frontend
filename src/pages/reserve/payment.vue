@@ -25,12 +25,15 @@
             @click="handleClick(component.form_parameter_id)"
           />
           <Counter
-            v-if="component.display_style === 'count'"
+            v-if="component.display_style === 'counter'"
             v-model:qty="component.tempValue"
-            class="count"
+            class="counter"
           />
           <Checkbox
-            v-if="component.display_style === 'checkbox'"
+            v-if="
+              component.display_style === 'checkbox' ||
+              component.display_style === 'default_checkbox'
+            "
             v-model:checked="component.tempValue"
             class="checkbox"
           />
@@ -45,13 +48,39 @@
             :specification="component.form_parameter"
             class="multiCheckbox"
           />
+          {{ typeof component.tempValue }}
           <div v-if="component.unit" class="qty">
             {{ component.tempValue ?? 0 }}
             {{ component.unit }}
           </div>
         </div>
       </div>
+      <div class="components">
+        <div class="name">簡易消毒</div>
+        <Checkbox v-model:checked="isDisinfect" class="checkbox" />
+      </div>
+      <div class="components">
+        <div class="name">Dyson除蟎</div>
+        <Checkbox v-model:checked="isDustMite" class="checkbox" />
+      </div>
+      <div class="components">
+        <div class="name">是否半年以上未打掃</div>
+        <Checkbox v-model:checked="isHalfYear" class="checkbox" />
+        {{ isHalfYear }}
+      </div>
+      <div class="components">
+        <div class="name">是否有養寵物</div>
+        <Checkbox v-model:checked="isPet" class="checkbox" />
+      </div>
+      <div class="components">
+        <div class="name">加購工具組</div>
+        <Checkbox v-model:checked="isTool" class="checkbox" />
+      </div>
       <hr class="content-line" />
+      <div class="content-title">
+        <div>預估人力</div>
+        <div>{{ numberOfPeople[0] }}人{{ numberOfPeople[1] }}小時</div>
+      </div>
       <div class="content-title">
         <div>預估金額</div>
         <div>{{ payAmount }}</div>
@@ -139,7 +168,7 @@ import { ref, onMounted, computed } from 'vue'
 // import { useRoute } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 import api from '@/api/index'
-import { serviceData } from '@/data/index'
+import { serviceData, reservePayData } from '@/data/index'
 import { formatNumberWithCommas } from '@/helpers/tools'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 import Selector from '@/components/Selector.vue'
@@ -164,6 +193,7 @@ export default {
 
     const reserveList = ref([])
     const serviceAreaList = ref(serviceData.serviceAreaList)
+    const manpowerList = ref(reservePayData.manpowerList)
 
     const name = ref('')
     const phone = ref('')
@@ -172,6 +202,12 @@ export default {
     const area = ref('')
     const address = ref('')
     const formtype = route.query.formtype
+
+    const isDisinfect = ref(false)
+    const isDustMite = ref(false)
+    const isHalfYear = ref(false)
+    const isPet = ref(false)
+    const isTool = ref(false)
 
     const processing = ref(false)
 
@@ -183,38 +219,40 @@ export default {
             ...component,
             tempValue: 0,
           }))
-
-          // test data del
-          reserveList.value.push({
-            base_cost: 2000,
-            base_number: 0,
-            column_name: '除蟎?',
-            display_style: 'checkbox',
-            form_parameter: [],
-            form_parameter_id: 'multiCheckbox444',
-            form_type: 'd',
-            id: 8,
-            unit: null,
-            weighted_base_cost: 0,
-            weighted_base_number: 0,
-          })
-          // del
         })
         .catch((error) => {
           console.error(error)
         })
     })
 
-    const payAmount = computed(() => {
-      return formatNumberWithCommas(
+    const peopleCount = computed(() => {
+      return (
         reserveList.value.reduce((accumulator, currentValue) => {
-          return accumulator +
-            (currentValue.display_style === 'input' ||
-              currentValue.display_style === 'count')
-            ? currentValue.base_cost
-            : currentValue.tempValue * currentValue.base_cost
+          const num = isHalfYear.value
+            ? currentValue.weighted_base_cost > 0
+              ? currentValue.tempValue *
+                currentValue.weighted_base_cost *
+                currentValue.weighted_base_number
+              : currentValue.tempValue * currentValue.weighted_base_number
+            : currentValue.base_cost > 0
+            ? currentValue.tempValue *
+              currentValue.base_cost *
+              currentValue.base_number
+            : currentValue.tempValue * currentValue.base_number
+
+          return accumulator + num
         }, 0) || 0
       )
+    })
+
+    const numberOfPeople = computed(() => {
+      return manpowerList.value[peopleCount.value] || [1, 1]
+    })
+
+    const payAmount = computed(() => {
+      let amount = 0
+      // peopleCount.value
+      return formatNumberWithCommas(amount)
     })
 
     const payment = () => {
@@ -368,6 +406,12 @@ export default {
       reserveList,
       serviceAreaList,
       payAmount,
+      numberOfPeople,
+      isDisinfect,
+      isDustMite,
+      isHalfYear,
+      isPet,
+      isTool,
       name,
       phone,
       email,
@@ -484,7 +528,7 @@ export default {
             width: 60px;
           }
           .select,
-          .count,
+          .counter,
           .checkbox,
           .input {
             width: 80px;
