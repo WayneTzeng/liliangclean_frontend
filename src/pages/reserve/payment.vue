@@ -48,7 +48,6 @@
             :specification="component.form_parameter"
             class="multiCheckbox"
           />
-          {{ typeof component.tempValue }}
           <div v-if="component.unit" class="qty">
             {{ component.tempValue ?? 0 }}
             {{ component.unit }}
@@ -56,31 +55,41 @@
         </div>
       </div>
       <div class="components">
-        <div class="name">簡易消毒</div>
-        <Checkbox v-model:checked="isDisinfect" class="checkbox" />
+        <div class="component">
+          <div class="name" style="width: 200px">簡易消毒</div>
+          <Checkbox v-model:checked="isDisinfect" class="checkbox" />
+        </div>
       </div>
       <div class="components">
-        <div class="name">Dyson除蟎</div>
-        <Checkbox v-model:checked="isDustMite" class="checkbox" />
+        <div class="component">
+          <div class="name" style="width: 200px">Dyson除蟎</div>
+          <Checkbox v-model:checked="isDustMite" class="checkbox" />
+        </div>
       </div>
       <div class="components">
-        <div class="name">是否半年以上未打掃</div>
-        <Checkbox v-model:checked="isHalfYear" class="checkbox" />
-        {{ isHalfYear }}
+        <div class="component">
+          <div class="name" style="width: 200px">是否半年以上未打掃</div>
+          <Checkbox v-model:checked="isHalfYear" class="checkbox" />
+        </div>
       </div>
       <div class="components">
-        <div class="name">是否有養寵物</div>
-        <Checkbox v-model:checked="isPet" class="checkbox" />
+        <div class="component">
+          <div class="name" style="width: 200px">是否有養寵物</div>
+          <Checkbox v-model:checked="isPet" class="checkbox" />
+        </div>
       </div>
       <div class="components">
-        <div class="name">加購工具組</div>
-        <Checkbox v-model:checked="isTool" class="checkbox" />
+        <div class="component">
+          <div class="name" style="width: 200px">加購工具組</div>
+          <Checkbox v-model:checked="isTool" class="checkbox" />
+        </div>
       </div>
       <hr class="content-line" />
       <div class="content-title">
         <div>預估人力</div>
-        <div>{{ numberOfPeople[0] }}人{{ numberOfPeople[1] }}小時</div>
+        <div>{{ numberOfPeople[0] }} 人 {{ numberOfPeople[1] }} 小時</div>
       </div>
+      <br />
       <div class="content-title">
         <div>預估金額</div>
         <div>{{ payAmount }}</div>
@@ -193,7 +202,6 @@ export default {
 
     const reserveList = ref([])
     const serviceAreaList = ref(serviceData.serviceAreaList)
-    const manpowerList = ref(reservePayData.manpowerList)
 
     const name = ref('')
     const phone = ref('')
@@ -208,6 +216,7 @@ export default {
     const isHalfYear = ref(false)
     const isPet = ref(false)
     const isTool = ref(false)
+    const isWeekend = ref(false)
 
     const processing = ref(false)
 
@@ -246,13 +255,23 @@ export default {
     })
 
     const numberOfPeople = computed(() => {
-      return manpowerList.value[peopleCount.value] || [1, 1]
+      return reservePayData.manpowerList[peopleCount.value] || [1, 3]
     })
 
     const payAmount = computed(() => {
-      let amount = 0
-      // peopleCount.value
-      return formatNumberWithCommas(amount)
+      const peopleCount = numberOfPeople.value[0]
+      const hourCount = numberOfPeople.value[1]
+
+      let price =
+        peopleCount >= 2
+          ? peopleCount * hourCount * 600 - 70 * hourCount
+          : peopleCount * hourCount * 600
+
+      isDustMite.value && (price += 200)
+      isTool.value && (price += 800)
+      isWeekend.value && (price += peopleCount * hourCount * 100)
+
+      return formatNumberWithCommas(price)
     })
 
     const payment = () => {
@@ -381,7 +400,6 @@ export default {
         !area.value ||
         !address.value
       ) {
-        console.log('here')
         showError.value = true
         errorMessage.value = '所有欄位不可空白'
         return false
@@ -495,7 +513,7 @@ export default {
       }
     }
     .components ~ .components {
-      margin-top: 50px;
+      margin-top: 35px;
     }
   }
 }
@@ -525,7 +543,7 @@ export default {
           width: calc(100vw - 20vw - 40px);
           min-width: calc(260px);
           .name {
-            width: 60px;
+            width: 80px;
           }
           .select,
           .counter,
@@ -540,6 +558,9 @@ export default {
             width: 40px;
           }
         }
+      }
+      .components ~ .components {
+        margin-top: 20px;
       }
     }
   }

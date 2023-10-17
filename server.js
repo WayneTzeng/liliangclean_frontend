@@ -9,12 +9,12 @@ const resolve = (p) =>
   path.resolve(path.dirname(fileURLToPath(import.meta.url)), p)
 
 const createServer = async (isTest = false) => {
-  const isProd = process.env.NODE_ENV === 'production'
+  const isPrd = process.env.NODE_ENV === 'production'
   const app = express()
 
   // configure vite service
   let vite
-  if (isProd) {
+  if (isPrd) {
     app.use(require('compression')())
     app.use(
       require('serve-static')(resolve('./dist/client'), {
@@ -32,7 +32,7 @@ const createServer = async (isTest = false) => {
   }
 
   // static resource mapping in prod env
-  const manifest = isProd
+  const manifest = isPrd
     ? fs.readFileSync(resolve('./dist/client/ssr-manifest.json'), 'utf-8')
     : {}
 
@@ -43,12 +43,10 @@ const createServer = async (isTest = false) => {
     try {
       // get html template and rendering functions for different env
       let template, render
-      if (isProd) {
-        console.log('isProd')
+      if (isPrd) {
         template = fs.readFileSync(resolve('./dist/client/index.html'), 'utf-8')
         render = (await import('./dist/server/entry-server.js')).render
       } else {
-        console.log('!isProd')
         template = fs.readFileSync(resolve('index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('/src/entry-server.js')).render
@@ -73,7 +71,7 @@ const createServer = async (isTest = false) => {
     }
   })
 
-  return { app, isTest, isProd }
+  return { app, isTest, isPrd }
 }
 
 export default createServer

@@ -23,7 +23,6 @@ export default {
         email,
         word,
       }
-      console.log(params)
       axios
         .post('api/member/login', params)
         .then((res) => {
@@ -47,7 +46,6 @@ export default {
         email,
         word,
       }
-      console.log(params)
       axios
         .post('api/member/signin', params)
         .then((res) => {
@@ -208,7 +206,6 @@ export default {
   },
   getMemberInfo(t) {
     const _params = { t }
-    console.log('打API前' + _params.t)
     return new Promise((resolve, reject) => {
       axios
         .post('/api/member/getmemberInfo', _params, false)

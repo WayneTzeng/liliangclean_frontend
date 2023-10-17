@@ -238,7 +238,6 @@ export default {
       }
 
       if (validateFields()) {
-        console.log('request_params', _params)
         processing.value = true
         api
           .payment(_params)
