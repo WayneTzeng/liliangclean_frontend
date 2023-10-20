@@ -1,11 +1,11 @@
 <template>
   <div class="reserve" @click.capture="closeSelectorAll">
-    <ChapterTitle idData="ct-rs1" title="預約表單" />
-    <div class="content">
+    <ChapterTitle idData="ct-rs1" title="預約" />
+    <div v-show="step === 1" class="content">
       <div class="content-title">
-        <div>單位</div>
         <div>選項</div>
         <div>數量</div>
+        <div>單位</div>
       </div>
       <hr class="content-line" />
       <div
@@ -54,6 +54,7 @@
           </div>
         </div>
       </div>
+      <hr class="content-line" />
       <div class="components">
         <div class="component">
           <div class="name" style="width: 200px">簡易消毒</div>
@@ -96,6 +97,50 @@
         <div>元</div>
       </div>
       <hr class="content-line" />
+      <v-row justify="center">
+        <v-col cols="6" sm="3">
+          <v-btn
+            color="primary"
+            class="text-surface"
+            size="large"
+            block
+            @click="getDateAndTime"
+          >
+            下一步
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
+    <!-- step -->
+    <div v-show="step === 2" class="content">
+      <hr class="content-line" />
+      <v-row justify="center">
+        <v-col cols="6" sm="3">
+          <v-btn
+            color="primary"
+            class="text-surface"
+            size="large"
+            block
+            @click="step = 1"
+          >
+            上一步
+          </v-btn>
+        </v-col>
+        <v-col cols="6" sm="3">
+          <v-btn
+            color="primary"
+            class="text-surface"
+            size="large"
+            block
+            @click="step = 3"
+          >
+            下一步
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
+    <!-- step -->
+    <div v-show="step === 3" class="content">
       <v-card-text>
         <v-form>
           <v-row justify="center">
@@ -153,7 +198,22 @@
             <v-alert v-if="showError" type="error" dense outlined>
               {{ errorMessage }}
             </v-alert>
-            <v-col cols="12" sm="3">
+          </v-row>
+          <hr class="content-line" />
+          <v-row justify="center">
+            <v-col cols="6" sm="3">
+              <v-btn
+                color="primary"
+                class="text-surface"
+                size="large"
+                block
+                :disabled="processing"
+                @click="step = 1"
+              >
+                上一步
+              </v-btn>
+            </v-col>
+            <v-col cols="6" sm="3">
               <v-btn
                 color="primary"
                 class="text-surface"
@@ -202,6 +262,8 @@ export default {
 
     const reserveList = ref([])
     const serviceAreaList = ref(serviceData.serviceAreaList)
+
+    const step = ref(1)
 
     const name = ref('')
     const phone = ref('')
@@ -273,6 +335,11 @@ export default {
 
       return formatNumberWithCommas(price)
     })
+
+    const getDateAndTime = () => {
+      // publicTime api
+      step.value = 2
+    }
 
     const payment = () => {
       const requestData = reserveList.value.map((component) => {
@@ -423,6 +490,7 @@ export default {
     return {
       reserveList,
       serviceAreaList,
+      step,
       payAmount,
       numberOfPeople,
       isDisinfect,
@@ -439,6 +507,7 @@ export default {
       processing,
       showError,
       errorMessage,
+      getDateAndTime,
       payment,
       handleClick,
       closeSelectorAll,
@@ -531,11 +600,11 @@ export default {
         }
         & div:nth-child(2) {
           text-align: center;
-          width: 120px;
+          width: 80px;
         }
         & div:nth-child(3) {
           text-align: center;
-          width: 60px;
+          width: 40px;
         }
       }
       .components {

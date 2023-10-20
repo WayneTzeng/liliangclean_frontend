@@ -18,9 +18,9 @@ export default {
   setup() {
     return {
       IconGoToTop,
-      IconLine
+      IconLine,
     }
-  }
+  },
 }
 </script>
 
@@ -52,6 +52,9 @@ export default {
 }
 
 @media (max-width: 460px) {
+  .side-menu {
+    right: 15px;
+  }
   .go-to-top {
     width: 45px;
     height: 45px;
