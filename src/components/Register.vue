@@ -136,7 +136,6 @@ export default {
 
     const register = () => {
       if (validateFields()) {
-        // 在这里执行注册逻辑
         api
           .register(
             name.value,

@@ -94,9 +94,9 @@ export default {
       totalAmount,
       paymentMethod,
       paymentStatus,
-      closeCard
+      closeCard,
     }
-  }
+  },
 }
 </script>
 
@@ -129,11 +129,9 @@ export default {
     .title {
       font-size: var(--font-s);
       font-weight: 500;
-      /* color: var(--primary); */
       color: var(--white);
       padding: 4px 8px;
       background-color: var(--primary);
-      /* border-bottom: 1px solid var(--primary); */
     }
     div:not(.title) {
       font-size: var(--font-m);

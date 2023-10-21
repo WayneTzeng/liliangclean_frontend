@@ -172,22 +172,6 @@ export default {
         .getReserve(formtype)
         .then((res) => {
           reserveList.value = res.map((component) => component)
-
-          // test data del
-          // reserveList.value.push({
-          //   base_cost: 0,
-          //   base_number: 0,
-          //   column_name: '想整理的區域?',
-          //   display_style: 'multiCheckbox',
-          //   form_parameter: ['房間', '客廳', '廚房', '書房', '儲藏室'],
-          //   form_parameter_id: 'multiCheckbox444',
-          //   form_type: 'd',
-          //   id: 8,
-          //   unit: null,
-          //   weighted_base_cost: 0,
-          //   weighted_base_number: 0,
-          // })
-          // del
         })
         .catch((error) => {
           console.error(error)

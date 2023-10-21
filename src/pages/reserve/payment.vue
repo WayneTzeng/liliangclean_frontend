@@ -25,7 +25,7 @@
             @click="handleClick(component.form_parameter_id)"
           />
           <Counter
-            v-if="component.display_style === 'counter'"
+            v-if="component.display_style === 'count'"
             v-model:qty="component.tempValue"
             class="counter"
           />
@@ -106,7 +106,9 @@
             block
             @click="getDateAndTime"
           >
-            下一步
+            <!-- :disabled="peopleCount < 5 || peopleCount > 17" -->
+            <template v-if="peopleCount < 17"> 選擇日期 </template>
+            <template v-else> 請洽客服 </template>
           </v-btn>
         </v-col>
       </v-row>
@@ -114,6 +116,7 @@
     <!-- step -->
     <div v-show="step === 2" class="content">
       <hr class="content-line" />
+      <!-- component calendar -->
       <v-row justify="center">
         <v-col cols="6" sm="3">
           <v-btn
@@ -234,7 +237,6 @@
 
 <script>
 import { ref, onMounted, computed } from 'vue'
-// import { useRoute } from 'vue-router'
 import { useRoute, useRouter } from 'vue-router'
 import api from '@/api/index'
 import { serviceData, reservePayData } from '@/data/index'
@@ -259,28 +261,17 @@ export default {
   setup() {
     const route = useRoute()
     const router = useRouter()
-
-    const reserveList = ref([])
-    const serviceAreaList = ref(serviceData.serviceAreaList)
-
     const step = ref(1)
 
-    const name = ref('')
-    const phone = ref('')
-    const email = ref('')
-    const sns = ref('')
-    const area = ref('')
-    const address = ref('')
-    const formtype = route.query.formtype
-
+    // step 1
+    const reserveList = ref([])
+    const serviceAreaList = ref(serviceData.serviceAreaList)
     const isDisinfect = ref(false)
     const isDustMite = ref(false)
     const isHalfYear = ref(false)
     const isPet = ref(false)
     const isTool = ref(false)
     const isWeekend = ref(false)
-
-    const processing = ref(false)
 
     onMounted(() => {
       api
@@ -336,10 +327,27 @@ export default {
       return formatNumberWithCommas(price)
     })
 
+    // step 2
+    const dateList = ref({})
     const getDateAndTime = () => {
-      // publicTime api
-      step.value = 2
+      api
+        .getPublicTime()
+        .then((res) => {
+          dateList.value = res
+          step.value = 2
+        })
+        .catch((error) => console.log(error))
     }
+
+    // step 3
+    const name = ref('')
+    const phone = ref('')
+    const email = ref('')
+    const sns = ref('')
+    const area = ref('')
+    const address = ref('')
+    const formtype = route.query.formtype
+    const processing = ref(false)
 
     const payment = () => {
       const requestData = reserveList.value.map((component) => {
@@ -386,21 +394,21 @@ export default {
 
       console.log('request_params', _params)
 
-      // if (validateFields()) {
-      console.log('request_params', _params, validateFields)
-      processing.value = true
-      api
-        .payment(_params)
-        .then((res) => {
-          console.log(res)
-          router.push({
-            name: 'member',
+      if (validateFields()) {
+        console.log('request_params', _params, validateFields)
+        processing.value = true
+        api
+          .payment(_params)
+          .then((res) => {
+            console.log(res)
+            router.push({
+              name: 'member',
+            })
           })
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-      // }
+          .catch((error) => {
+            console.error(error)
+          })
+      }
     }
 
     const handleClick = (id) => {
@@ -490,14 +498,16 @@ export default {
     return {
       reserveList,
       serviceAreaList,
-      step,
-      payAmount,
-      numberOfPeople,
       isDisinfect,
       isDustMite,
       isHalfYear,
       isPet,
       isTool,
+      step,
+      peopleCount,
+      payAmount,
+      numberOfPeople,
+      dateList,
       name,
       phone,
       email,

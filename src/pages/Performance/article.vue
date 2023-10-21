@@ -1,8 +1,6 @@
 <template>
   <div class="article">
     <div class="bread-crumbs">
-      <!-- <span @click="goToCategory">{{ articleData.main_category }}</span>
-      &nbsp;&gt;&nbsp; -->
       <span @click="goToArticleList">{{ articleData.main_category }}</span>
       &nbsp;&gt;&nbsp;
       <span>{{ articleData.title }}</span>

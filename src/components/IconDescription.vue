@@ -12,13 +12,13 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     count: {
       type: Number,
-      default: 0
-    }
-  }
+      default: 0,
+    },
+  },
 }
 </script>
 
@@ -42,7 +42,6 @@ export default {
     font-size: var(--font-xl);
     color: var(--brown);
     text-wrap: wrap;
-    /* padding: 0 16px; */
     text-align: center;
     margin-top: 8px;
   }
@@ -51,7 +50,6 @@ export default {
     font-size: var(--font-s);
     color: var(--black);
     text-wrap: wrap;
-    /* padding: 0 16px; */
     text-align: center;
     margin-top: 8px;
     line-height: 20px;

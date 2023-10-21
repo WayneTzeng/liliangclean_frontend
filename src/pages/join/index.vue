@@ -101,7 +101,7 @@
 
 <script>
 import { ref, reactive, defineAsyncComponent } from 'vue'
-import { getAdultDate, dateFormatter } from '@/helpers/tools'
+import { getAdultDate } from '@/helpers/tools'
 import { joinData } from '@/data/index'
 import ChapterTitle from '@/components/ChapterTitle.vue'
 import api from '@/api/index'
@@ -164,7 +164,6 @@ export default {
         // console.log('表單提交成功')
         // console.log(formData)
         // console.log('base64', uploadBase64Image)
-        console.log(dateFormatter(formData.value.birthDate, 'yyyy/mm/dd'))
         // 彈窗 感謝您的填寫！若有適合您的職缺，我們將盡快與您聯繫。
       }
     }

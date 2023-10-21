@@ -2,21 +2,6 @@ import axios from './axios'
 import { ApiResponseCode as Code } from './const'
 
 export default {
-  updateToken(token) {
-    axios.updateToken(token)
-  },
-  // getToken() {
-  //   return new Promise((resolve, reject) => {
-  //     axios
-  //       .post('YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1')
-  //       .then((res) => {
-  //         this.updateToken(res.cft)
-  //       })
-  //       .catch((error) => {
-  //         reject(error)
-  //       })
-  //   })
-  // },
   login(email, word) {
     return new Promise((resolve, reject) => {
       const params = {
@@ -152,8 +137,8 @@ export default {
         })
     })
   },
-  getPublicTime(formtype) {
-    const _params = { formtype }
+  getPublicTime(count, date) {
+    const _params = { count, date }
     return new Promise((resolve, reject) => {
       axios
         .get('/api/order/publicTime', _params, false)

@@ -11,8 +11,6 @@ export const ErrorCodes = [
   ApiResponseCode.Empty,
 ]
 
-export const TokenErrorCodes = [ApiResponseCode.NoPermission]
-
 export const HttpStatus = {
   OK: 200,
 }
@@ -23,4 +21,3 @@ export const Methods = {
 }
 
 export const CODE_TIMEOUT = 'ECONNABORTED'
-export const UNKNOWN_ERROR = 'UNKNOWN_ERROR'

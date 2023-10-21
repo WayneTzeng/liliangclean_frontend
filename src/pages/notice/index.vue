@@ -143,7 +143,6 @@ export default {
   }
   .why-us {
     padding: 72px 10vw;
-    /* background-color: var(--white); */
     .button-title {
       width: 200px;
       height: 40px;

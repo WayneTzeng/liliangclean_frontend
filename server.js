@@ -51,7 +51,7 @@ const createServer = async (isTest = false) => {
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('/src/entry-server.js')).render
       }
-      const [appHtml, customMeta, preloadLinks, piniaState] = await render(
+      const [appHtml, preloadLinks, piniaState] = await render(
         url,
         manifest,
         axios
@@ -60,7 +60,6 @@ const createServer = async (isTest = false) => {
       // replace processed resources
       const html = template
         .replace(`<!--preload-links-->`, preloadLinks)
-        .replace(`<!--custom-meta-->`, customMeta)
         .replace(`<!--ssr-outlet-->`, appHtml)
         .replace(`<!--pinia-state-->`, piniaState)
 

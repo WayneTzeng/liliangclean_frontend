@@ -8,7 +8,6 @@
   },
   "scripts": {
     "start": "cross-env VITE_ENV_TYPE=uat node start-server",
-    "start-mock": "cross-env VITE_ENV_TYPE=mock node start-server",
     "start-uat": "cross-env VITE_ENV_TYPE=uat node start-server",
     "build-uat": "cross-env yarn build-uat:client && yarn run build-uat:server",
     "serve-uat": "cross-env NODE_ENV=production VITE_ENV_TYPE=uat node start-server",
