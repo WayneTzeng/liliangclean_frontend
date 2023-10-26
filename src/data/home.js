@@ -19,8 +19,8 @@ import ImagePerformanceAfter2 from '../assets/image/image/a-image-performance-2.
 import ImagePerformanceBefore3 from '../assets/image/image/b-image-performance-3.png'
 import ImagePerformanceAfter3 from '../assets/image/image/a-image-performance-3.png'
 
-import ImagePerformanceBefore4 from '../assets/image/image/b-image-performance-4.png'
-import ImagePerformanceAfter4 from '../assets/image/image/a-image-performance-4.png'
+import ImagePerformanceBefore4 from '../assets/image/image/image-performance-4.png'
+import ImagePerformanceAfter4 from '../assets/image/image/image-performance-4.png'
 
 import ImagePerformanceBefore5 from '../assets/image/image/image-performance-5.png'
 import ImagePerformanceAfter5 from '../assets/image/image/image-performance-5.png'
@@ -31,8 +31,8 @@ import ImagePerformanceAfter6 from '../assets/image/image/a-image-performance-6.
 import ImagePerformanceBefore7 from '../assets/image/image/b-image-performance-7.png'
 import ImagePerformanceAfter7 from '../assets/image/image/a-image-performance-7.png'
 
-import ImagePerformanceBefore8 from '../assets/image/image/image-performance-8.png'
-import ImagePerformanceAfter8 from '../assets/image/image/image-performance-8.png'
+import ImagePerformanceBefore8 from '../assets/image/image/b-image-performance-8.png'
+import ImagePerformanceAfter8 from '../assets/image/image/a-image-performance-8.png'
 
 import ImagePerformanceBefore9 from '../assets/image/image/image-performance-9.png'
 import ImagePerformanceAfter9 from '../assets/image/image/image-performance-9.png'
