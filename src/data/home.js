@@ -34,8 +34,8 @@ import ImagePerformanceAfter7 from '../assets/image/image/a-image-performance-7.
 import ImagePerformanceBefore8 from '../assets/image/image/b-image-performance-8.png'
 import ImagePerformanceAfter8 from '../assets/image/image/a-image-performance-8.png'
 
-import ImagePerformanceBefore9 from '../assets/image/image/b-image-performance-9.png'
-import ImagePerformanceAfter9 from '../assets/image/image/a-image-performance-9.png'
+import ImagePerformanceBefore9 from '../assets/image/image/a-image-performance-9.png'
+import ImagePerformanceAfter9 from '../assets/image/image/b-image-performance-9.png'
 
 import ImageGood1 from '../assets/image/image/image-good-1.png'
 import ImageGood2 from '../assets/image/image/image-good-2.png'
