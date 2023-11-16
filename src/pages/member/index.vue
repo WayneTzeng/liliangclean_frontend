@@ -218,7 +218,6 @@ export default {
     const save = () => {
       if (validateFields()) {
         // 在这里执行儲存逻辑
-        console.log('儲存成功')
         editing.value = false
       }
     }
@@ -249,7 +248,6 @@ export default {
 
     watchEffect(() => {
       if (tabIndex.value === 2) {
-        console.log('logout')
         localStorage.removeItem('memberToken')
         router.push({ name: 'Index' })
       }

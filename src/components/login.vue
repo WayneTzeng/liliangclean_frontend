@@ -107,10 +107,8 @@ export default {
         //   .then(()=> {
         //     // 彈窗通知寄出密碼
         //   })
-        console.log('send forget pw')
       }
       if (validateFields()) {
-        // console.log(api)
         // localStorage.setItem('memberToken', 'fake-token')
         // todo
         closeLogin()

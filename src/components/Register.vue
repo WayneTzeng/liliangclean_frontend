@@ -138,7 +138,6 @@ export default {
         // api.register().then(() => {
         //   // 註冊後重新登入
         // })
-        console.log('注册成功, 請重新登入  <--- 彈窗')
       }
     }
 
