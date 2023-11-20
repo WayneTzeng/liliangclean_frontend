@@ -1,7 +1,7 @@
-import ImageBanner1 from '../assets/image/image/image-banner-1.png'
-import ImageBanner2 from '../assets/image/image/image-banner-2.png'
-import ImageBanner3 from '../assets/image/image/image-banner-3.png'
-import ImageBanner4 from '../assets/image/image/image-banner-4.png'
+import ImageBanner1 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image/image-banner-top.png'
+import ImageBanner2 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-1.png'
+import ImageBanner3 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image/image-banner-2.png'
+import ImageBanner4 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-3.png'
 
 import Icon1 from '../assets/image/icon/icon-1.svg'
 import Icon2 from '../assets/image/icon/icon-2.svg'
