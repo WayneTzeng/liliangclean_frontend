@@ -1,8 +1,3 @@
-import ImageBanner1 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image/image-banner-top.png'
-import ImageBanner2 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-1.png'
-import ImageBanner3 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image/image-banner-2.png'
-import ImageBanner4 from 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-3.png'
-
 import Icon1 from '../assets/image/icon/icon-1.svg'
 import Icon2 from '../assets/image/icon/icon-2.svg'
 import Icon3 from '../assets/image/icon/icon-3.svg'
@@ -45,7 +40,13 @@ import ImageGood5 from '../assets/image/image/image-good-5.png'
 import ImageGood6 from '../assets/image/image/image-good-6.png'
 import ImageGood7 from '../assets/image/image/image-good-7.png'
 
+const ImageBanner1 = 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-top.png'
+const ImageBanner2 = 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-1.png'
+const ImageBanner3 = 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-2.png'
+const ImageBanner4 = 'https://dpazbzrwlrs5q.cloudfront.net/uaimge/banner/image-banner-3.png'
+
 export default {
+
   bannerList: [
     {
       url: ImageBanner1,
