@@ -50,6 +50,11 @@ const routes = [
     name: 'Reserve',
     component: () => import('@/pages/reserve/index.vue'),
   },
+  {
+    path: '/sitemap.xml',
+    name: 'Resesitemaprve',
+    component: () => import('@/pages/sitemap/index.vue'),
+  },
 ]
 
 export function createRouter() {
