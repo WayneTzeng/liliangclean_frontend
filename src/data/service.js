@@ -81,7 +81,7 @@ export default {
           '水垢、皂垢清除',
         ],
         cant: ['櫃內清潔'],
-        estimatedTime: ['0.5hr', '2.5hr'],
+        estimatedTime: ['1hr', '2.5hr'],
         desc: ['普通清潔', '垢重、許久未清潔'],
         notice: '全區除霉請洽客服人員',
         image: service4,
